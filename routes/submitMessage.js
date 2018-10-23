@@ -20,7 +20,7 @@ MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PA
 
 /*  */
 router.post('/', function(req, res, next) {
-  res.send('Submit message' + req.body);
+  res.send('Submit message ' + req.body.beer + " " + req.body.rating);
 });
 
 module.exports = router;
