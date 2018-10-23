@@ -36,7 +36,8 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 //possible usage: make a router to check for login
-app.use('/submit_message', [indexRouter, submitMessageRouter]);
+//app.use('/submit_message', [indexRouter, submitMessageRouter]);
+app.use('/submit_message', submitMessageRouter);
 app.use('/get_message', getMessageRouter);
 app.use('/get_feed/:thread_id', getFeedRouter);
 app.use('/create_user', createUserRouter);
