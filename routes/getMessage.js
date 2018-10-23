@@ -20,8 +20,8 @@ router.get('/:message_id', function(req, res, next) {
         db.collection("message").findOne({ _id: ObjectID(message_id) }, 
             function(err, ires) {
             if (err) throw err;
-            
-            if(ires.length == 1) {
+
+            if(ires != null) {
                 console.log("1 message found id " + ires._id );
                 client.close();
                 res.send(JSON.stringify(ires));

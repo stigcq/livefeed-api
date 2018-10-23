@@ -8,9 +8,9 @@ require('dotenv').config();
 console.log(process.env.DOTENV_HELLO);
 
 var indexRouter = require('./routes/index');
-var testDbRouter = require('./routes/testDb');
 var submitMessageRouter = require('./routes/submitMessage');
 var getMessageRouter = require('./routes/getMessage');
+var getFeedRouter = require('./routes/getFeed');
 
 var app = express();
 
@@ -26,9 +26,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/testdb', testDbRouter);
 app.use('/submit_message', submitMessageRouter);
 app.use('/get_message', getMessageRouter);
+app.use('/get_feed', getFeedRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
