@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var dateFormat = require('dateformat'); 
+
 var MongoClient = require('mongodb').MongoClient
+var ObjectID = require('mongodb').ObjectID;
 
 
 /* delete message */
@@ -16,7 +17,7 @@ router.get('/', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        var query = {"_id": message_id};
+        var query = {"_id": ObjectID(message_id)};
 
         db.collection("message").deleteOne(query, 
             function(err, ires) {
