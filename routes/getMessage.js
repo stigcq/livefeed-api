@@ -5,12 +5,9 @@ var MongoClient = require('mongodb').MongoClient
 
 
 /*  */
-router.post('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
-    const thread_id = req.body.thread_id;
-    const content = req.body.content;
-
-    var item = {"thread_id": thread_id, "content": content, "": 1};
+    const message_id = req.params.message_id;
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@localhost:27017', function (err, client) {
@@ -18,12 +15,12 @@ router.post('/', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        db.collection("message").insertOne(item, 
+        db.collection("message").findOne({ _id: ObjectId(message_id) }, 
             function(err, ires) {
             if (err) throw err;
-            console.log("1 message inserted id " + item._id );
+            console.log("1 message found id " + ires._id );
             client.close();
-            res.send( 'message added ' + item._id);
+            res.send(JSON.stringify(ires));
         });
     });
 
