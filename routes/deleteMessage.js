@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
+var dateFormat = require('dateformat'); 
 var MongoClient = require('mongodb').MongoClient
-var ObjectID = require('mongodb').ObjectID;
+
 
 /*  */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
 
-    const thread_id = req.params.thread_id;
+    const message_id = req.params.message_id;
+    
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@localhost:27017', function (err, client) {
@@ -15,15 +16,15 @@ router.get('/', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        var mysort = { feed_time: 1 };
-        
-        db.collection("message").find({}).sort(mysort).toArray(function(err, result) {
-            if (err) throw err;
-            console.log(result);
-            client.close();
+        var query = {"_id": message_id};
 
-            res.send(JSON.stringify(result));
-          });
+        db.collection("message").deleteOne(query, 
+            function(err, ires) {
+            if (err) throw err;
+            console.log("1 message inserted id " + item._id );
+            client.close();
+            res.send( 'message added ' + item._id);
+        });
     });
 
 });

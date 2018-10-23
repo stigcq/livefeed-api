@@ -6,7 +6,7 @@ The livefeed api is basicly a messaging system made for usage for livefeeds, tha
 a feed of messages that updates regularly. 
 
 The current php implementation with js/jquery frontend can be seen here:
-<a href="http://itselskabet.nu/feed">Live feed example</>
+<a href="http://itselskabet.nu/feed">Live feed example</a>
 
 Purpose of this is to clearly seperate backend from frontend and hence
 make it a genuine JAMStack app. 

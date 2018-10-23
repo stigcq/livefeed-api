@@ -9,6 +9,7 @@ console.log(process.env.DOTENV_HELLO);
 
 var indexRouter = require('./routes/index');
 var submitMessageRouter = require('./routes/submitMessage');
+var deleteMessageRouter = require('./routes/deleteMessage');
 var getMessageRouter = require('./routes/getMessage');
 var getFeedRouter = require('./routes/getFeed');
 var createUserRouter = require('./routes/createUser');
@@ -34,14 +35,17 @@ app.use(function(req, res, next) {
   next();
 });
 
+//not used
 app.use('/', indexRouter);
 //possible usage: make a router to check for login
 //app.use('/submit_message', [indexRouter, submitMessageRouter]);
 app.use('/submit_message', submitMessageRouter);
 app.use('/get_message', getMessageRouter);
+app.use('/delete_message/:message_id', deleteMessageRouter);
 app.use('/get_feed/:thread_id', getFeedRouter);
 app.use('/create_user', createUserRouter);
 app.use('/login', loginRouter);
+
 
 
 // catch 404 and forward to error handler

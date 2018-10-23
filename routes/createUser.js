@@ -26,9 +26,9 @@ router.post('/', function(req, res, next) {
         db.collection("user").insertOne(item, function(err, ires) {
             if (err) throw err;
 
-            console.log("1 message inserted id " + item._id );
+            console.log("1 user inserted id " + item._id );
             client.close();
-            res.send( 'message added ' + item._id);
+            res.send( 'user added ' + item._id);
         });
     });
 
