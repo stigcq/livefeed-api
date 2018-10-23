@@ -4,7 +4,7 @@ var dateFormat = require('dateformat');
 var MongoClient = require('mongodb').MongoClient
 
 
-/*  */
+/* delete message */
 router.get('/', function(req, res, next) {
 
     const message_id = req.params.message_id;
