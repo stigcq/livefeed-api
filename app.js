@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/submit_message', submitMessageRouter);
 app.use('/get_message', getMessageRouter);
-app.use('/get_feed', [indexRouter, getFeedRouter]);
+app.use('/get_feed/:thread_id', [indexRouter, getFeedRouter]);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
