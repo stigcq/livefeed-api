@@ -5,7 +5,7 @@ var MongoClient = require('mongodb').MongoClient
 
 
 /*  */
-router.get('/', function(req, res, next) {
+router.get('/:message_id', function(req, res, next) {
 
     const message_id = req.params.message_id;
     
