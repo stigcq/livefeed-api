@@ -21,9 +21,9 @@ router.get('/', function(req, res, next) {
         db.collection("message").deleteOne(query, 
             function(err, ires) {
             if (err) throw err;
-            console.log("1 message inserted id " + item._id );
+            console.log("1 message deleted id " + message_id);
             client.close();
-            res.send( 'message added ' + item._id);
+            res.send( 'message deleted ');
         });
     });
 
