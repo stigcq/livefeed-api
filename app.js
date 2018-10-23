@@ -10,7 +10,7 @@ console.log(process.env.DOTENV_HELLO);
 var indexRouter = require('./routes/index');
 var testDbRouter = require('./routes/testDb');
 var submitMessageRouter = require('./routes/submitMessage');
-var getMessageRouter = require('./routes/getMessageRouter');
+var getMessageRouter = require('./routes/getMessage');
 
 var app = express();
 
