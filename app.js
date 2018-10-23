@@ -30,6 +30,7 @@ app.use('/submit_message', submitMessageRouter);
 app.use('/get_message', getMessageRouter);
 app.use('/get_feed/:thread_id', [indexRouter, getFeedRouter]);
 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
