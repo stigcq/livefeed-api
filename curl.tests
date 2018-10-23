@@ -1,0 +1,16 @@
+
+add user
+curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"email": "test@test.com", "password": "hidden", "display_name": "tester"}'   http://3.121.5.61:3000/create_user
+
+add message
+curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"thread_id": 1, "content": "first message"}'   http://3.121.5.61:3000/submit_message
+
+get message
+curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_message/5bcf04dee4aad6387a56c6a5
+
+delete message
+curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/delete_message/5bcf04dee4aad6387a56c6a5
+
+
+
+

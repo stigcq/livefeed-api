@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        var mysort = { feed_time: 1 };
+        var mysort = { feed_time: 0 };
         
         db.collection("message").find({}).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
