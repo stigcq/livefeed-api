@@ -4,14 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+console.log(process.env.DOTENV_HELLO);
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testDbRouter = require('./routes/testDb');
 
 var app = express();
-
-require('dotenv').config();
-console.log(process.env.DOTENV_HELLO);
 
 
 // view engine setup
