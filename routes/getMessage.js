@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
 
     const message_id = req.params.message_id;
     
+    console.log("get_message " + message_id);
+
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@localhost:27017', function (err, client) {
         if (err) throw err
