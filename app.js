@@ -11,6 +11,8 @@ var indexRouter = require('./routes/index');
 var submitMessageRouter = require('./routes/submitMessage');
 var getMessageRouter = require('./routes/getMessage');
 var getFeedRouter = require('./routes/getFeed');
+var createUserRouter = require('./routes/createUser');
+var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -25,10 +27,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//enable cross browser
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use('/', indexRouter);
-app.use('/submit_message', submitMessageRouter);
+//possible usage: make a router to check for login
+app.use('/submit_message', [indexRouter, submitMessageRouter]);
 app.use('/get_message', getMessageRouter);
-app.use('/get_feed/:thread_id', [indexRouter, getFeedRouter]);
+app.use('/get_feed/:thread_id', getFeedRouter);
+app.use('/create_user', createUserRouter);
+app.use('/login', loginRouter);
 
 
 // catch 404 and forward to error handler
