@@ -35,13 +35,13 @@ router.post('/', function(req, res, next) {
         db.collection("message").insertOne(item, 
             function(err, ires) {
             if (err) throw err;
-            console.log("1 message inserted");
+            console.log("1 message inserted id " + item._id);
             client.close();
             res.send( 'message added ' + item._id);
         });
     });
 
-  res.send('Submit message ' + req.body.thread_id + " " + req.body.content);
+  //res.send('Submit message ' + req.body.thread_id + " " + req.body.content);
 });
 
 module.exports = router;
