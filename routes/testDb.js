@@ -3,6 +3,8 @@ var router = express.Router();
 
 var MongoClient = require('mongodb').MongoClient
 
+console.log('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@localhost:27017');
+
 MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@localhost:27017', function (err, client) {
   if (err) throw err
 
