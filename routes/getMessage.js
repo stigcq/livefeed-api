@@ -17,12 +17,20 @@ router.get('/:message_id', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        db.collection("message").findOne({ _id: ObjectId(message_id) }, 
+        db.collection("message").findOne({ _id: ObjectID(message_id) }, 
             function(err, ires) {
             if (err) throw err;
-            console.log("1 message found id " + ires._id );
-            client.close();
-            res.send(JSON.stringify(ires));
+            
+            if(ires.length == 1) {
+                console.log("1 message found id " + ires._id );
+                client.close();
+                res.send(JSON.stringify(ires));
+            } else {
+                console.log("no message found ");
+                client.close();
+                res.send("no message found");
+            }
+
         });
     });
 
