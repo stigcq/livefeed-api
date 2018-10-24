@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
             if (err) throw err;
             console.log("1 document updated");
 
-            res.send("{'session_token': '" + my_session_token+ "'}";
+            res.send("{'session_token': '" + my_session_token+ "'}");
 
             client.close();
           });
@@ -45,7 +45,7 @@ router.post('/', function(req, res, next) {
       } else {
           console.log("no user found ");
           client.close();
-          res.send("no user found");
+          res.send("{'message': 'No user found', 'session_token': 1}");
       }
 
     });
