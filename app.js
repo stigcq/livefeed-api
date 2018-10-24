@@ -14,6 +14,7 @@ var getMessageRouter = require('./routes/getMessage');
 var getFeedRouter = require('./routes/getFeed');
 var createUserRouter = require('./routes/createUser');
 var loginRouter = require('./routes/login');
+var checkUserRouter = require('./routes/checkUserLoggedIn');
 
 var app = express();
 
@@ -36,12 +37,15 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
+/*
 app.get('*', function(req, res, next) {
   //if (req.url === '/' || req.url === '/login') return next();
   res.send("catch all route");
   next();
-});
+});*/
+
+app.all('*', checkUserRouter);
+
 
 //not used
 app.use('/', indexRouter);
