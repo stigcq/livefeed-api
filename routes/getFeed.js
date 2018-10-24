@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     const thread_id = req.params.thread_id;
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@localhost:27017', function (err, client) {
+        '@' + process.env.DB_HOST + ':27017', function (err, client) {
         if (err) throw err
       
         var db = client.db('livefeed-api');

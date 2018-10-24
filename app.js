@@ -19,8 +19,8 @@ var app = express();
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'twig');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'twig');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -61,7 +61,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err.message);
 });
 
 module.exports = app;
