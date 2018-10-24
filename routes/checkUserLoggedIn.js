@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
   //testing
   req.app.set("user", "check user logged in catch all route");
 
+  next();
 });
 
 module.exports = router;
