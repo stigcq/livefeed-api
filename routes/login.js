@@ -20,10 +20,22 @@ router.post('/', function(req, res, next) {
       if (err) throw err;
 
       if(ires != null) {
-          console.log("1 user found id " + ires._id );
+        console.log("1 user found id " + ires._id );
           
-          res.send(JSON.stringify(ires));
+        my_session_token = Math.floor((Math.random() * 10000000));
 
+        var myquery = { _di: ires.id };
+        var newvalues = { $set: {session_token: my_session_token } };
+        db.collection("user").updateOne(myquery, newvalues, function(err, res) {
+            if (err) throw err;
+            console.log("1 document updated");
+
+            res.send("{'session_token': '" + my_session_token+ "'}";
+
+            client.close();
+          });
+
+          
           //create a token
           //update user row with token
           //send token to client in json
