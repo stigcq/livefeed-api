@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
 
   var db = client.db('livefeed-api');
 
-  db.collection("message").findOne({ password: md5password }, 
+  db.collection("user").findOne({ password: md5password }, 
       function(err, ires) {
       if (err) throw err;
 
