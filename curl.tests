@@ -14,6 +14,13 @@ curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/delete
 Login
 curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"email": "test@test.com", "md5password": "662f707d5491e9bce8238a6c0be92190"}'   http://3.121.5.61:3000/Login
 
+get feed
+curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_feed/1
+
+
+
+
+
 
 
 
