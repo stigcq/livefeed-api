@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var MongoClient = require('mongodb').MongoClient
 
 /* GET home page. */
 router.all('*', function(req, res, next) {
