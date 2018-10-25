@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.all('/', function(req, res, next) {
+router.all('*', function(req, res, next) {
 
-  const session_token = req.body.session_token;
+  var session_token = req.body.session_token;
 
   if(session_token == undefined)
     session_token = req.params.session_token;
