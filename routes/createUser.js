@@ -7,12 +7,12 @@ var md5 = require('md5');
 /* create user */
 router.post('/', function(req, res, next) {
 
-    const email = req.body.email;
+    const useremail = req.body.email;
     const password = req.body.password;
     const display_name = req.body.display_name;
 
     var item = {
-        "email": email, 
+        "email": useremail, 
         "password": md5(password),
         "display_name": display_name,
         "session_token": Math.floor((Math.random() * 10000000))
@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        db.collection("user").findOne({ 'email': email }, 
+        db.collection("user").findOne({email: useremail }, 
             function(err, ires) {
             if (err) throw err;
       
