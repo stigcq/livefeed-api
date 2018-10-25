@@ -7,7 +7,9 @@ var MongoClient = require('mongodb').MongoClient
 /*  */
 router.post('/', function(req, res, next) {
 
-    if(!req.app.get("user")) {
+    console.log("user object" + req.app.get("user"));
+
+    if(req.app.get("user") == false) {
         res.send("{'message': 'Need to be logged in to add message', 'error': 1}");
         return;
     }
