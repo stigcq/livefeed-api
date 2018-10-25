@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
   
       var db = client.db('livefeed-api');
   
-      db.collection("user").findOne({ 'email': email }, 
+      db.collection("user").findOne({ 'session_token': session_token }, 
         function(err, ires) {
         if (err) throw err;
   
