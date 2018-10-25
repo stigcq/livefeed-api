@@ -24,12 +24,26 @@ router.post('/', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        db.collection("user").insertOne(item, function(err, ires) {
+        db.collection("user").findOne({ 'email': email }, 
+            function(err, ires) {
             if (err) throw err;
+      
+            if(ires != null) {
+                console.log("1 user found id " + ires._id );
+     
+                res.send("{'message': 'Email already in use', '_id': 0}");
 
-            console.log("1 user inserted id " + item._id );
-            client.close();
-            res.send(JSON.stringify(item));
+            } else {
+
+                db.collection("user").insertOne(item, function(err, ires) {
+                    if (err) throw err;
+    
+                    console.log("1 user inserted id " + item._id );
+                    client.close();
+                    res.send(JSON.stringify(item));
+                });
+            }
+
         });
     });
 
