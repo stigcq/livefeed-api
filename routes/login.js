@@ -21,6 +21,10 @@ router.post('/', function(req, res, next) {
 
       if(ires != null) {
         console.log("1 user found id " + ires._id );
+        //create a token
+        //update user row with token
+        //send token to client in json
+        //close db conn
           
         my_session_token = Math.floor((Math.random() * 10000000));
 
@@ -34,13 +38,6 @@ router.post('/', function(req, res, next) {
 
             client.close();
           });
-
-          
-          //create a token
-          //update user row with token
-          //send token to client in json
-          //close db conn
-
 
       } else {
           console.log("no user found ");

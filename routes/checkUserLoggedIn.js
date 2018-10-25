@@ -3,9 +3,38 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  //res.render('index', { title: 'Express' });
-  //testing
-  req.app.set("user", "check user logged in catch all route");
+
+  const session_token = req.body.session_token;
+
+  if(session_token == undefined)
+    session_token = req.params.session_token;
+
+  if(session_token == undefined) {
+    req.app.set("user", false);
+  } else {
+
+    MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
+    '@' + process.env.DB_HOST + ':27017', function (err, client) {
+    if (err) throw err
+  
+      var db = client.db('livefeed-api');
+  
+      db.collection("user").findOne({ 'email': email }, 
+        function(err, ires) {
+        if (err) throw err;
+  
+        if(ires != null) {
+            console.log("1 user found id " + ires._id );
+  
+            req.app.set("user", ires);
+  
+        } else {
+          req.app.set("user", false);
+        }
+      });
+  
+    });
+  }
 
   next();
 });
