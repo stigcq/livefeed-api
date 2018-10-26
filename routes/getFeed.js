@@ -5,7 +5,7 @@ var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
 
 /*  */
-router.get('/:thread_id', function(req, res, next) {
+router.get('/:feed_id', function(req, res, next) {
 
     const feed_id = req.params.feed_id;
     
