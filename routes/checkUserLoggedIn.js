@@ -12,6 +12,7 @@ router.all('*', function(req, res, next) {
 
   if(session_token == undefined) {
     req.app.set("user", false);
+    next();
   } else {
 
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 

@@ -18,6 +18,19 @@ If not logged in
 {'message': 'Need to be logged in to add message', 'error': 1}
 
 Success:
+{"thread_id":1,"author_id":"5bcf407ed83b2340046c24a8","content":"first message","reply_to":0,"feed_time":"2018-10-26 09:55:42","_id":"5bd2e49eacfea901ff9c2332"}
+
+
+
+-------
+add comment
+
+success:
+{"author_id":"5bcf407ed83b2340046c24a8","content":"first comment","reply_to":"5bd2e49eacfea901ff9c2332","feed_time":"2018-10-26 10:48:32","_id":"5bd2f1000b8daf03b6a971eb"}
+
+Not logged in:
+{'message': 'Need to be logged in to add comment', 'error': 1}
+
 
 
 ------
