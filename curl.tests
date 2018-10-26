@@ -11,6 +11,7 @@ Email already used
 
 
 -------
+
 add message:
 curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"thread_id": 1, "content": "first message", "session_token": 3164139}'   http://3.121.5.61:3000/submit_message
 
@@ -23,6 +24,7 @@ Success:
 
 
 -------
+
 add comment
 
 success:
