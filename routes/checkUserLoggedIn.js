@@ -28,16 +28,20 @@ router.all('*', function(req, res, next) {
             console.log("1 user found id " + ires._id );
   
             req.app.set("user", ires);
+
+            next();
   
         } else {
           req.app.set("user", false);
+
+          next();
         }
       });
   
     });
   }
 
-  next();
+
 });
 
 module.exports = router;
