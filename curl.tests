@@ -44,6 +44,12 @@ curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_me
 delete message
 curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/delete_message/5bcf04dee4aad6387a56c6a5
 
+Success:
+{"n":1,"ok":1}
+
+message not found:
+{"n":0,"ok":1}
+
 
 --------
 Login

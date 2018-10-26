@@ -55,7 +55,7 @@ app.use('/', indexRouter);
 app.use('/submit_message', submitMessageRouter);
 app.use('/submit_comment', submitCommentRouter);
 app.use('/get_message', getMessageRouter);
-app.use('/delete_message/:message_id', deleteMessageRouter);
+app.use('/delete_message', deleteMessageRouter);
 app.use('/get_feed/:thread_id', getFeedRouter);
 app.use('/create_user', createUserRouter);
 app.use('/login', loginRouter);
