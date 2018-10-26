@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
         return;
     }
 
-    const thread_id = req.body.thread_id;
+    const feed_id = req.body.feed_id;
     const content = req.body.content;
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
@@ -26,11 +26,11 @@ router.post('/', function(req, res, next) {
         /* TODO: check if user have perms for the feed */
 
         var item = {
-            "thread_id": thread_id, 
-            "author_id": req.app.get("user")._id,
+            "feed_id": feed_id, 
+            "user_id": req.app.get("user")._id,
             "content": content, 
             "reply_to": 0,
-            "feed_time": dateFormat(new Date(), "yyyy-mm-dd hh:MM:ss")
+            "feed_time": new Date().getTime()
         };
 
         db.collection("message").insertOne(item, 
