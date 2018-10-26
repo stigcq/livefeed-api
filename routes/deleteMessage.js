@@ -16,10 +16,10 @@ router.post('/', function(req, res, next) {
     const message_id = req.body.message_id;
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':27017', function (err, client) {
+        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
         if (err) throw err
       
-        var db = client.db('livefeed-api');
+        var db = client.db(process.env.DB_DB);
 
         var query = {"_id": ObjectID(message_id), "author_id": req.app.get("user")._id};
 

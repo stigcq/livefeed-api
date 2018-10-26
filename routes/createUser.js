@@ -19,10 +19,10 @@ router.post('/', function(req, res, next) {
     };
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':27017', function (err, client) {
+        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
         if (err) throw err
       
-        var db = client.db('livefeed-api');
+        var db = client.db(process.env.DB_DB);
 
         db.collection("user").findOne({email: useremail }, 
             function(err, ires) {
