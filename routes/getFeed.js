@@ -5,11 +5,11 @@ var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
 
 /*  */
-router.get('/:feed_id/:test1?/:test2?', function(req, res, next) {
+router.get('/:feed_id/:feed_time?/:test2?', function(req, res, next) {
 
     const feed_id = req.params.feed_id;
     
-    console.log(req.params.test1);
+    console.log(req.params.feed_time);
     console.log(req.params.test2);
 
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
@@ -18,9 +18,14 @@ router.get('/:feed_id/:test1?/:test2?', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
+        var myquery = {"feed_id": feed_id};
+
+        if(req.params.feed_time != undefined) 
+            myquery = {"feed_id": feed_id, "feed_time":{$gt: req.params.feed_time}};
+
         var mysort = { feed_time: -1 };
         
-        db.collection("message").find({"feed_id": feed_id}).sort(mysort).toArray(function(err, result) {
+        db.collection("message").find(myquery).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
             console.log("No rows found: " + result.length);
             client.close();
