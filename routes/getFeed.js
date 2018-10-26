@@ -5,10 +5,12 @@ var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
 
 /*  */
-router.get('/:feed_id', function(req, res, next) {
+router.get('/:feed_id/:test1?', function(req, res, next) {
 
     const feed_id = req.params.feed_id;
     
+    console.log(req.params.test1);
+
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
         if (err) throw err
