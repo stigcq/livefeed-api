@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient
 
-/* GET home page. */
+/* Currently set on all routes */
 router.all('*', function(req, res, next) {
 
   var session_token = req.body.session_token;
@@ -16,25 +16,23 @@ router.all('*', function(req, res, next) {
   } else {
 
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-    '@' + process.env.DB_HOST + ':27017', function (err, client) {
-    if (err) throw err
+    '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
+      
+      if (err) throw err
   
       var db = client.db('livefeed-api');
   
-      db.collection("user").findOne({ 'session_token': session_token }, 
-        function(err, ires) {
+      db.collection("user").findOne({ 'session_token': session_token }, function(err, ires) {
         if (err) throw err;
   
         if(ires != null) {
             console.log("1 user found id " + ires._id );
   
             req.app.set("user", ires);
-
             next();
   
         } else {
           req.app.set("user", false);
-
           next();
         }
       });

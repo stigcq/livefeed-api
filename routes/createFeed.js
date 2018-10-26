@@ -13,7 +13,6 @@ router.post('/', function(req, res, next) {
         res.send("{'message': 'Need to be logged in to create feed', 'error': 1}");
         return;
     }
-    //consider getting message first
 
     var item = {
         "user_id": req.app.get("user")._id,
@@ -21,7 +20,7 @@ router.post('/', function(req, res, next) {
     };
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':27017', function (err, client) {
+        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
         if (err) throw err
       
         var db = client.db('livefeed-api');

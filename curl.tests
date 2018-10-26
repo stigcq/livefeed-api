@@ -71,7 +71,10 @@ curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_fe
 -------
 
 create feed
-curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"feed_title": "my feed title", "session_token": 7675425}'   http://3.121.5.61:3000/Login
+curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"feed_title": "my feed title", "session_token": 7675425}'   http://3.121.5.61:3000/create_feed
+
+success:
+{"user_id":"5bd2fcaff6ac6c0593aa64ea","feed_title":"my feed title","_id":"5bd306fb889b0606624b6a95"}
 
 
 
