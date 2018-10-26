@@ -28,7 +28,7 @@ router.get('/:message_id', function(req, res, next) {
             } else {
                 console.log("no message found ");
                 client.close();
-                res.send("no message found");
+                res.send("{'error': 1, 'mesage': 'message not found' }");
             }
 
         });

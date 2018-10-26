@@ -10,10 +10,14 @@ router.post('/', function(req, res, next) {
     const message_id = req.body.message_id;
     const content = req.body.content;
 
+    if(req.app.get("user") == false) {
+        res.send("{'message': 'Need to be logged in to add comment', 'error': 1}");
+        return;
+    }
     //consider getting message first
 
     var item = {
-        "author_id": 1,
+        "author_id": req.app.get("user")._id,
         "content": content, 
         "reply_to": message_id,
         "feed_time": dateFormat(new Date(), "yyyy-mm-dd hh:MM:ss")
@@ -25,12 +29,13 @@ router.post('/', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        db.collection("message").insertOne(item, 
-            function(err, ires) {
+        db.collection("message").insertOne(item, function(err, ires) {
             if (err) throw err;
-            console.log("1 message inserted id " + item._id );
+
+            console.log("1 comment inserted id " + item._id );
+            
             client.close();
-            res.send( 'message added ' + item._id);
+            res.send(JSON.stringify(item));
         });
     });
 
