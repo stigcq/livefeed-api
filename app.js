@@ -14,6 +14,7 @@ var deleteMessageRouter = require('./routes/deleteMessage');
 var getMessageRouter = require('./routes/getMessage');
 var getFeedRouter = require('./routes/getFeed');
 var createUserRouter = require('./routes/createUser');
+var createFeedRouter = require('./routes/createFeed');
 var loginRouter = require('./routes/login');
 var checkUserRouter = require('./routes/checkUserLoggedIn');
 
@@ -58,6 +59,7 @@ app.use('/get_message', getMessageRouter);
 app.use('/delete_message', deleteMessageRouter);
 app.use('/get_feed/:thread_id', getFeedRouter);
 app.use('/create_user', createUserRouter);
+app.use('/create_feed', createFeedRouter);
 app.use('/login', loginRouter);
 
 
