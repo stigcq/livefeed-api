@@ -19,7 +19,7 @@ router.post('/', function(req, res, next) {
 
     var item = {
         "thread_id": thread_id, 
-        "author_id": 1,
+        "author_id": req.app.get("user")._id,
         "content": content, 
         "reply_to": 0,
         "feed_time": dateFormat(new Date(), "yyyy-mm-dd hh:MM:ss")
@@ -34,9 +34,9 @@ router.post('/', function(req, res, next) {
         db.collection("message").insertOne(item, 
             function(err, ires) {
             if (err) throw err;
-            console.log("1 message inserted id " + item._id );
+            console.log("1 message inserted id " + JSON.stringify(item) );
             client.close();
-            res.send( 'message added ' + item._id);
+            res.send(JSON.stringify(item));
         });
     });
 

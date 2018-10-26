@@ -17,6 +17,7 @@ curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -
 If not logged in
 {'message': 'Need to be logged in to add message', 'error': 1}
 
+Success:
 
 
 ------
