@@ -28,9 +28,9 @@ router.post('/', function(req, res, next) {
           
         my_session_token = Math.floor((Math.random() * 10000000));
 
-        var myquery = { _id: ObjectID(ires.id) };
+        var myquery = { '_id': ObjectID(ires.id) };
         var newvalues = { $set: {'session_token': Number(my_session_token) } };
-        
+
         db.collection("user").updateOne(myquery, newvalues, function(err, iires) {
             if (err) throw err;
             console.log("1 document updated" + iires);
