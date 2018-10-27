@@ -30,6 +30,8 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
             console.log("No rows found: " + result.length);
             client.close();
 
+            result.reverse();
+
             res.send(JSON.stringify(result));
           });
     });

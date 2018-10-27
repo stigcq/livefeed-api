@@ -52,6 +52,7 @@ Fail bad message id:
 {'error': 1, 'mesage': 'message id is not valid' }
 
 ---------
+
 delete message
 curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"message_id": "5bd2e49eacfea901ff9c2332", "session_token": 3164139}'   http://3.121.5.61:3000/delete_message
 
