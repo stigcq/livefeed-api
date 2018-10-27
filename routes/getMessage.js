@@ -8,6 +8,12 @@ var ObjectID = require('mongodb').ObjectID;
 router.get('/:message_id', function(req, res, next) {
 
     const message_id = req.params.message_id;
+
+    if(message_id.length != 12) {
+
+        res.send("{'error': 1, 'mesage': 'message id is not valid' }");
+        return;
+    }
     
     console.log("get_message " + message_id);
 
