@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
 
       if(ires != null) {
         console.log("1 user found id " + ires._id );
+        console.log(JSON.stringify(ires));
         //create a token
         //update user row with token
         //send token to client in json
