@@ -23,4 +23,14 @@ usage notes will be supplied here. But basicly
 5. See curl.tests file for example curl invocations
 
 
+## public/example
+
+Contains a clientside implementation under work. Viewable here
+http://3.121.5.61/example/
+Its run as a background process on my lightsail mean stack. It might crash
+if theres errors since they are thrown. 
+Nothing works yet except fetching messages. Login and create user and posting
+will be done asap (28/10/2018)
+
+
 
