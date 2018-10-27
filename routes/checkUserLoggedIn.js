@@ -22,7 +22,7 @@ router.all('*', function(req, res, next) {
   
       var db = client.db(process.env.DB_DB);
   
-      db.collection("user").findOne({ 'session_token': session_token }, function(err, ires) {
+      db.collection("user").findOne({ 'session_token': Number(session_token) }, function(err, ires) {
         if (err) throw err;
   
         if(ires != null) {

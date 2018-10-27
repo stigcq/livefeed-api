@@ -393,11 +393,11 @@ function sendMessage() {
 
     console.log(sessionToken);
 
-    content = jQuery("#my_message").val();
+    mycontent = jQuery("#my_message").val();
 
     jQuery.post(feedUrl + "submit_message/", 
             { feed_id: feedId, 
-                message: content,
+                content: mycontent,
                 session_token: sessionToken
                 }, function(data) {
 

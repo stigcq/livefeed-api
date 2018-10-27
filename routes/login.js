@@ -26,16 +26,10 @@ router.post('/', function(req, res, next) {
         //update user row with token
         //send token to client in json
         //close db conn
-
-       /* db.collection("user").deleteOne({ password: md5password }, function(err, ires) {
-          if (err) throw err;
-          console.log("1 user deleted id " + ires);
-          client.close();
-          //res.send(JSON.stringify(ires));
-      });*/
           
         my_session_token = Math.floor((Math.random() * 10000000));
 
+        // FIXME: this query is wrong but I cant get the one using id to work, total BS
         var myquery = { password: md5password }; //{ '_id': ObjectID(ires.id) };
         var newvalues = { $set: {'session_token': Number(my_session_token) } };
 
