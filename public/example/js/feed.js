@@ -446,8 +446,10 @@ function login() {
 
         // TODO: show some feedback in interface
 
-        if(data.session_token != 1)
+        if(data.session_token != 1) {
             sessionToken = data.session_token;
+            showPostMessage();
+        }
     });
 }
 
