@@ -22,12 +22,6 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-
-        /*var myquery = {"feed_id": feed_id};
-
-        if(req.params.feed_time != undefined) 
-            myquery = {"feed_id": feed_id, "feed_time": {$gt: Number(req.params.feed_time)}};*/
-
         var mysort = { feed_time: -1 };
         var aggregate = [
             {$match:

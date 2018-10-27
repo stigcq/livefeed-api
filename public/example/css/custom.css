@@ -1,0 +1,98 @@
+.cutted_div {
+    height: 240px;
+    width: 90%;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+    .cutted {
+        min-height: 100%;
+        min-width: 100%;
+        margin-top: -120px;
+    }
+
+    h1 {
+        margin-top: 6px;
+    }
+
+    .navbar {
+        margin-bottom: 10px;
+    }
+
+    .feed_item {
+        padding-bottom: 20px;
+        padding-top: 20px;
+        border-bottom: 1px solid gold;
+    }
+
+    .form-control {
+        margin-bottom: 6px;
+    }
+
+    .feed_time {
+        color: gray;
+    }
+
+    .feed_item_header {
+
+        margin-bottom: 10px;
+    }
+
+    .show_comments_button {
+        margin-top: 6px;
+        border: 1px solid #dddddd; 
+        padding: 5px; 
+        text-align: center
+    }
+    
+    .comment_view {
+        padding-left: 0px;
+        margin-top: 10px;
+        display: inline;
+    }
+
+    .comments_section {
+        margin-top: 12px;
+    }
+
+    @media screen and (min-width: 400px) {
+        .content_area {
+            margin: 0 1% 0 1%;
+        }
+
+        .content_footer_area {
+            margin: 0 1% 0 1%;
+        }
+
+        .top_area {
+            margin: 0 1% 0 1%;
+        }
+}
+
+@media screen and (min-width: 1000px) {
+    .content_area {
+        margin: 0 27% 0 25%;
+    }
+
+    .content_footer_area {
+        margin: 0 27% 0 25%;
+    }
+
+    .top_area {
+        margin: 0 25% 0 25%;
+    }
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
