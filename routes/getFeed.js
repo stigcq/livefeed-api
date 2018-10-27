@@ -8,6 +8,10 @@ var ObjectID = require('mongodb').ObjectID;
 router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
 
     const feed_id = req.params.feed_id;
+    var feed_time = 0;
+
+    if(req.params.feed_time != undefined)
+        feed_time = req.params.feed_time;
     
     console.log(req.params.feed_time);
     console.log(req.params.goback);
@@ -18,6 +22,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
+
         /*var myquery = {"feed_id": feed_id};
 
         if(req.params.feed_time != undefined) 
@@ -27,14 +32,14 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         var aggregate = [
             {$match:
                 {'feed_id': feed_id,
-                "feed_time": {$gt: Number(req.params.feed_time) } } },
+                "feed_time": {$gt: Number(feed_time) } } },
             { $lookup: {
               from: 'user',
               localField: 'user_id',
               foreignField: '_id',
               as: 'user'
             } },
-            { $project: { 
+            { $project: { "content": 1, "feed_time": 1,
                 "user": { "display_name": 1 } } }
         ];
         
