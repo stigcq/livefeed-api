@@ -32,6 +32,8 @@ router.all('*', function(req, res, next) {
             next();
   
         } else {
+          console.log("no user found id " + session_token );
+  
           req.app.set("user", false);
           next();
         }
