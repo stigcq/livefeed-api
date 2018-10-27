@@ -39,8 +39,16 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
               foreignField: '_id',
               as: 'user'
             } },
+            { $lookup: {
+                from: 'feed',
+                localField: 'feed_id',
+                foreignField: '_id',
+                as: 'feed'
+              } },
             { $project: { "content": 1, "feed_time": 1,
-                "user": { "display_name": 1 } } }
+                "user": { "display_name": 1 },
+                "feed": { "feed_title": 1 },
+            } }
         ];
         
         db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
