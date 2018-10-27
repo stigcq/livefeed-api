@@ -38,13 +38,19 @@ Not logged in:
 
 
 ------
+
 get message
-curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_message/5bcf04dee4aad6387a56c6a5
+curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_message/5bd3366bc6c3980aa0001a16
+
+Success:
+{"_id":"5bd3366bc6c3980aa0001a16","feed_id":"5bd306fb889b0606624b6a95","user_id":"5bd1d501cc91c3745021d816","content":"third message","reply_to":0,"feed_time":1540568683565}
+
 
 
 ---------
 delete message
 curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"message_id": "5bd2e49eacfea901ff9c2332", "session_token": 3164139}'   http://3.121.5.61:3000/delete_message
+
 
 Success:
 {"n":1,"ok":1}
@@ -63,10 +69,20 @@ Success:
 failure:
 {'message': 'No user found', 'session_token': 1}
 
+params:
+email: the users email
+md5password: the users password md5 encrypted
+
 --------
 
 get feed
-curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_feed/1
+url: /mesages/:feed_id/:from_message_time?/:goback?/
+curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/messages/5bd306fb889b0606624b6a95
+
+params:
+feed_id: Id of the feed 
+from_message_time: only get messages new than this time in msec
+goback: reversing the sorting order to get older messages and in which case from_message_time reverses to messages older than
 
 
 -------
