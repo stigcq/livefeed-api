@@ -24,16 +24,18 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
             myquery = {"feed_id": feed_id, "feed_time": {$gt: Number(req.params.feed_time)}};
 
         var mysort = { feed_time: -1 };
-        var aggregate = { $lookup:
-            {
+        var aggregate = [
+            {$match:
+                {'feed_id': feed_id } },
+            { $lookup: {
               from: 'user',
               localField: 'user_id',
               foreignField: '_id',
               as: 'user'
             }
-          }
+          }];
         
-        db.collection("message").find(myquery).aggregate(aggregate).sort(mysort).toArray(function(err, result) {
+        db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
             console.log("No rows found: " + result.length);
             client.close();
