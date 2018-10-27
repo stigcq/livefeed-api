@@ -5,12 +5,12 @@ var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
 
 /*  */
-router.get('/:feed_id/:feed_time?/:test2?', function(req, res, next) {
+router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
 
     const feed_id = req.params.feed_id;
     
     console.log(req.params.feed_time);
-    console.log(req.params.test2);
+    console.log(req.params.goback);
 
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
@@ -21,7 +21,7 @@ router.get('/:feed_id/:feed_time?/:test2?', function(req, res, next) {
         var myquery = {"feed_id": feed_id};
 
         if(req.params.feed_time != undefined) 
-            myquery = {"feed_id": feed_id, "feed_time":{$gt: req.params.feed_time}};
+            myquery = {"feed_id": feed_id, "feed_time": {$gt: Number(req.params.feed_time)}};
 
         var mysort = { feed_time: -1 };
         
