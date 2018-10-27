@@ -34,7 +34,9 @@ router.post('/', function(req, res, next) {
             if (err) throw err;
             console.log("1 document updated");
 
-            res.send("{'session_token': '" + my_session_token+ "'}");
+            var myresult = { session_token: my_session_token };
+        
+            res.send(JSON.stringify(myresult));
 
             client.close();
           });

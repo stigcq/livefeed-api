@@ -391,9 +391,15 @@ function createFeed() {
 
 function sendMessage() {
 
+    console.log(sessionToken);
+
     content = jQuery("#my_message").val();
 
-    jQuery.post(feedUrl + "submit_message/", {thread_id: feedId, user_id: userId, message: content}, function(data) {
+    jQuery.post(feedUrl + "submit_message/", 
+            { feed_id: feedId, 
+                message: content,
+                session_token: sessionToken
+                }, function(data) {
 
         console.log("fetched " + data);
 
@@ -440,11 +446,16 @@ function showLogin() {
 
 function login() {
 
+    console.log(jQuery("#login_pass").val());
+
     jQuery.post(feedUrl + "login/", 
-        { email: jQuery("#login_email").value(), 
-            md5password: md5(jQuery("#login_password").value())}, function(data) {
+        { email: jQuery("#login_email").val(), 
+            md5password: md5(jQuery("#login_pass").val())}, function(data) {
+
+        data = jQuery.parseJSON( data );
 
         // TODO: show some feedback in interface
+        console.log(data.session_token);
 
         if(data.session_token != 1) {
             sessionToken = data.session_token;
