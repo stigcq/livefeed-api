@@ -33,7 +33,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
             }
           }
         
-        db.collection("message").find(myquery).sort(mysort).aggregate(aggregate).toArray(function(err, result) {
+        db.collection("message").aggregate(aggregate).find(myquery).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
             console.log("No rows found: " + result.length);
             client.close();
