@@ -18,23 +18,25 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        var myquery = {"feed_id": feed_id};
+        /*var myquery = {"feed_id": feed_id};
 
         if(req.params.feed_time != undefined) 
-            myquery = {"feed_id": feed_id, "feed_time": {$gt: Number(req.params.feed_time)}};
+            myquery = {"feed_id": feed_id, "feed_time": {$gt: Number(req.params.feed_time)}};*/
 
         var mysort = { feed_time: -1 };
         var aggregate = [
             {$match:
                 {'feed_id': feed_id,
-                "feed_time": {$gt: Number(req.params.feed_time) } },
+                "feed_time": {$gt: Number(req.params.feed_time) } } },
             { $lookup: {
               from: 'user',
               localField: 'user_id',
               foreignField: '_id',
               as: 'user'
-            }
-          }];
+            } },
+            { $project: { 
+                "user": { "display_name": 1 } } }
+        ];
         
         db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
