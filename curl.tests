@@ -45,7 +45,11 @@ curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_me
 Success:
 {"_id":"5bd3366bc6c3980aa0001a16","feed_id":"5bd306fb889b0606624b6a95","user_id":"5bd1d501cc91c3745021d816","content":"third message","reply_to":0,"feed_time":1540568683565}
 
+Fail no message:
+{'error': 1, 'mesage': 'message not found' }
 
+Fail bad message id:
+{'error': 1, 'mesage': 'message id is not valid' }
 
 ---------
 delete message
