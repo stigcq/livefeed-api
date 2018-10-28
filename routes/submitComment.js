@@ -9,6 +9,7 @@ router.post('/', function(req, res, next) {
 
     const message_id = req.body.message_id;
     const content = req.body.content;
+    const feed_id = req.body.feed_id;
 
     if(req.app.get("user") == false) {
         var response = {'message': 'Need to be logged in to add comment', 'error': 1};
@@ -20,6 +21,7 @@ router.post('/', function(req, res, next) {
     var item = {
         "user_id": req.app.get("user")._id,
         "content": content, 
+        "feed_id": feed_id,
         "reply_to": message_id,
         "feed_time": new Date().getTime()
     };

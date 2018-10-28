@@ -307,6 +307,7 @@ function sendComment(messageId) {
     jQuery.post(feedUrl + "submit_comment/", { 
             message_id: messageId, 
             user_id: userId, 
+            feed_id: feedId,
             content: content, 
             session_token: sessionToken }, function(data) {
 
