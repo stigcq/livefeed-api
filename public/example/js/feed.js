@@ -230,7 +230,7 @@ function fetchMessagesX(goBack) {
             else
                 jQuery("#content").prepend(Mustache.render(template, data[i]));
 
-            timeago(null, "da").render($('.feed_time'));
+            timeago(null, "en").render($('.feed_time'));
 
             //console.log(data[i].id);
             messages[data[i]._id] = data[i];
