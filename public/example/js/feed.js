@@ -41,7 +41,8 @@ jQuery( document ).ready(function() {
     //it shouldnt run the loops
     if(runLoop) {
         startLoop();
-        startCommentsLoop();
+        //wait start comments until messages fetched
+        setTimeout(startCommentsLoop, 4000);
     }
 
     timeago(null, "da").render($('.feed_time'));
@@ -60,14 +61,12 @@ $(document).keyup(function(e) {
 function startLoop() {
 
     setTimeout(startLoop, 14000);
-
     fetchMessages();
 }
 
 function startCommentsLoop() {
 
     setTimeout(startCommentsLoop, 30000);
-
     checkForComments();
 }
 

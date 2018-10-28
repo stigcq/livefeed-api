@@ -29,6 +29,7 @@ Contains a clientside implementation under work. Viewable here
 http://3.121.5.61/example/
 Its run as a background process on my lightsail mean stack. It might crash
 if theres errors since they are thrown. 
-Create user, login and posting messages works. 
+Create user, login and posting messages works. Commenting should also work now,
+though there might be bugs. 
 
 
