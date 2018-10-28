@@ -41,7 +41,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         
         db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
-            console.log("No rows found: " + result.length);
+            //console.log("No rows found: " + result.length);
             client.close();
 
             result.reverse();

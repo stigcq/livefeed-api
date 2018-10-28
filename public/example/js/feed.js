@@ -37,6 +37,13 @@ var runLoop = true;
 
 jQuery( document ).ready(function() {
 
+    if(Cookies.get('user_id') != undefined && Cookies.get('session_token') != undefined) {
+
+        userId = Cookies.get('user_id');
+        sessionToken = Cookies.get('session_token');
+        showPostMessage();
+    }
+
     //if viewing 1 message or other circumstances where not showing a feed 
     //it shouldnt run the loops
     if(runLoop) {
@@ -470,6 +477,8 @@ function login() {
         if(data.session_token != 1) {
             sessionToken = data.session_token;
             userId = data._id;
+            Cookies.set('user_id', userId);
+            Cookies.set('session_token', sessionToken);
             showPostMessage();
         }
     });

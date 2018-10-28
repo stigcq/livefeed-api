@@ -217,18 +217,18 @@
         <br/>
         {{#comment_count}}
         <div data-comment-count='{{ comment_count }}' id='show_comments_buutton_{{ _id }}' class='show_comments_button'>
-            <a href='javascript: showComments("{{ _id }}")'> {{ comment_count }}  kommentar(er)</a></div>
+            <a href='javascript: showComments("{{ _id }}")'> {{ comment_count }}  connents</a></div>
         {{/comment_count}}
         {{^comment_count}}
         <div data-comment-count='0' id='show_comments_buutton_{{ _id }}' class='show_comments_button' style='display: none;'></div>
         {{/comment_count}}
         <div class='comments_section' id='comments_section_{{ _id }}' style='display: none'></div>
         <br/>
-        <a href='javascript: commentPost("{{ _id }}")'>kommenter</a>
-        <a href='javascript: copyShareLink("{{ _id }}")'>del</a>
+        <a href='javascript: commentPost("{{ _id }}")'>Comment</a>
+        <a href='javascript: copyShareLink("{{ _id }}")'>Share</a>
         {{#is_owner}}
-        <a href='javascript: editPost("{{ _id }}")'>rediger</a>
-        <a href='javascript: deletePost("{{ _id }}")'>slet</a>
+        <a href='javascript: editPost("{{ _id }}")'>Edit</a>
+        <a href='javascript: deletePost("{{ _id }}")'>Delete</a>
         {{/is_owner}}  
         </div>    
 </script>
@@ -314,12 +314,13 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js?1017"></script>
-<script src="js/feed.js?1053"></script>
+<script src="js/feed.js?1054"></script>
 <script src="js/jquery.fine-uploader.js"></script>
 <script src="js/timeago.min.js" type="text/javascript"></script>        
 <script src="js/timeago.locales.min.js" type="text/javascript"></script>        
 <script src="js/mustache.min.js" type="text/javascript"></script>        
 <script src="js/md5.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 </body>
 </html>
