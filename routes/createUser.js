@@ -11,8 +11,8 @@ router.post('/', function(req, res, next) {
     const password = req.body.password;
     const display_name = req.body.display_name;
 
+    //just a basic check. The md5 gives error if value is undefined
     if(useremail == undefined || password == undefined || display_name == undefined) {
-
         var response = {"error": 1, "message": "some paramenters not set"};
         res.send(JSON.stringify(response));
         return;

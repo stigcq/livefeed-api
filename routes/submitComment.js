@@ -11,20 +11,21 @@ router.post('/', function(req, res, next) {
     const content = req.body.content;
 
     if(req.app.get("user") == false) {
-        res.send("{'message': 'Need to be logged in to add comment', 'error': 1}");
+        var response = {'message': 'Need to be logged in to add comment', 'error': 1};
+        res.send(JSON.stringify(response));
         return;
     }
     //consider getting message first
 
     var item = {
-        "author_id": req.app.get("user")._id,
+        "user_id": req.app.get("user")._id,
         "content": content, 
         "reply_to": message_id,
-        "feed_time": dateFormat(new Date(), "yyyy-mm-dd hh:MM:ss")
+        "feed_time": new Date().getTime())
     };
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':27017', function (err, client) {
+        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
         if (err) throw err
       
         var db = client.db('livefeed-api');

@@ -29,6 +29,10 @@ var photoIndex = 0;
 //set when logged in
 var sessionToken = 0;
 
+var userId = 0;
+var runLoop = true;
+
+
 
 
 jQuery( document ).ready(function() {
@@ -212,7 +216,7 @@ function fetchMessagesX(goBack) {
         for(i = 0; i < data.length; i++) {
 
             //mustache dont got this sort o if 
-            if(data[i].user_id == userId)
+            if(data[i].user._id == userId)
                 data[i].is_owner = 1;
 
             data[i].view_feed_id = feedId;
@@ -257,11 +261,13 @@ function showComments(messageId) {
 
     jQuery.getJSON(feedUrl + "comments/" + messageId, function(data) {
 
+        //clear comments
         jQuery("#comments_section_" + messageId).html("");
 
+        //get comment template
         var template = $('#comment_view_template').html();
 
-       
+       //render and append comments
         for(i = 0; i < data.length; i++) {
 
             if(data[i].avatar_path.length < 1)
@@ -296,8 +302,11 @@ function sendComment(messageId) {
 
     content = jQuery("#comment_area_" + messageId).val();
 
-    jQuery.post(feedUrl + "submit_comment/", 
-        {message_id: messageId, user_id: userId, comment: content}, function(data) {
+    jQuery.post(feedUrl + "submit_comment/", { 
+            message_id: messageId, 
+            user_id: userId, 
+            comment: content, 
+            session_token: session_token }, function(data) {
 
         console.log("fetched " + data);
 
@@ -454,8 +463,7 @@ function login() {
 
         data = jQuery.parseJSON( data );
 
-        // TODO: show some feedback in interface
-        console.log(data.session_token);
+        console.log(data.session_token + " " + data._id);
 
         if(data.session_token != 1) {
             sessionToken = data.session_token;
@@ -475,18 +483,16 @@ function createUser() {
 
             console.log(data);
 
-        data = jQuery.parseJSON( data );
+            data = jQuery.parseJSON( data );
 
-        console.log(data.session_token);
-
-        if(data.error == 1) {
-
-            alert(data.message);
-        } else if(data.session_token != 1) {
-            sessionToken = data.session_token;
-            userId = data._id;
-            showPostMessage();
-        }
+            if(data.error == 1) {
+                alert(data.message);
+            } else if(data.session_token != 1) {
+                console.log(data.session_token);
+                sessionToken = data.session_token;
+                userId = data._id;
+                showPostMessage();
+            }
     });
 }
 

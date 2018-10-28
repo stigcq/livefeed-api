@@ -1,6 +1,6 @@
 
 create user
-curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"email": "test@test.com", "password": "hiddenn", "display_name": "tester"}'   http://3.121.5.61:3000/create_user
+curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"email": "test", "password": "hiddenn", "display_name": "tester"}'   http://3.121.5.61:3000/create_user
 
 Response examples:
 Success:
