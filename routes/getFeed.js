@@ -26,6 +26,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         var aggregate = [
             {$match:
                 {'feed_id': feed_id,
+                'reply_to': 0,
                 "feed_time": {$gt: Number(feed_time) } } },
             { $lookup: {
               from: 'user',
