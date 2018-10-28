@@ -212,7 +212,7 @@ function fetchMessagesX(goBack) {
         for(i = 0; i < data.length; i++) {
 
             //mustache dont got this sort o if 
-            if(data[i].author_id == userId)
+            if(data[i].user_id == userId)
                 data[i].is_owner = 1;
 
             data[i].view_feed_id = feedId;
@@ -459,6 +459,7 @@ function login() {
 
         if(data.session_token != 1) {
             sessionToken = data.session_token;
+            userId = data._id;
             showPostMessage();
         }
     });

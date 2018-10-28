@@ -3,10 +3,15 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
 
-/* GET home page. */
+/*      
+check email/pass match
+create a token
+update user row with token
+send token to client in json
+ */
 router.post('/', function(req, res, next) {
 
-  const email = req.body.email;
+  const myemail = req.body.email;
   const md5password = req.body.md5password;
 
   MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
@@ -15,17 +20,13 @@ router.post('/', function(req, res, next) {
 
   var db = client.db('livefeed-api');
 
-  db.collection("user").findOne({ password: md5password }, 
+  db.collection("user").findOne({email: myemail, password: md5password }, 
       function(err, ires) {
       if (err) throw err;
 
       if(ires != null) {
         console.log("1 user found id " + ires._id );
         console.log(JSON.stringify(ires));
-        //create a token
-        //update user row with token
-        //send token to client in json
-        //close db conn
           
         my_session_token = Math.floor((Math.random() * 10000000));
 
@@ -37,7 +38,7 @@ router.post('/', function(req, res, next) {
             if (err) throw err;
             console.log("1 document updated" + iires);
 
-            var myresult = { session_token: my_session_token };
+            var myresult = { session_token: my_session_token, _id: ires._id };
         
             res.send(JSON.stringify(myresult));
 
