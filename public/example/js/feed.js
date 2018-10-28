@@ -471,7 +471,7 @@ function createUser() {
     jQuery.post(feedUrl + "create_user/", 
         { email: jQuery("#create_user_email").val(),
         display_name: jQuery("#create_user_display_name").val(), 
-        password: jQuery("#create_user__pass").val()}, function(data) {
+        password: jQuery("#create_user_pass").val()}, function(data) {
 
             console.log(data);
 

@@ -11,6 +11,13 @@ router.post('/', function(req, res, next) {
     const password = req.body.password;
     const display_name = req.body.display_name;
 
+    if(useremail == undefined || password == undefined || display_name == undefined) {
+
+        var response = {"error": 1, "message": "some paramenters not set"};
+        res.send(JSON.stringify(response));
+        return;
+    }
+
     var item = {
         "email": useremail, 
         "password": md5(password),
@@ -33,8 +40,9 @@ router.post('/', function(req, res, next) {
             if(ires != null) {
                 console.log("createUser: 1 user found id " + ires._id );
      
-                res.send("{'error': 1, message': 'Email already in use', '_id': 0}");
-
+                var response = {"error": 1, "message": "Email already in use"};
+                res.send(JSON.stringify(response));
+          
             } else {
 
                 db.collection("user").insertOne(item, function(err, ires) {
