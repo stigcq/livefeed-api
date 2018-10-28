@@ -20,8 +20,7 @@ router.get('/:feed_id', function(req, res, next) {
         var mysort = { feed_time: -1 };
         var aggregate = [
             { $match:
-                {'feed_id': feed_id },
-                "reply_to": {$gt: 0 } },
+                {'feed_id': feed_id } },
             {"$group" : { _id: '$reply_to', count: { $sum:1 } } },
             { $project: {  
                 _id: 0,
@@ -36,12 +35,6 @@ router.get('/:feed_id', function(req, res, next) {
             if (err) throw err;
             console.log("No rows found: " + result);
             client.close();
-
-            //result.reverse();
-
-            /*result.forEach(function(item, index) {
-                item.user = item.user[0];
-            });*/
 
             res.send(JSON.stringify(result));
           });
