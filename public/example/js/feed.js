@@ -104,11 +104,6 @@ function checkForComments() {
 
 
 
-
-
-
-
-
 function copyShareLink(messageId) {
 
     $("#clipboard_field").show();
@@ -260,7 +255,13 @@ function showComments(messageId) {
     jQuery("#comments_section_" + messageId).show();
     jQuery("#comments_section_" + messageId).html("Loader...");
 
+    
+
     jQuery.getJSON(feedUrl + "comments/" + messageId, function(data) {
+
+        console.log(data);
+
+        //data = jQuery.parseJSON( data );
 
         //clear comments
         jQuery("#comments_section_" + messageId).html("");
@@ -271,10 +272,10 @@ function showComments(messageId) {
        //render and append comments
         for(i = 0; i < data.length; i++) {
 
-            if(data[i].avatar_path.length < 1)
+            /*if(data[i].avatar_path.length < 1)
                 data[i].has_avatar = false;
             else
-                data[i].has_avatar = true;
+                data[i].has_avatar = true;*/
 
             jQuery("#comments_section_" + messageId).append(Mustache.render(template, data[i]));
        
@@ -306,8 +307,8 @@ function sendComment(messageId) {
     jQuery.post(feedUrl + "submit_comment/", { 
             message_id: messageId, 
             user_id: userId, 
-            comment: content, 
-            session_token: session_token }, function(data) {
+            content: content, 
+            session_token: sessionToken }, function(data) {
 
         console.log("fetched " + data);
 

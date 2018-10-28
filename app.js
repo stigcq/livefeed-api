@@ -13,6 +13,7 @@ var submitCommentRouter = require('./routes/submitComment');
 var deleteMessageRouter = require('./routes/deleteMessage');
 var getMessageRouter = require('./routes/getMessage');
 var getCommentsRouter = require('./routes/getComments');
+var getCommentCountRouter = require('./routes/getCommentCount');
 var getFeedRouter = require('./routes/getFeed');
 var createUserRouter = require('./routes/createUser');
 var createFeedRouter = require('./routes/createFeed');
@@ -63,6 +64,8 @@ app.use('/comments', getCommentsRouter);
 app.use('/create_user', createUserRouter);
 app.use('/create_feed', createFeedRouter);
 app.use('/login', loginRouter);
+app.use('/comment_counts', getCommentCountRouter);
+
 
 
 

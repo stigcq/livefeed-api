@@ -150,8 +150,8 @@
  <script id="comment_template" type="text/html">
      <div id="comment_box_{{message_id}}">
         <textarea id="comment_area_{{message_id}}" class="form-control" placeholder="skriv en kommentar"></textarea>
-        <button onclick="sendComment({{message_id}})" class="btn btn-default">SEND</button>
-        <button onclick="cancelComment({{message_id}})" class="btn btn-default">AFBRYD</button>
+        <button onclick="sendComment('{{message_id}}')" class="btn btn-default">SEND</button>
+        <button onclick="cancelComment('{{message_id}}')" class="btn btn-default">AFBRYD</button>
      </div>
 </script>
 
@@ -172,7 +172,7 @@
         {{/avatar_photo_id}}
     </div>
     <div class="col-sm-10" style="padding: 0 0 0 0;">
-        {{{ content }}} <b>{{ display_name }}
+        {{{ content }}} <b>{{ user.display_name }}</b>
     </div>
     </div>
 </script>
@@ -314,7 +314,7 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js?1017"></script>
-<script src="js/feed.js?1044"></script>
+<script src="js/feed.js?1048"></script>
 <script src="js/jquery.fine-uploader.js"></script>
 <script src="js/timeago.min.js" type="text/javascript"></script>        
 <script src="js/timeago.locales.min.js" type="text/javascript"></script>        
