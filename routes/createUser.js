@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
             if(ires != null) {
                 console.log("1 user found id " + ires._id );
      
-                res.send("{'message': 'Email already in use', '_id': 0}");
+                res.send("{'error': 1, message': 'Email already in use', '_id': 0}");
 
             } else {
 

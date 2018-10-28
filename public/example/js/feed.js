@@ -446,7 +446,7 @@ function showLogin() {
 
 function login() {
 
-    console.log(jQuery("#login_pass").val());
+    //console.log(jQuery("#login_pass").val());
 
     jQuery.post(feedUrl + "login/", 
         { email: jQuery("#login_email").val(), 
@@ -458,6 +458,29 @@ function login() {
         console.log(data.session_token);
 
         if(data.session_token != 1) {
+            sessionToken = data.session_token;
+            userId = data._id;
+            showPostMessage();
+        }
+    });
+}
+
+
+function createUser() {
+
+    jQuery.post(feedUrl + "create_user/", 
+        { email: jQuery("#create_user_email").val(),
+        display_name: jQuery("#create_user_display_name").val(), 
+        password: jQuery("#create_user__pass").val()}, function(data) {
+
+        data = jQuery.parseJSON( data );
+
+        console.log(data.session_token);
+
+        if(data.error == 1) {
+
+            alert(data.message);
+        } else if(data.session_token != 1) {
             sessionToken = data.session_token;
             userId = data._id;
             showPostMessage();
