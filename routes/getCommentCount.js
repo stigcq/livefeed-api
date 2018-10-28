@@ -20,10 +20,15 @@ router.get('/:feed_id', function(req, res, next) {
         var mysort = { feed_time: -1 };
         var aggregate = [
             { $match:
-                {'feed_id': feed_id } },
-            {"$group" : { _id: {
-                reply_to: '$reply_to'
-              }, count: { $sum:1 } } },
+                {'feed_id': feed_id },
+                "reply_to": {$gt: 0 } },
+            {"$group" : { _id: '$reply_to', count: { $sum:1 } } },
+            { $project: {  
+                _id: 0,
+                message_id: "$_id",
+                count: 1
+             }
+          }
                             
         ];
         
