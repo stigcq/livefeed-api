@@ -21,7 +21,9 @@ router.get('/:feed_id', function(req, res, next) {
         var aggregate = [
             { $match:
                 {'feed_id': feed_id } },
-            {"$group" : { _id: "reply_to", count: { $sum:1 } } },
+            {"$group" : { _id: {
+                reply_to: '$reply_to'
+              }, count: { $sum:1 } } },
                             
         ];
         
@@ -32,9 +34,9 @@ router.get('/:feed_id', function(req, res, next) {
 
             //result.reverse();
 
-            result.forEach(function(item, index) {
+            /*result.forEach(function(item, index) {
                 item.user = item.user[0];
-            });
+            });*/
 
             res.send(JSON.stringify(result));
           });
