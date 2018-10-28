@@ -473,6 +473,8 @@ function createUser() {
         display_name: jQuery("#create_user_display_name").val(), 
         password: jQuery("#create_user__pass").val()}, function(data) {
 
+            console.log(data);
+
         data = jQuery.parseJSON( data );
 
         console.log(data.session_token);

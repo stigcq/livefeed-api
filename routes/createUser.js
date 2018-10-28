@@ -17,6 +17,8 @@ router.post('/', function(req, res, next) {
         "display_name": display_name,
         "session_token": Math.floor((Math.random() * 10000000))
     };
+
+    console.log(item);
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
@@ -29,7 +31,7 @@ router.post('/', function(req, res, next) {
             if (err) throw err;
       
             if(ires != null) {
-                console.log("1 user found id " + ires._id );
+                console.log("createUser: 1 user found id " + ires._id );
      
                 res.send("{'error': 1, message': 'Email already in use', '_id': 0}");
 
