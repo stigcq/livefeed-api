@@ -216,8 +216,9 @@ function fetchMessagesX(goBack) {
         for(i = 0; i < data.length; i++) {
 
             //mustache dont got this sort o if 
-            if(data[i].user._id == userId)
-                data[i].is_owner = 1;
+            if(data[i].user != undefined)
+                if(data[i].user._id == userId)
+                    data[i].is_owner = 1;
 
             data[i].view_feed_id = feedId;
             data[i].message_id = data[i]._id;
