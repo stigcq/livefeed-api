@@ -381,7 +381,8 @@ function saveEditPost(messageId) {
 
 function deletePost(messageId) {
 
-    jQuery.post(feedUrl + "delete_message/", {message_id: messageId}, function(data) {
+    jQuery.post(feedUrl + "delete_message/", 
+            { message_id: messageId, session_token: sessionToken }, function(data) {
         
         jQuery("#feed_item_" + messageId).hide();
 

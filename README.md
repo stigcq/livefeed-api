@@ -20,7 +20,7 @@ usage notes will be supplied here. But basicly
 2. run npm install
 3. create an .env file (see sample.env) for your db setting
 4. run npm start
-5. See curl.tests file for example curl invocations
+5. See curl.tests file for example curl invocations and documentation on the API. 
 
 
 ## public/example
