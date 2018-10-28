@@ -7,7 +7,6 @@ var logger = require('morgan');
 require('dotenv').config();
 console.log(process.env.DOTENV_HELLO);
 
-var indexRouter = require('./routes/index');
 var submitMessageRouter = require('./routes/submitMessage');
 var submitCommentRouter = require('./routes/submitComment');
 var deleteMessageRouter = require('./routes/deleteMessage');
@@ -41,18 +40,11 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-/*
-app.get('*', function(req, res, next) {
-  //if (req.url === '/' || req.url === '/login') return next();
-  res.send("catch all route");
-  next();
-});*/
+
 
 app.all('*', checkUserRouter);
 
 
-//not used
-app.use('/', indexRouter);
 //possible usage: make a router to check for login
 //app.use('/submit_message', [indexRouter, submitMessageRouter]);
 app.use('/submit_message', submitMessageRouter);
