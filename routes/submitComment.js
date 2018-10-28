@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
         "user_id": req.app.get("user")._id,
         "content": content, 
         "reply_to": message_id,
-        "feed_time": new Date().getTime())
+        "feed_time": new Date().getTime()
     };
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
