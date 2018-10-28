@@ -85,9 +85,9 @@ url: /mesages/:feed_id/:from_message_time?/:goback?/
 curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/messages/5bd306fb889b0606624b6a95
 
 params:
-feed_id: Id of the feed 
-from_message_time: only get messages new than this time in msec
-goback: reversing the sorting order to get older messages and in which case from_message_time reverses to messages older than
+[feed_id] REQUIRED Id of the feed 
+[from_message_time] OPTONAL only get messages newer than this time in msec
+[goback] OPTONAL reversing the sorting order to get older messages and in which case from_message_time reverses to messages older than
 
 
 -------
@@ -100,9 +100,20 @@ success:
 
 
 
+----------
 
+get comment counts
+return the number of comment per message id. Usefull if one want show theres comments 
+without actually showing/fetching the comments. 
 
+url: /comment_counts/:feed_id/:oldest_feed_time?
 
+params:
+[feed_id] REQUIRED the id of the feed where to find comment counts for messages
+[oldest_feed_time] OPTONAL the time in msec from which not to look earlier than this. 
+
+success:
+[{"count":2,"message_id":"5bd6074b44253b58d5e915c0"},{"count":2,"message_id":"5bd5df8f2ad36a5421dc8ced"},{"count":1,"message_id":"5bd595162c7349493ac4c57e"},{"count":29,"message_id":0}]
 
 
 

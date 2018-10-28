@@ -21,13 +21,6 @@ var checkUserRouter = require('./routes/checkUserLoggedIn');
 
 var app = express();
 
-app.set("user", "no user set"); 
-
-
-// view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'twig');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,9 +37,6 @@ app.use(function(req, res, next) {
 
 app.all('*', checkUserRouter);
 
-
-//possible usage: make a router to check for login
-//app.use('/submit_message', [indexRouter, submitMessageRouter]);
 app.use('/submit_message', submitMessageRouter);
 app.use('/submit_comment', submitCommentRouter);
 app.use('/get_message', getMessageRouter);
@@ -59,10 +49,10 @@ app.use('/login', loginRouter);
 app.use('/comment_counts', getCommentCountRouter);
 
 
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+
+  //TODO: this probably dont work or should be changed to respond with a json with error message
   next(createError(404));
 });
 
