@@ -22,20 +22,12 @@ router.get('/:feed_id', function(req, res, next) {
             { $match:
                 {'feed_id': feed_id } },
             {"$group" : { _id: "reply_to", count: { $sum:1 } } },
-                { $lookup: {
-              from: 'user',
-              localField: 'user_id',
-              foreignField: '_id',
-              as: 'user'
-            } },
-            { $project: { "content": 1, "feed_time": 1,
-                "user": { "display_name": 1, "session_token": 1, '_id': 1 }
-            } }
+                            
         ];
         
         db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
-            console.log("No rows found: " + result.length);
+            console.log("No rows found: " + result);
             client.close();
 
             //result.reverse();
