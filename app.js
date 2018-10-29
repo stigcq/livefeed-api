@@ -13,11 +13,12 @@ var deleteMessageRouter = require('./routes/deleteMessage');
 var getMessageRouter = require('./routes/getMessage');
 var getCommentsRouter = require('./routes/getComments');
 var getCommentCountRouter = require('./routes/getCommentCount');
-var getFeedRouter = require('./routes/getFeed');
+var getMessagesRouter = require('./routes/getMessages');
 var createUserRouter = require('./routes/createUser');
 var createFeedRouter = require('./routes/createFeed');
 var loginRouter = require('./routes/login');
 var checkUserRouter = require('./routes/checkUserLoggedIn');
+var getFeedRouter = require('./routes/getFeedRouter');
 
 var app = express();
 
@@ -41,10 +42,11 @@ app.use('/submit_message', submitMessageRouter);
 app.use('/submit_comment', submitCommentRouter);
 app.use('/get_message', getMessageRouter);
 app.use('/delete_message', deleteMessageRouter);
-app.use('/messages', getFeedRouter);
+app.use('/messages', getMessagesRouter);
 app.use('/comments', getCommentsRouter);
 app.use('/create_user', createUserRouter);
 app.use('/create_feed', createFeedRouter);
+app.use('/get_feed', getFeedRouter);
 app.use('/login', loginRouter);
 app.use('/comment_counts', getCommentCountRouter);
 
