@@ -391,7 +391,7 @@ function deletePost(messageId) {
 }
 
 
-function createFeed() {
+/*function createFeed() {
 
     feedTitle = jQuery("#feed_title").val();
 
@@ -405,7 +405,7 @@ function createFeed() {
         changeFeed(data);
         //fineupload.reset();
     });
-}
+}*/
 
 
 function sendMessage() {
@@ -520,10 +520,10 @@ function login() {
 
 function createUser() {
 
-    jQuery.post(feedUrl + "create_user/", 
-        { email: jQuery("#create_user_email").val(),
+    jQuery.post(feedUrl + "create_user/", { 
+        email: jQuery("#create_user_email").val(),
         display_name: jQuery("#create_user_display_name").val(), 
-        password: jQuery("#create_user_pass").val()}, function(data) {
+        password: jQuery("#create_user_pass").val() }, function(data) {
 
             console.log(data);
 
