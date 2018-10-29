@@ -6,7 +6,7 @@ String.prototype.replaceAll = function(search, replacement) {
 
 //change for own server
 var feedUrl = "http://3.121.5.61:3000/";
-var feedId = '5bd724433e0b567c87409320';
+var feedId = 0; //'5bd724433e0b567c87409320';
 
 
 var isFetching = false;
