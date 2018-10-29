@@ -9,7 +9,8 @@ var ObjectID = require('mongodb').ObjectID;
 router.post('/', function(req, res, next) {
 
     if(!req.app.get("user")) {
-        res.send("{'message': 'Need to be logged in to delete message', 'error': 1}");
+        const response = {'message': 'Need to be logged in to delete message', 'error': 1};
+        res.send(JSON.stringify(response));
         return;
     }
 
@@ -21,7 +22,7 @@ router.post('/', function(req, res, next) {
       
         var db = client.db(process.env.DB_DB);
 
-        var query = {"_id": ObjectID(message_id), "author_id": req.app.get("user")._id};
+        var query = {"_id": ObjectID(message_id), "user_id": req.app.get("user")._id};
 
         db.collection("message").deleteOne(query, function(err, ires) {
             if (err) throw err;
