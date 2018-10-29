@@ -6,7 +6,7 @@ String.prototype.replaceAll = function(search, replacement) {
 
 //change for own server
 var feedUrl = "http://3.121.5.61:3000/";
-var feedId = 0; // '5bd306fb889b0606624b6a95';
+var feedId = '5bd724433e0b567c87409320';
 
 
 var isFetching = false;
@@ -87,7 +87,7 @@ function checkForComments() {
 
         for(i = 0; i < data.length; i++) {
 
-            console.log("#show_comments_button_" + data[i].message_id);
+            //console.log("#show_comments_button_" + data[i].message_id);
 
             
             currentCommentCount = jQuery("#show_comments_buutton_" + data[i].message_id).attr("data-comment-count");
@@ -420,8 +420,9 @@ function sendMessage() {
                 session_token: sessionToken
                 }, function(data) {
                     
+        console.log("fetched " + data);
         data = jQuery.parseJSON( data );
-
+        
         if(data.error == 1) {
 
             $("#clipboard_field").show();
@@ -436,10 +437,11 @@ function sendMessage() {
             var template = $('#top_logged_out').html();
             jQuery("#feed_top").html(Mustache.render(template, {"message": "Your post is copied to clipboard."})); 
 
+        } else if(data.error == 2) {
+
+            alert("You dont have perms for this feed");
+
         } else {
-
-            console.log("fetched " + data);
-
             jQuery("#my_message").val("");
     
             if(isUploaderInited) {

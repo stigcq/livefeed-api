@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
         //console.log(feed.user_id + " " + req.app.get("user")._id);
     
         if(feed.user_id != req.app.get("user")._id.toString()) {
-            const response = {'message': 'No permissions to this feed', 'error': 1};
+            const response = {'message': 'No permissions to this feed', 'error': 2};
             res.send(JSON.stringify(response));
             return;
         }    
@@ -39,10 +39,11 @@ router.post('/', function(req, res, next) {
             "user_id": req.app.get("user")._id,
             "content": content, 
             "reply_to": 0,
-            "feed_time": new Date().getTime()
+            "feed_time": new Date().getTime(),
+            "feed_title": feed.feed_title
         };
 
-        dataLayer.addMessage(message, new function(message) {
+        dataLayer.addMessage(message, function(message) {
             res.send(JSON.stringify(message));
         });
     
