@@ -535,8 +535,10 @@ function createUser() {
                 console.log(data.session_token);
                 sessionToken = data.session_token;
                 userId = data._id;
+                //Cookies.set('user_id', userId);
+                //Cookies.set('session_token', sessionToken);
                 showCreateFeed();
-                //showPostMessage();
+                
             }
     });
 }
@@ -553,7 +555,7 @@ function createFeed() {
 
             if(data.error == 1) {
                 alert(data.message);
-            } else if(data._id != 1) {
+            } else {
                 //showCreateFeed();
                 showPostMessage();
             }
