@@ -431,6 +431,9 @@ function sendMessage() {
             copyText.select();
             document.execCommand("copy");
 
+            userId = 0;
+            sessionToken = 0;
+
             var template = $('#top_logged_out').html();
             jQuery("#feed_top").html(Mustache.render(template, {"message": "Your post is copied to clipboard."})); 
 

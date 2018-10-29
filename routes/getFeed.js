@@ -22,11 +22,6 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        var feedCondition = {'feed_id': feed_id};
-
-        if(feed_id == 1)
-            feedCondition = {'feed_id': feed_id};
-
         var mysort = { feed_time: -1 };
         var aggregate = [
             {$match:
@@ -43,6 +38,26 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
                 "user": { "display_name": 1, "session_token": 1, '_id': 1 }
             } }
         ];
+
+        //FIXME: cant figure out how to manipulate this object 
+        if(feed_id == 1)
+         aggregate = [
+            {$match:
+                {
+                'reply_to': 0,
+                "feed_time": {$gt: Number(feed_time) } } },
+            { $lookup: {
+              from: 'user',
+              localField: 'user_id',
+              foreignField: '_id',
+              as: 'user'
+            } },
+            { $project: { "content": 1, "feed_time": 1,
+                "user": { "display_name": 1, "session_token": 1, '_id': 1 }
+            } }
+        ];
+
+
         
         db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
