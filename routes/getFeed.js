@@ -13,8 +13,8 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
     if(req.params.feed_time != undefined)
         feed_time = req.params.feed_time;
     
-    console.log(req.params.feed_time);
-    console.log(req.params.goback);
+    //console.log(req.params.feed_time);
+    //console.log(req.params.goback);
 
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
@@ -22,10 +22,15 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
+        var feedCondition = {'feed_id': feed_id};
+
+        if(feed_id == 1)
+            feedCondition = {};
+
         var mysort = { feed_time: -1 };
         var aggregate = [
             {$match:
-                {'feed_id': feed_id,
+                {feedCondition,
                 'reply_to': 0,
                 "feed_time": {$gt: Number(feed_time) } } },
             { $lookup: {

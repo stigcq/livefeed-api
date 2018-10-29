@@ -396,7 +396,7 @@ function createFeed() {
     feedTitle = jQuery("#feed_title").val();
 
     jQuery.post(feedUrl + "create_feed/", 
-        {feed_title: feedTitle, user_id: userId}, function(data) {
+        {feed_title: feedTitle, user_id: userId, session_token: sessionToken }, function(data) {
 
         console.log("create feed  " + data);
 
@@ -420,15 +420,32 @@ function sendMessage() {
                 session_token: sessionToken
                 }, function(data) {
 
-        console.log("fetched " + data);
+        if(data.error == 1) {
 
-        jQuery("#my_message").val("");
+            $("#clipboard_field").show();
+            $("#clipboard_field").val(mycontent);        
+        
+            var copyText = document.getElementById("clipboard_field");
+            copyText.select();
+            document.execCommand("copy");
 
-        if(isUploaderInited) {
-            $("#fine-uploader-gallery").hide();
-            $("#fine-uploader-gallery").fineUploader('reset');
-            
+            var template = $('#top_logged_out').html();
+            jQuery("#feed_top").html(Mustache.render(template, {"message": "Your post is copied to clipboard."})); 
+
+        } else {
+
+            console.log("fetched " + data);
+
+            jQuery("#my_message").val("");
+    
+            if(isUploaderInited) {
+                $("#fine-uploader-gallery").hide();
+                $("#fine-uploader-gallery").fineUploader('reset');
+                
+            }
         }
+
+
         //fineupload.reset();
     });
 }

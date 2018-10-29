@@ -95,7 +95,15 @@
 </div>
  </div>
 
- 
+ <script id="top_logged_out" type="text/html">
+ <div class="row" style="margin: 0 0 0 0;">
+    You are no longer logged in. {{message}}
+    <a href="javascript: showLogin();">Login</a>
+or <a href="javascript: showSignup()">Create user</a>
+to post
+
+</div>
+</script>
 
  <script id="post_messsage_feed_template" type="text/html">
  <div class="col-sm-9" style="padding: 0 0 0 0;">
@@ -314,7 +322,7 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js?1017"></script>
-<script src="js/feed.js?1054"></script>
+<script src="js/feed.js?1055"></script>
 <script src="js/jquery.fine-uploader.js"></script>
 <script src="js/timeago.min.js" type="text/javascript"></script>        
 <script src="js/timeago.locales.min.js" type="text/javascript"></script>        
