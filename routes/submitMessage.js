@@ -18,12 +18,17 @@ router.post('/', function(req, res, next) {
 
     var feed = dataLayer.getFeed(feed_id);
 
-    if(!feed) {
+    if(feed == false) {
         const response = {'message': 'No such feed exists', 'error': 1};
         res.send(JSON.stringify(response));
         return;
     }
 
+    if(feed.user_id != req.app.get("user")._id) {
+        const response = {'message': 'No permissions to this feed', 'error': 1};
+        res.send(JSON.stringify(response));
+        return;
+    }    
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
