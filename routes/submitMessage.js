@@ -16,6 +16,31 @@ router.post('/', function(req, res, next) {
     const feed_id = req.body.feed_id;
     const content = req.body.content;
 
+    //feedid 0 post to users default feed
+    if(feed_id == 0) {
+
+        dataLayer.getUserFeed(req.app.get("user"), function(feed) {
+
+            if(feed == false) {
+                const response = {'message': 'No feed for user', 'error': 1};
+                res.send(JSON.stringify(response));
+                return;
+            }
+
+            var message = {
+                "feed_id": feed._id, 
+                "user_id": req.app.get("user")._id,
+                "content": content, 
+                "reply_to": 0,
+                "feed_time": new Date().getTime(),
+                "feed_title": feed.feed_title
+            };
+    
+            dataLayer.addMessage(message, function(message) {
+                res.send(JSON.stringify(message));
+            });
+        });
+    } else // normal situation
     dataLayer.getFeed(feed_id, function(feed) {
 
         if(feed == false) {
@@ -47,33 +72,6 @@ router.post('/', function(req, res, next) {
             res.send(JSON.stringify(message));
         });
     
-    });
-
-    return;
-    
-    MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
-        if (err) throw err
-      
-        var db = client.db('livefeed-api');
-
-        /* TODO: check if user have perms for the feed */
-
-        var item = {
-            "feed_id": feed_id, 
-            "user_id": req.app.get("user")._id,
-            "content": content, 
-            "reply_to": 0,
-            "feed_time": new Date().getTime()
-        };
-
-        db.collection("message").insertOne(item, 
-            function(err, ires) {
-            if (err) throw err;
-            console.log("1 message inserted id " + JSON.stringify(item) );
-            client.close();
-            res.send(JSON.stringify(item));
-        });
     });
 
 });
