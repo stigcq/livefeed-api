@@ -16,19 +16,24 @@ router.post('/', function(req, res, next) {
     const feed_id = req.body.feed_id;
     const content = req.body.content;
 
-    var feed = dataLayer.getFeed(feed_id);
+    dataLayer.getFeed(feed_id, function(feed) {
 
-    if(feed == false) {
-        const response = {'message': 'No such feed exists', 'error': 1};
-        res.send(JSON.stringify(response));
-        return;
-    }
+        if(feed == false) {
+            const response = {'message': 'No such feed exists', 'error': 1};
+            res.send(JSON.stringify(response));
+            return;
+        }
+    
+        if(feed.user_id != req.app.get("user")._id) {
+            const response = {'message': 'No permissions to this feed', 'error': 1};
+            res.send(JSON.stringify(response));
+            return;
+        }    
+    
+        console.log("bingo add message")
+    });
 
-    if(feed.user_id != req.app.get("user")._id) {
-        const response = {'message': 'No permissions to this feed', 'error': 1};
-        res.send(JSON.stringify(response));
-        return;
-    }    
+    return;
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
