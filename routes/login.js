@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
         my_session_token = Math.floor((Math.random() * 10000000));
 
         // FIXME: this query is wrong but I cant get the one using id to work, total BS
-        var myquery = { password: md5password }; //{ '_id': ObjectID(ires.id) };
+        var myquery = { email: myemail, password: md5password }; //{ '_id': ObjectID(ires.id) };
         var newvalues = { $set: {'session_token': Number(my_session_token) } };
 
         db.collection("user").updateOne(myquery, newvalues, function(err, iires) {

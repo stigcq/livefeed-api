@@ -40,11 +40,10 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         ];
 
         //FIXME: cant figure out how to manipulate this object 
-        if(feed_id == 1)
+        if(feed_id == 0)
          aggregate = [
             {$match:
-                {
-                'reply_to': 0,
+                {'reply_to': 0,
                 "feed_time": {$gt: Number(feed_time) } } },
             { $lookup: {
               from: 'user',
@@ -52,6 +51,12 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
               foreignField: '_id',
               as: 'user'
             } },
+            { $lookup: {
+                from: 'feed',
+                localField: 'feed_id',
+                foreignField: '_id',
+                as: 'feed'
+              } },
             { $project: { "content": 1, "feed_time": 1,
                 "user": { "display_name": 1, "session_token": 1, '_id': 1 }
             } }

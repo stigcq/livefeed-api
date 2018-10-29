@@ -202,7 +202,7 @@ to post
         <b style='font-size: 120%'>{{ display_name }}</b> <br/>
         <span class='feed_time' datetime='{{feed_time}}'></span>
         {{^view_feed_id}}
-        <a href="javascript: changeFeed({{ thread_id }}, '{{ feed_title }}');"> in {{ feed_title }}</a>
+        <a href="javascript: changeFeed('{{ feed_id }}', '{{ feed_title }}');"> in {{ feed_title }}</a>
         {{/view_feed_id}}
         </div>
         </div>
