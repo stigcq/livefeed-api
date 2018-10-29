@@ -535,11 +535,30 @@ function createUser() {
                 console.log(data.session_token);
                 sessionToken = data.session_token;
                 userId = data._id;
-                showPostMessage();
+                showCreateFeed();
+                //showPostMessage();
             }
     });
 }
 
+function createFeed() {
+
+    jQuery.post(feedUrl + "create_feed/", { 
+        feed_title: jQuery("#create_feed_title").val(),
+        session_token: sessionToken }, function(data) {
+
+            console.log(data);
+
+            data = jQuery.parseJSON( data );
+
+            if(data.error == 1) {
+                alert(data.message);
+            } else if(data._id != 1) {
+                //showCreateFeed();
+                showPostMessage();
+            }
+    });
+}
 
 
 function showSignup() {
@@ -548,10 +567,13 @@ function showSignup() {
 }
 
 function showPostMessage() {
-
     var template = $('#post_messsage_feed_template').html();
-    jQuery("#feed_top").html(Mustache.render(template, {}));    
-    
+    jQuery("#feed_top").html(Mustache.render(template, {}));        
+}
+
+function showPostMessage() {
+    var template = $('#create_feed_template').html();
+    jQuery("#feed_top").html(Mustache.render(template, {}));        
 }
 
 

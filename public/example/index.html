@@ -101,9 +101,17 @@
     <a href="javascript: showLogin();">Login</a>
 or <a href="javascript: showSignup()">Create user</a>
 to post
-
 </div>
 </script>
+
+<script id="create_user_template" type="text/html">
+    <div class="row" style="margin: 0 0 0 0;">
+        <div class="col-sm-8" style="padding: 0 0 0 0;">
+        <input id="create_feed_title" type="email" class="form-control" placeholder="Feed title"/>
+        <input type="button" onclick='createFeed();' class="btn btn-primary" value="CREATE"/>
+        </div>
+    </div>
+   </script>
 
  <script id="post_messsage_feed_template" type="text/html">
  <div class="col-sm-9" style="padding: 0 0 0 0;">

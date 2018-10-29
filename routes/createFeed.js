@@ -10,13 +10,15 @@ router.post('/', function(req, res, next) {
     const feed_title = req.body.feed_title;
 
     if(req.app.get("user") == false) {
-        res.send("{'message': 'Need to be logged in to create feed', 'error': 1}");
+        response = {'message': 'Need to be logged in to create feed', 'error': 4 } ;
+        res.send(JSON.stringify(response));
         return;
     }
 
     var item = {
         "user_id": req.app.get("user")._id,
-        "feed_title": feed_title
+        "feed_title": feed_title,
+        "feed_date": new Date().getTime()
     };
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
