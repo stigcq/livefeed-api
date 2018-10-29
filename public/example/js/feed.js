@@ -573,10 +573,10 @@ function showPostMessage() {
     jQuery("#feed_top").html(Mustache.render(template, {}));        
 }
 
-function showPostMessage() {
+/*function showPostMessage() {
     var template = $('#create_feed_template').html();
     jQuery("#feed_top").html(Mustache.render(template, {}));        
-}
+}*/
 
 
 var isUploaderInited = false;;
