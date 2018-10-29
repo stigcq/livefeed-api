@@ -431,8 +431,7 @@ function sendMessage() {
             copyText.select();
             document.execCommand("copy");
 
-            userId = 0;
-            sessionToken = 0;
+            clearUserLogin();
 
             var template = $('#top_logged_out').html();
             jQuery("#feed_top").html(Mustache.render(template, {"message": "Your post is copied to clipboard."})); 
@@ -453,6 +452,15 @@ function sendMessage() {
 
         //fineupload.reset();
     });
+}
+
+function clearUserLogin() {
+
+    userId = 0;
+    sessionToken = 0;
+    Cookies.remove('user_id');
+    Cookies.remove('session_token');
+
 }
 
 function setAvatar(photoId) {

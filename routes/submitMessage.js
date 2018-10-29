@@ -1,10 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient
+var dataLayer = require('./../lib/DataLayer');
 
 
 /*  */
 router.post('/', function(req, res, next) {
+
+    dataLayer.test();
 
     console.log("user object" + req.app.get("user"));
 
