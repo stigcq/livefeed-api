@@ -18,7 +18,20 @@ router.get('/:feed_id', function(req, res, next) {
         var db = client.db('livefeed-api');
 
         var mysort = { feed_time: -1 };
-        var aggregate = [
+        var aggregate = null;
+        
+        if(feed_id == 0)
+        aggregate = [
+            {"$group" : { _id: '$reply_to', count: { $sum:1 } } },
+            { $project: {  
+                _id: 0,
+                message_id: "$_id",
+                count: 1
+             }
+          }       
+        ];
+        else
+        aggregate = [
             { $match:
                 {'feed_id': feed_id } },
             {"$group" : { _id: '$reply_to', count: { $sum:1 } } },
@@ -27,8 +40,7 @@ router.get('/:feed_id', function(req, res, next) {
                 message_id: "$_id",
                 count: 1
              }
-          }
-                            
+          }       
         ];
         
         db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
