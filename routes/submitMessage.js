@@ -7,10 +7,6 @@ var dataLayer = require('./../lib/DataLayer');
 /*  */
 router.post('/', function(req, res, next) {
 
-    dataLayer.test();
-
-    console.log("user object" + req.app.get("user"));
-
     if(req.app.get("user") == false) {
         const response = {'message': 'Need to be logged in to add message', 'error': 1};
         res.send(JSON.stringify(response));
@@ -19,6 +15,15 @@ router.post('/', function(req, res, next) {
 
     const feed_id = req.body.feed_id;
     const content = req.body.content;
+
+    var feed = dataLayer.getFeed(feed_id);
+
+    if(!feed) {
+        const response = {'message': 'No such feed exists', 'error': 1};
+        res.send(JSON.stringify(response));
+        return;
+    }
+
     
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
