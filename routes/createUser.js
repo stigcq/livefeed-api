@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
-var MongoClient = require('mongodb').MongoClient
+var dataLayer = require('./../lib/DataLayer');
 var md5 = require('md5');
 
 /* create user */
@@ -18,6 +17,8 @@ router.post('/', function(req, res, next) {
         return;
     }
 
+    //TODO: insert some checks on values inputted here, length etc
+
     var item = {
         "email": useremail, 
         "password": md5(password),
@@ -25,36 +26,14 @@ router.post('/', function(req, res, next) {
         "session_token": Math.floor((Math.random() * 10000000))
     };
 
-    console.log(item);
-    
-    MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
-        if (err) throw err
-      
-        var db = client.db(process.env.DB_DB);
+    dataLayer.addUser(item, function(user) {
 
-        db.collection("user").findOne({email: useremail }, 
-            function(err, ires) {
-            if (err) throw err;
-      
-            if(ires != null) {
-                console.log("createUser: 1 user found id " + ires._id );
-     
-                var response = {"error": 1, "message": "Email already in use"};
-                res.send(JSON.stringify(response));
-          
-            } else {
-
-                db.collection("user").insertOne(item, function(err, ires) {
-                    if (err) throw err;
-    
-                    console.log("1 user inserted id " + item._id );
-                    client.close();
-                    res.send(JSON.stringify(item));
-                });
-            }
-
-        });
+        if(user == false) {
+            var response = {"error": 1, "message": "Error creating user, maybe Email already in use"};
+            res.send(JSON.stringify(response));
+        } else {
+            res.send(JSON.stringify(item));
+        }
     });
 
 });

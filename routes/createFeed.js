@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var dateFormat = require('dateformat'); 
-var MongoClient = require('mongodb').MongoClient
+var dataLayer = require('./../lib/DataLayer');
 
 
 /*  */
@@ -20,22 +19,11 @@ router.post('/', function(req, res, next) {
         "feed_title": feed_title,
         "feed_date": new Date().getTime()
     };
+
+    dataLayer.addFeed(item, function(feed) {
+        res.send(JSON.stringify(item));
+    })
     
-    MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
-        if (err) throw err
-      
-        var db = client.db('livefeed-api');
-
-        db.collection("feed").insertOne(item, function(err, ires) {
-            if (err) throw err;
-
-            console.log("1 feed inserted id " + item._id );
-            
-            client.close();
-            res.send(JSON.stringify(item));
-        });
-    });
 
 });
 

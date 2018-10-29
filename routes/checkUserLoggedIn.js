@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var MongoClient = require('mongodb').MongoClient
+var dataLayer = require('./../lib/DataLayer');
 
 /* Currently set on all routes */
 router.all('*', function(req, res, next) {
@@ -11,11 +11,20 @@ router.all('*', function(req, res, next) {
     session_token = req.params.session_token;
 
   if(session_token == undefined) {
+
     req.app.set("user", false);
     next();
+
   } else {
 
-    MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
+    dataLayer.findUserSession(session_token, function(user) {
+
+      //user is either object or false if none found
+      req.app.set("user", user);
+      next();
+    });
+  }
+    /*MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
     '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
       
       if (err) throw err
@@ -39,8 +48,8 @@ router.all('*', function(req, res, next) {
         }
       });
   
-    });
-  }
+    });*/
+  
 
 
 });

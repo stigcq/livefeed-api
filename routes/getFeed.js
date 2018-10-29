@@ -14,7 +14,6 @@ router.get('/:feed_id', function(req, res, next) {
     }
 
     dataLayer.getFeed(feed_id, function(feed) {
-
         if(feed == false) {
             const response = {'error': 1, 'mesage': 'feed not found' }; 
             res.send(JSON.stringify(response));

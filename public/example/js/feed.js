@@ -508,10 +508,7 @@ function login() {
         console.log(data.session_token + " " + data._id);
 
         if(data.session_token != 1) {
-            sessionToken = data.session_token;
-            userId = data._id;
-            Cookies.set('user_id', userId);
-            Cookies.set('session_token', sessionToken);
+            setUserSession(data._id, data.session_token);
             showPostMessage();
         }
     });
@@ -533,14 +530,22 @@ function createUser() {
                 alert(data.message);
             } else if(data.session_token != 1) {
                 console.log(data.session_token);
-                sessionToken = data.session_token;
-                userId = data._id;
-                //Cookies.set('user_id', userId);
-                //Cookies.set('session_token', sessionToken);
+
+                setUserSession(data._id, data.session_token);
+
                 showCreateFeed();
                 
             }
     });
+}
+
+function setUserSession(userId, sessionToken) {
+
+    sessionToken = data.session_token;
+    userId = data._id;
+    Cookies.set('user_id', userId);
+    Cookies.set('session_token', sessionToken);
+
 }
 
 function createFeed() {

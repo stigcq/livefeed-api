@@ -132,3 +132,6 @@ Define error codes
 3 /submit_message/ : No feed for user
 
 4 /create_feed/ : Need to be logged in to create feed
+
+5 /create_user/ : Error creating user, maybe Email already in use
+
