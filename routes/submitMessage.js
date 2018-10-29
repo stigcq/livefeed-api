@@ -10,7 +10,8 @@ router.post('/', function(req, res, next) {
     console.log("user object" + req.app.get("user"));
 
     if(req.app.get("user") == false) {
-        res.send("{'message': 'Need to be logged in to add message', 'error': 1}");
+        const response = {'message': 'Need to be logged in to add message', 'error': 1};
+        res.send(JSON.stringify(response));
         return;
     }
 

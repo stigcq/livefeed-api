@@ -25,12 +25,12 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         var feedCondition = {'feed_id': feed_id};
 
         if(feed_id == 1)
-            feedCondition = {};
+            feedCondition = {'feed_id': feed_id};
 
         var mysort = { feed_time: -1 };
         var aggregate = [
             {$match:
-                {feedCondition,
+                {'feed_id': feed_id,
                 'reply_to': 0,
                 "feed_time": {$gt: Number(feed_time) } } },
             { $lookup: {

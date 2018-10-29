@@ -419,6 +419,8 @@ function sendMessage() {
                 content: mycontent,
                 session_token: sessionToken
                 }, function(data) {
+                    
+        data = jQuery.parseJSON( data );
 
         if(data.error == 1) {
 
