@@ -44,7 +44,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
                 foreignField: '_id',
                 as: 'feed'
               } },*/
-            { $project: { "content": 1, "feed_time": 1, "feed_id": 1,
+            { $project: { "content": 1, "feed_time": 1, "feed_id": 1, "feed_title",
                 "user": { "display_name": 1, '_id': 1 },
                 //"feed": { "feed_title": 1, '_id': 1 }
             } }
