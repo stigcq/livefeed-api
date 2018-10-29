@@ -18,7 +18,7 @@ var createUserRouter = require('./routes/createUser');
 var createFeedRouter = require('./routes/createFeed');
 var loginRouter = require('./routes/login');
 var checkUserRouter = require('./routes/checkUserLoggedIn');
-var getFeedRouter = require('./routes/getFeedRouter');
+var getFeedRouter = require('./routes/getFeed');
 
 var app = express();
 
