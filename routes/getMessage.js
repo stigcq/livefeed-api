@@ -9,7 +9,7 @@ router.get('/:message_id', function(req, res, next) {
 
     const message_id = req.params.message_id;
 
-    if(message_id.length != 12 || message_id.length != 24) {
+    if(message_id.length != 12 && message_id.length != 24) {
 
         res.send("{'error': 1, 'mesage': 'message id is not valid' }");
         return;

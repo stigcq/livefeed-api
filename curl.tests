@@ -116,5 +116,7 @@ success:
 [{"count":2,"message_id":"5bd6074b44253b58d5e915c0"},{"count":2,"message_id":"5bd5df8f2ad36a5421dc8ced"},{"count":1,"message_id":"5bd595162c7349493ac4c57e"},{"count":29,"message_id":0}]
 
 
+----------
 
-
+get feed
+curl -i   -H "Accept: application/json"   -X GET   http://3.121.5.61:3000/get_feed/5bd306fb889b0606624b6a95

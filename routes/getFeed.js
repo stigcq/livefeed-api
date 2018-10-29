@@ -9,14 +9,12 @@ router.get('/:feed_id', function(req, res, next) {
 
     const feed_id = req.params.feed_id;
 
-    if(feed_id.length != 12 || feed_id.length != 24) {
+    if(feed_id.length != 12 && feed_id.length != 24) {
 
         res.send("{'error': 1, 'mesage': 'feed id is not valid' }");
         return;
     }
     
-    console.log("get_message " + message_id);
-
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
         if (err) throw err
