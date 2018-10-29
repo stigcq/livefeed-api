@@ -23,14 +23,29 @@ router.post('/', function(req, res, next) {
             res.send(JSON.stringify(response));
             return;
         }
+
+        //console.log(feed.user_id + " " + req.app.get("user")._id);
     
-        if(feed.user_id != req.app.get("user")._id) {
+        if(feed.user_id != req.app.get("user")._id.toString()) {
             const response = {'message': 'No permissions to this feed', 'error': 1};
             res.send(JSON.stringify(response));
             return;
         }    
+
+        console.log("bingo add message");
+
+        var message = {
+            "feed_id": feed._id, 
+            "user_id": req.app.get("user")._id,
+            "content": content, 
+            "reply_to": 0,
+            "feed_time": new Date().getTime()
+        };
+
+        dataLayer.addMessage(message, new function(message) {
+            res.send(JSON.stringify(message));
+        });
     
-        console.log("bingo add message")
     });
 
     return;
