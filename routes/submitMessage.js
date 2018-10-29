@@ -19,10 +19,10 @@ router.post('/', function(req, res, next) {
     //feedid 0 post to users default feed
     if(feed_id == 0) {
 
-        dataLayer.getUserFeed(req.app.get("user"), function(feed) {
+        dataLayer.getUserFeed(req.app.get("user")._id, function(feed) {
 
             if(feed == false) {
-                const response = {'message': 'No feed for user', 'error': 1};
+                const response = {'message': 'No feed for user', 'error': 3};
                 res.send(JSON.stringify(response));
                 return;
             }
