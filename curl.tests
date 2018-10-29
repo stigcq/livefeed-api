@@ -135,3 +135,6 @@ Define error codes
 
 5 /create_user/ : Error creating user, maybe Email already in use
 
+6 /get_message/ : message id is not valid
+7 /get_message/ : no message found
+
