@@ -104,9 +104,11 @@ to post
 </div>
 </script>
 
-<script id="create_user_template" type="text/html">
+<script id="create_feed_template" type="text/html">
+    <h3>Create Feed</h3>
     <div class="row" style="margin: 0 0 0 0;">
         <div class="col-sm-8" style="padding: 0 0 0 0;">
+            <label>Title</label>
         <input id="create_feed_title" type="email" class="form-control" placeholder="Feed title"/>
         <input type="button" onclick='createFeed();' class="btn btn-primary" value="CREATE"/>
         </div>
@@ -137,7 +139,7 @@ to post
         
 </script>
 
- <script id="create_feed_template" type="text/html">
+ <script id="create_feed_template2" type="text/html">
     <h2>Opret feed</h2>
     <label>Titel</label>
     <input name="feed_title" id="feed_title" type="text" class="form-control" placeholder="En titel for dit feed, f.x. Stigs Have Feed"/>
