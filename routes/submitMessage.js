@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var dateFormat = require('dateformat'); 
 var MongoClient = require('mongodb').MongoClient
 
 
