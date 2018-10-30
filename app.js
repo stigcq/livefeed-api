@@ -19,6 +19,8 @@ var createFeedRouter = require('./routes/createFeed');
 var loginRouter = require('./routes/login');
 var checkUserRouter = require('./routes/checkUserLoggedIn');
 var getFeedRouter = require('./routes/getFeed');
+var getUserFeedsRouter = require('./routes/getUserFeeds');
+
 
 var app = express();
 
@@ -47,6 +49,7 @@ app.use('/comments', getCommentsRouter);
 app.use('/create_user', createUserRouter);
 app.use('/create_feed', createFeedRouter);
 app.use('/get_feed', getFeedRouter);
+app.use('/get_user_feeds', getUserFeedsRouter);
 app.use('/login', loginRouter);
 app.use('/comment_counts', getCommentCountRouter);
 
