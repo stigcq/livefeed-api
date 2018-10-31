@@ -43,7 +43,7 @@ router.post('/', function(req, res, next) {
     dataLayer.getFeed(feed_id, function(feed) {
 
         if(feed == false) {
-            const response = {'message': 'No such feed exists', 'error': 1};
+            const response = {'message': 'No such feed exists', 'error': 8};
             res.send(JSON.stringify(response));
             return;
         }

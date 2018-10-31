@@ -130,6 +130,7 @@ Define error codes
 1 /submit_message/ : user not logged in (and is required to be)
 2 /submit_message/ : user dont got perms to write to the feed
 3 /submit_message/ : No feed for user
+8 /submit_message/ : No such feed exists
 
 4 /create_feed/ : Need to be logged in to create feed
 
