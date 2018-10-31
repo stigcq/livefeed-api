@@ -135,6 +135,7 @@ Define error codes
 4 /create_feed/ : Need to be logged in to create feed
 
 5 /create_user/ : Error creating user, maybe Email already in use
+9 /create_user/ : some paramenters not set
 
 6 /get_message/ : message id is not valid
 7 /get_message/ : no message found

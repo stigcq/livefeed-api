@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
 
     //just a basic check. The md5 gives error if value is undefined
     if(useremail == undefined || password == undefined || display_name == undefined) {
-        var response = {"error": 1, "message": "some paramenters not set"};
+        var response = {"error": 9, "message": "some paramenters not set"};
         res.send(JSON.stringify(response));
         return;
     }
@@ -29,10 +29,10 @@ router.post('/', function(req, res, next) {
     dataLayer.addUser(item, function(user) {
 
         if(user == false) {
-            var response = {"error": 1, "message": "Error creating user, maybe Email already in use"};
+            var response = {"error": 8, "message": "Error creating user, maybe Email already in use"};
             res.send(JSON.stringify(response));
         } else {
-            res.send(JSON.stringify(item));
+            res.send(JSON.stringify(user));
         }
     });
 
