@@ -224,7 +224,8 @@ function fetchMessagesX(goBack) {
             data[i].view_feed_id = feedId;
             data[i].message_id = data[i]._id;
 
-            data[i].content = data[i].content.replace(/(?:\r\n|\r|\n)/g, '<br>');
+            if(data[i].content != null && data[i].content != undefined)
+                data[i].content = data[i].content.replace(/(?:\r\n|\r|\n)/g, '<br>');
 
             /*if(data[i].photos.length > 1)
                 data[i].more_photos = 1;
