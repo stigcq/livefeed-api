@@ -198,11 +198,11 @@ to post
 <script id="message_view_template" type="text/html">
     <div id='feed_item_{{ _id }}' class='feed_item'>
     <div class='feed_item_header'>
-        {{#avatar_photo_id}}
+        {{#avatar_url}}
         <div style="display: inline-block;">
-                <img src="/files/{{avatar_path}}" style="max-width: 60px"/>
+                <img src="{{avatar_url}}" style="max-width: 60px"/>
         </div>
-        {{/avatar_photo_id}}
+        {{/avatar_url}}
         {{^avatar_photo_id}}
         <div style="display: inline-block;">
             by {{user.display_name}}
