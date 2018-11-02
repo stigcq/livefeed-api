@@ -185,9 +185,9 @@ to post
 <script id="comment_view_template" type="text/html">
     <div class="row" style="margin-top: 10px;">
     <div class="col-sm-2" style="text-align: right; padding: 0 10px 0 10px;">
-        {{#avatar_photo_id}}
-        <img src="/files/{{avatar_path}}" style="max-width: 60px; "/>
-        {{/avatar_photo_id}}
+        {{#user.avatar_url}}
+        <img src="{{user.avatar_url}}" style="max-width: 60px; "/>
+        {{/user.avatar_url}}
     </div>
     <div class="col-sm-10" style="padding: 0 0 0 0;">
         {{{ content }}} <b>by {{ user.display_name }}</b>
