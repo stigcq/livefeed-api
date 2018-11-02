@@ -542,9 +542,9 @@ function createUser() {
     });
 }
 
-function setUserSession(userId, sessionToken) {
+function setUserSession(userId, mySessionToken) {
 
-    sessionToken = sessionToken;
+    sessionToken = mySessionToken;
     userId = userId;
     Cookies.set('user_id', userId);
     Cookies.set('session_token', sessionToken);
