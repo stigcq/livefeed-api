@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
 
         db.collection("user").updateOne(myquery, newvalues, function(err, iires) {
             if (err) throw err;
-            console.log("1 document updated" + iires);
+            console.log("1 user updated " + my_session_token);
 
             var myresult = { session_token: my_session_token, _id: ires._id };
         
