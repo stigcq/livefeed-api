@@ -513,6 +513,10 @@ function login() {
         if(data.session_token != 1) {
             setUserSession(data._id, data.session_token);
             showPostMessage();
+
+            jQuery("#content").html = "";
+            messages = new Array();
+            fetchMessagesX(0);
         }
     });
 }

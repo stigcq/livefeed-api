@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var MongoClient = require('mongodb').MongoClient
-var ObjectID = require('mongodb').ObjectID;
+var dataLayer = require('./../lib/DataLayer');
 
 
 /* delete message */
@@ -14,23 +13,15 @@ router.post('/', function(req, res, next) {
         return;
     }
 
-    const message_id = req.body.message_id;
-    
-    MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
-        if (err) throw err
-      
-        var db = client.db(process.env.DB_DB);
+    const messageId = req.body.message_id;
 
-        var query = {"_id": ObjectID(message_id), "user_id": req.app.get("user")._id};
+    dataLayer.deleteMessage(req.app.get("user")._id, messageId, function(response) {
 
-        db.collection("message").deleteOne(query, function(err, ires) {
-            if (err) throw err;
-            console.log("1 message deleted id " + message_id);
-            client.close();
-            res.send(JSON.stringify(ires));
-        });
+        res.send(JSON.stringify(response));
+
     });
+    
+
 
 });
 
