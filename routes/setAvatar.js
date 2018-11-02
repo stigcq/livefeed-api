@@ -16,8 +16,8 @@ router.post('/', function(req, res, next) {
 
     dataLayer.getMedia(media_id, function(media) {
 
-        dataLayer.setAvatar(req.app.get("user")._id, media.media_url, function(feed) {
-            res.send(JSON.stringify(item));
+        dataLayer.setAvatar(req.app.get("user")._id, media.media_url, function(result) {
+            res.send(JSON.stringify(result));
         });
     
     });
