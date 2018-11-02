@@ -36,6 +36,9 @@ Create user, login and posting messages works. Commenting should also work now,
 though there might be bugs. Add media and set avatar works in the api, but
 not clientside demo yet (and use curl to invoke them).
 
+## Contribute
 
+If you find this project interesting and want help, either on API or frontend, drop
+me a message at stigcq at yahoo dot com. 
 
 
