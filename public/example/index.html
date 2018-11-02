@@ -203,11 +203,11 @@ to post
                 <img src="{{user.avatar_url}}" style="max-width: 60px"/>
         </div>
         {{/user.avatar_url}}
-        {{^avatar_photo_id}}
+        {{^user.avatar_url}}
         <div style="display: inline-block;">
             by {{user.display_name}}
         </div>
-        {{/avatar_photo_id}}       
+        {{/user.avatar_url}}       
         <div style="display: inline-block; padding-left: 6px;">
         <b style='font-size: 120%'>{{ display_name }}</b> <br/>
         <span class='feed_time' datetime='{{feed_time}}'></span>
