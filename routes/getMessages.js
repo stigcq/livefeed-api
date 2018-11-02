@@ -25,6 +25,8 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         var mysort = { feed_time: -1 };
         var aggregate = null;
         
+        //FIXME: cant figure out how to manipulate this object 
+        
         if(feed_id == 0)
          aggregate = [
             {$match:
@@ -37,16 +39,10 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
               as: 'user'
             } },
             { "$unwind": "$user" },
-            /*{ $lookup: {
-                from: 'feed',
-                localField: 'feed_id',
-                foreignField: '_id',
-                as: 'feed'
-              } },*/
             { $project: { "content": 1, "feed_time": 1, "feed_id": 1, "feed_title": 1,
                 "user": { "display_name": 1, '_id': 1, 'avatar_url': 1 },
-                //"feed": { "feed_title": 1, '_id': 1 }
-            } }
+            } },
+            { $limit : 30 }
         ];
         else
         aggregate = [
@@ -63,10 +59,10 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
             { "$unwind": "$user" },
             { $project: { "content": 1, "feed_time": 1,
                 "user": { "display_name": 1, "avatar_url": 1, '_id': 1 }
-            } }
+            } },
+            { $limit : 30 }
         ];
 
-        //FIXME: cant figure out how to manipulate this object 
         
 
         
