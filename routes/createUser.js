@@ -23,7 +23,8 @@ router.post('/', function(req, res, next) {
         "email": useremail, 
         "password": md5(password),
         "display_name": display_name,
-        "session_token": Math.floor((Math.random() * 10000000))
+        "session_token": Math.floor((Math.random() * 10000000)),
+        "avatar_url": ""
     };
 
     dataLayer.addUser(item, function(user) {

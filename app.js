@@ -20,6 +20,10 @@ var loginRouter = require('./routes/login');
 var checkUserRouter = require('./routes/checkUserLoggedIn');
 var getFeedRouter = require('./routes/getFeed');
 var getUserFeedsRouter = require('./routes/getUserFeeds');
+var addMediaRouter = require('./routes/addMedia');
+var setAvatarRouter = require('./routes/setAvatar');
+
+
 
 
 var app = express();
@@ -52,6 +56,9 @@ app.use('/get_feed', getFeedRouter);
 app.use('/get_user_feeds', getUserFeedsRouter);
 app.use('/login', loginRouter);
 app.use('/comment_counts', getCommentCountRouter);
+app.use('/add_media', addMediaRouter);
+app.use('/set_avatar', setAvatarRouter);
+
 
 
 // catch 404 and forward to error handler
