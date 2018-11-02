@@ -544,8 +544,8 @@ function createUser() {
 
 function setUserSession(userId, sessionToken) {
 
-    sessionToken = data.session_token;
-    userId = data._id;
+    sessionToken = sessionToken;
+    userId = userId;
     Cookies.set('user_id', userId);
     Cookies.set('session_token', sessionToken);
 
