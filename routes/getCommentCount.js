@@ -45,7 +45,7 @@ router.get('/:feed_id', function(req, res, next) {
         
         db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
-            console.log("No rows found: " + result);
+            
             client.close();
 
             res.send(JSON.stringify(result));

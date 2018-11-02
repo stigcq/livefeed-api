@@ -37,7 +37,6 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
               as: 'user'
             } },
             { "$unwind": "$user" },
-            //{   $unwind:"$user_info" },
             /*{ $lookup: {
                 from: 'feed',
                 localField: 'feed_id',
