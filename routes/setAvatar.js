@@ -4,13 +4,15 @@ var dataLayer = require('./../lib/DataLayer');
 
 
 /*  */
-router.get('/:media_id', function(req, res, next) {
+router.post('/', function(req, res, next) {
 
     if(req.app.get("user") == false) {
         response = {'message': 'Need to be logged in', 'error': 1 } ;
         res.send(JSON.stringify(response));
         return;
     }
+
+    media_id = req.body.media_id;
 
     dataLayer.getMedia(mediaId, function(media) {
 

@@ -129,6 +129,14 @@ add media
 curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"media_url": "http://itselskabet.nu/files/8959ebe8-5306-495d-ae45-590238d0e7f1/1_1ff6bda.jpg", "session_token": 1841875}'   http://3.121.5.61:3000/add_media
 
 
+set avatar
+
+curl -i   -H "Accept: application/json"   -H "Content-Type:application/json"   -X POST --data '{"media_id": "5bdc41e85a9c987dab6bedea", "session_token": 1817472}'   http://3.121.5.61:3000/set_avatar
+
+
+
+
+
 ---------
 
 
