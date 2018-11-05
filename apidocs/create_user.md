@@ -18,8 +18,8 @@ None
 
      **Required:**
  
-   `email=[String]`
-   `password=[String]`
+   `email=[String]`<br />
+   `password=[String]`<br />
    `display_name=[String]`
 
 * **Success Response:**
@@ -30,8 +30,10 @@ None
 * **Error Response:**
 
   * **Code:** 200  <br />
-    **Content:** `{ error : 9, message: "Error creating user, maybe Email already in use" }`
+    **Content:** `{ error : 5, message: "Error creating user, maybe Email already in use" }`
 
+  * **Code:** 200  <br />
+    **Content:** `{ error : 9, message: "Some parameters not set" }`
 
 
 * **Sample Call:**
