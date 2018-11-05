@@ -150,7 +150,7 @@ function changeFeed(id, title) {
     showPostMessage();
 
     jQuery("#content").html("");
-    jQuery("#feed_header").html("<h1>" + title + "</h1>");
+    jQuery("#feed_header").html("<a href='javascript: changeFeed(0);'><h1>" + title + "</h1></a>");
 
     startLoop();
     startCommentsLoop();
