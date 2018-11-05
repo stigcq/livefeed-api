@@ -220,15 +220,15 @@ to post
         {{#photos}}
         {{#more_photos }}
         <div class="cutted_div">
-            <a href="javascript: showPhotos({{ message_id }}, {{ index }})">
-            <img class="cutted" style='max-width: 90%;' src='/files/{{ path_resized }}'/>
+            <a href="javascript: showPhotos('{{ message_id }}', '{{ index }}')">
+            <img class="cutted" style='max-width: 90%;' src='{{ media_url }}'/>
             </a>
         </div>    
         {{/more_photos}}
         {{^more_photos}}
         <br/><br/>     
-        <a href="javascript: showPhotos({{ message_id }}, 0)">
-                <img style='max-width: 90%' src='/files/{{ path_resized }}'/>    
+        <a href="javascript: showPhotos('{{ message_id }}'', 0)">
+                <img style='max-width: 90%' src='{{ media_url }}'/>    
         </a>     
         {{/more_photos}}
         {{/photos}}
@@ -332,7 +332,7 @@ to post
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js?1017"></script>
-<script src="js/feed.js?1073"></script>
+<script src="js/feed.js?1074"></script>
 <script src="js/jquery.fine-uploader.js"></script>
 <script src="js/timeago.min.js" type="text/javascript"></script>        
 <script src="js/timeago.locales.min.js" type="text/javascript"></script>        

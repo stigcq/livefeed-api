@@ -231,11 +231,14 @@ function fetchMessagesX(goBack) {
             if(data[i].content != null && data[i].content != undefined)
                 data[i].content = data[i].content.replace(/(?:\r\n|\r|\n)/g, '<br>');
 
-            /*if(data[i].photos.length > 1)
-                data[i].more_photos = 1;
+            if(data[i].photos != undefined) {
+                if(data[i].photos.length > 1)
+                    data[i].more_photos = 1;
 
-            for(j = 0; j < data[i].photos.length; j++)
-                data[i].photos[j].index = j;*/
+                for(j = 0; j < data[i].photos.length; j++)
+                    data[i].photos[j].index = j;
+
+            }
 
             var template = $('#message_view_template').html();
 
