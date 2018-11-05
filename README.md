@@ -50,16 +50,18 @@ feed.js file.
 The usage of fineuploader end endpoint.php is not part of the API and just an example
 on how the API can be used. 
 
+### Git structure
+
+<b>apidocs</b> contains api documentation which is in progress<br/>
+<b>lib</b> contains a datalayer and an authlayer<br/>
+<b>public</b> contains a clientside demo version as described above<br/>
+<b>routes</b> contains express routes which basicly works as controllers <br/>
+
+
+
 ## Contribute
 
 If you find this project interesting and want help, either on API or frontend, drop
 me a message at stigcq at yahoo dot com. 
-
-### Git structure
-
-<b>apidocs</b> contains api documentation which is in progress
-<b>lib</b> contains a datalayer and an authlayer
-<b>public</b> contains a clientside demo version as described above
-<b>routes</b> contains express routes which basicly works as controllers 
 
 
