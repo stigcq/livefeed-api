@@ -37,6 +37,19 @@ Create user, login and posting messages works. Commenting should also work now,
 though there might be bugs. Add media and set avatar works in the api, but
 not clientside demo yet (and use curl to invoke them).
 
+### To setup the client on own server
+1. Upload content of example folder to a webhost, including js and css folders. 
+2. index.html is the entry point
+3. You need adjust urls in top of the js/feed.js file: feedUrl points to where
+you run the API implementation, uploadUrl point to where the uploaded files via
+fineuploader is being put. 
+4. You need set up the fineuploader endpoint: endpoint.php and handler.php. They can
+be put anywhere but you need adjust urls to them in the fineuploader initialization in the
+feed.js file. 
+
+The usage of fineuploader end endpoint.php is not part of the API and just an example
+on how the API can be used. 
+
 ## Contribute
 
 If you find this project interesting and want help, either on API or frontend, drop
