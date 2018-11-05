@@ -22,7 +22,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
       
         var db = client.db('livefeed-api');
 
-        var mysort = { feed_time: -1 };
+        var mysort = { feed_time: 1 };
         var aggregate = null;
         
         //FIXME: cant figure out how to manipulate this object 
@@ -71,7 +71,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
             //console.log("No rows found: " + result.length);
             client.close();
 
-            result.reverse();
+            //result.reverse();
 
             result.forEach(function(item, index) {
                 //item.user = item.user[0];
