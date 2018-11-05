@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
     const message_id = req.body.message_id;
 
     //feedid 0 post to users default feed
-    if(feed_id == 0) {
+    if(feed_id == 0 || feed_id == undefined) {
 
         dataLayer.getUserFeed(req.app.get("user")._id, function(feed) {
 
