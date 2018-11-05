@@ -42,6 +42,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
             { $project: { "content": 1, "feed_time": 1, "feed_id": 1, "feed_title": 1,
                 "user": { "display_name": 1, '_id': 1, 'avatar_url': 1 },
             } },
+            { $sort : { feed_time : -1 } },
             { $limit : 30 }
         ];
         else
