@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var dataLayer = require('./../lib/DataLayer');
+var authLayer = require('./../lib/AuthLayer');
 
 /*      
 check email/pass match
@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
   const myemail = req.body.email;
   const md5password = req.body.md5password;
 
-  dataLayer.login(myemail, md5password, function(result) {
+  authLayer.login(myemail, md5password, function(result) {
 
     if(result == false) {
 
