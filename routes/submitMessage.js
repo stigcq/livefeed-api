@@ -44,7 +44,7 @@ router.post('/', function(req, res, next) {
                     });
 
                 });
-            else dataLayer.updateMessage(message_id, content, function(message) {
+            else dataLayer.updateMessage(message_id, content, function(result) {
                     res.send(JSON.stringify(message));
 
             });
