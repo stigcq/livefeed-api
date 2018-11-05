@@ -14,6 +14,7 @@ router.post('/', function(req, res, next) {
 
     const feed_id = req.body.feed_id;
     const content = req.body.content;
+    const message_id = req.body.message_id;
 
     //feedid 0 post to users default feed
     if(feed_id == 0) {
@@ -34,14 +35,20 @@ router.post('/', function(req, res, next) {
                 "feed_time": new Date().getTime(),
                 "feed_title": feed.feed_title
             };
-    
-            dataLayer.addMessage(message, function(message) {
 
-                dataLayer.attachMedia(req.app.get("user")._id, message._id, function(result) {
-                    res.send(JSON.stringify(message));
+            if(message_id == undefined)    
+                dataLayer.addMessage(message, function(message) {
+
+                    dataLayer.attachMedia(req.app.get("user")._id, message._id, function(result) {
+                        res.send(JSON.stringify(message));
+                    });
+
                 });
+            else dataLayer.updateMessage(message_id, content, function(message) {
+                    res.send(JSON.stringify(message));
 
             });
+
         });
     } else // normal situation
     dataLayer.getFeed(feed_id, function(feed) {

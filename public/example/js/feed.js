@@ -370,20 +370,20 @@ function saveEditPost(messageId) {
     messageContent = $('#edit_textarea_' + messageId).val();
     //console.log(messageContent);
 
-    jQuery.post(feedUrl + "edit_message/", {message_id: messageId, content: messageContent}, 
+    jQuery.post(feedUrl + "submit_message/", {message_id: messageId, content: messageContent}, 
         function(data) {
 
             jObj = JSON.parse(data);
         
-        if(jObj.author_id == userId)
-        jObj.is_owner = 1;
+            if(jObj.user_id == userId)
+                jObj.is_owner = 1;
 
-        var template = $('#message_view_template').html();
-        $('#feed_item_' + messageId).replaceWith(Mustache.render(template, jObj));
+            var template = $('#message_view_template').html();
+            $('#feed_item_' + messageId).replaceWith(Mustache.render(template, jObj));
 
-        timeago(null, "da").render($('.feed_time'));
+            timeago(null, "da").render($('.feed_time'));
 
-        console.log(data);
+            console.log(data);
     });
 
     //send to server as post
@@ -597,10 +597,6 @@ function showPostMessage() {
     jQuery("#feed_top").html(Mustache.render(template, {}));        
 }
 
-/*function showPostMessage() {
-    var template = $('#create_feed_template').html();
-    jQuery("#feed_top").html(Mustache.render(template, {}));        
-}*/
 
 
 var isUploaderInited = false;;
@@ -649,7 +645,6 @@ function initUploader() {
             session_token: sessionToken}, function(data) {
                 console.log(data);
         });
-    //alert("completed");
       
    });
 
