@@ -169,7 +169,7 @@ function showPhotos(mId, index) {
     focusMessageId = mId;
     photoIndex = index;
 
-    jQuery("#overlay_img").attr("src", "/files/" + messages[mId].photos[photoIndex].path_resized);
+    jQuery("#overlay_img").attr("src", messages[mId].photos[photoIndex].media_url);
     document.getElementById("overlay").style.display = "block";
 }
 
@@ -183,7 +183,7 @@ function nextPhoto() {
 
     console.log(messages[focusMessageId].photos.length + " " + photoIndex);
 
-    jQuery("#overlay_img").attr("src", "/files/" + messages[focusMessageId].photos[photoIndex].path_resized);
+    jQuery("#overlay_img").attr("src", messages[focusMessageId].photos[photoIndex].media_url);
     
 }
 
@@ -193,7 +193,7 @@ function prevPhoto() {
     if(photoIndex < 0)
         photoIndex = (messages[focusMessageId].photos.length-1);
 
-    jQuery("#overlay_img").attr("src", "/files/" + messages[focusMessageId].photos[photoIndex].path_resized);
+    jQuery("#overlay_img").attr("src", messages[focusMessageId].photos[photoIndex].media_url);
         
 }
 
