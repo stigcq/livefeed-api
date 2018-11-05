@@ -72,7 +72,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
 
             client.close();
 
-            //result.reverse();
+            result.reverse();
 
             result.forEach(function(item, index) {
                 //item.user = item.user[0];
