@@ -8,6 +8,10 @@ String.prototype.replaceAll = function(search, replacement) {
 var feedUrl = "http://3.121.5.61:3000/";
 var feedId = 0; //'5bd724433e0b567c87409320';
 
+//not api related, basicly where uploader code stores files, is used
+//to create url to the file which is send to the API
+var uploadUrl = "http://3.121.5.61/files/";
+
 
 var isFetching = false;
 var lastFetch = false;
@@ -632,9 +636,9 @@ function initUploader() {
         console.log(responseJSON.uuid + "/" +  responseJSON.uploadName);
         console.log(responseJSON);
 
-        jQuery.post(feedUrl + "image_take_ownership/", 
-            {image_path: responseJSON.uuid + "/" +  responseJSON.uploadName,
-            user_id: userId}, function(data) {
+        jQuery.post(feedUrl + "add_media/", 
+            {media_url: uploadUrl + responseJSON.uuid + "/" +  responseJSON.uploadName,
+            session_token: sessionToken}, function(data) {
                 console.log(data);
         });
     //alert("completed");

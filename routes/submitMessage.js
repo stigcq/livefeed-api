@@ -36,7 +36,11 @@ router.post('/', function(req, res, next) {
             };
     
             dataLayer.addMessage(message, function(message) {
-                res.send(JSON.stringify(message));
+
+                dataLayer.attachMedia(req.app.get("user")._id, message._id, function(result) {
+                    res.send(JSON.stringify(message));
+                });
+
             });
         });
     } else // normal situation
