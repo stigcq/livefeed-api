@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var dateFormat = require('dateformat'); 
 var MongoClient = require('mongodb').MongoClient
+var dataLayer = require('./../lib/DataLayer');
 
 
 /*  */
@@ -18,29 +18,31 @@ router.post('/', function(req, res, next) {
     }
     //consider getting message first
 
-    var item = {
-        "user_id": req.app.get("user")._id,
-        "content": content, 
-        "feed_id": feed_id,
-        "reply_to": message_id,
-        "feed_time": new Date().getTime()
-    };
-    
-    MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
-        '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
-        if (err) throw err
-      
-        var db = client.db('livefeed-api');
+    dataLayer.getMessage(message_id, function(replyMessage) {
 
-        db.collection("message").insertOne(item, function(err, ires) {
-            if (err) throw err;
+        if(replyMessage == false) {
 
-            console.log("1 comment inserted id " + item._id );
+            var response = {'message': 'no message with messageid exists', 'error': 12};
+            res.send(JSON.stringify(response));
+            return;
+        } else {
+
+            var item = {
+                "user_id": req.app.get("user")._id,
+                "content": content, 
+                "feed_id": feed_id,
+                "reply_to": message_id,
+                "feed_time": new Date().getTime()
+            };
             
-            client.close();
-            res.send(JSON.stringify(item));
-        });
+        
+            dataLayer.addMessage(item, function(message) {
+                res.send(JSON.stringify(message));
+            });
+        }
     });
+
+
 
 });
 
