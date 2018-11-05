@@ -45,6 +45,9 @@ router.post('/', function(req, res, next) {
 
                 });
             else dataLayer.updateMessage(message_id, content, function(result) {
+
+                    // TODO: instead get the message from id and send it back
+                    // if editing message data is missing from above message object
                     res.send(JSON.stringify(message));
 
             });
