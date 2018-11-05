@@ -16,6 +16,11 @@ var uploadUrl = "http://3.121.5.61/files/";
 var isFetching = false;
 var lastFetch = false;
 
+//how often to check for new messages in msec
+var messageLoopTime = 8000;
+
+//how often to check for new comments in msec
+var commentLoopTime = 30000;
 
 //highest messsage time, ie. time of newest message, used to request new messages
 var highestMessageTime = 0;
@@ -71,13 +76,13 @@ $(document).keyup(function(e) {
 
 function startLoop() {
 
-    setTimeout(startLoop, 14000);
+    setTimeout(startLoop, messageLoopTime);
     fetchMessages();
 }
 
 function startCommentsLoop() {
 
-    setTimeout(startCommentsLoop, 30000);
+    setTimeout(startCommentsLoop, commentLoopTime);
     checkForComments();
 }
 
