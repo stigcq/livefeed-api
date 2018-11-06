@@ -2,29 +2,25 @@
 
 This is an implementation of my livefeed api made with node.js, express and mongodb. 
 
-The livefeed api is basicly a messaging system made for livefeeds, that is
+The livefeed api is a messaging system made for livefeeds, that is,
 a feed of messages that updates regularly, f.x. a journalist covering a sport event.
-
-The current php implementation with js/jquery frontend can be seen here:
-<a href="http://itselskabet.nu/feed">Live feed example</a>
 
 This API implementation with js/jquery frontend can be seen here:
 <a href="http://3.121.5.61/example/">Live feed example API usage</a>
 
-Purpose of this implementation is to clearly seperate backend from frontend and hence
+Purpose of this implementation is to seperate backend from frontend and
 make it a genuine JAMStack app. 
 
 ## In progress
 
-The project is just started, in progress. When the implementation is usefull
-usage notes will be supplied here. But basicly
+The project is new, in progress. To test it: 
 
 1. checkout the code
 2. run npm install
-3. create an .env file (see sample.env) for your db setting
+3. create an .env file (see sample.env) for your mongodb settings
 4. run npm start
 5. See curl.tests file for example curl invocations and documentation on the API. 
-6. Use public/example as client demo (need change server url in the feed.js)
+6. Use public/example as demo client 
 
 ## public/example
 
