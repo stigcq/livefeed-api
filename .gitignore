@@ -5,8 +5,7 @@ node_modules/
 #dotenv file in root folder
 .env
 
-#testing
-tests/
+
 
 
 
