@@ -305,6 +305,7 @@ tests.push(new LoginTest());
 tests.push(new CreateFeedTest());
 tests.push(new GetUserFeedsTest());
 tests.push(new SubmitMessageTest());
+tests.push(new GetMessageTest());
 tests.push(new EditMessageTest());
 tests.push(new DeleteMessageTest());
 
