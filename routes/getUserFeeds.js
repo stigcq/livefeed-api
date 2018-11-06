@@ -7,13 +7,14 @@ var ObjectID = require('mongodb').ObjectID;
 /*  */
 router.get('/:user_id', function(req, res, next) {
 
+    const user_id = req.params.user_id;
+
     if(mongodb.ObjectID.isValid(user_id) == false) {
         response = {'error': 6, 'mesage': 'user_id is not valid' };
         res.send(JSON.stringify(response));
         return;
     }
     
-
     dataLayer.getUserFeeds(ObjectID(user_id), function(feeds) {
 
         if(feeds == false) {

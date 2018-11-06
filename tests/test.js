@@ -1,5 +1,5 @@
 
-
+//change to what url you want test the api on
 var testUrl = "http://3.121.5.61:3000/";
 
 var testUserObject = false;
@@ -19,10 +19,6 @@ class Test {
         this.subTests = new Array();
         this.result = false;
       }
-
-    addSubTest(subTest) {
-        this.subTests.push(subTest);
-    }
 
     test() {
         logTest(false, this.constructor.name  + " Test not implemented");
@@ -140,6 +136,40 @@ class CreateFeedTest extends Test {
 }
 
 
+class GetUserFeedsTest extends Test {
+
+    constructor() {
+        super();
+      }
+
+    isReady() {
+        if(feedObject == false)
+            return false;
+        else return true;
+    }
+
+    test() {
+
+        jQuery.get(testUrl + "get_user_feeds/" + loggedInUserObject._id, {}, function(result) {
+        
+            userFeeds = jQuery.parseJSON( result );
+        
+            if(feedObject.error == 1) {
+                logTest(false, "GetUserFeedsTest: failed get feeds" + result);
+            } else {
+
+                if(feedObject.length == 1)
+                    logTest(true, "GetUserFeedsTest: fetched users feeds" + result);
+                else
+                    logTest(false, "GetUserFeedsTest: fetched users feeds count dont match" + result);
+            }
+            }).error(function() {
+                logTest(false, "GetUserFeedsTest: Error in connection");
+            });
+        }
+}
+
+
 class SubmitMessageTest extends Test {
 
     constructor() {
@@ -243,6 +273,7 @@ var tests = new Array();
 tests.push(new CreateUserTest());
 tests.push(new LoginTest());
 tests.push(new CreateFeedTest());
+tests.push(new GetUserFeedsTest());
 tests.push(new SubmitMessageTest());
 tests.push(new EditMessageTest());
 tests.push(new DeleteMessageTest());
