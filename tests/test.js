@@ -6,6 +6,7 @@ var testUserObject = false;
 var loggedInUserObject = false;
 var feedObject = false;
 var messageObject = false; 
+var messageObjectEdited = false; 
 
 function randomEmail() {
 
@@ -176,7 +177,7 @@ class SubmitMessageTest extends Test {
 }
 
 
-class DeleteMessageTest extends Test {
+class EditMessageTest extends Test {
 
     constructor() {
         super();
@@ -184,6 +185,39 @@ class DeleteMessageTest extends Test {
 
       isReady() {
           if(messageObject == false)
+              return false;
+          else return true;
+        }
+
+        test() {
+
+            jQuery.post(testUrl + "submit_message/", {
+                message_id: messageObject._id, 
+                content: "edited automated test message",
+                session_token: loggedInUserObject.session_token }, function(data) {
+
+                messageObjectEdited = jQuery.parseJSON( data );
+
+                if(messageObjectEdited.content != "edited automated test message")
+                logTest(false, "EditMessageTest: message edited but content different "+ data);    
+                else
+                logTest(true, "EditMessageTest: message edited"+ data);    
+
+            }).error(function() {
+                logTest(false, "EditMessageTest: Error in connection");
+            });
+
+        }
+}
+
+class DeleteMessageTest extends Test {
+
+    constructor() {
+        super();
+      }
+
+      isReady() {
+          if(messageObjectEdited == false)
               return false;
           else return true;
         }
@@ -210,6 +244,7 @@ tests.push(new CreateUserTest());
 tests.push(new LoginTest());
 tests.push(new CreateFeedTest());
 tests.push(new SubmitMessageTest());
+tests.push(new EditMessageTest());
 tests.push(new DeleteMessageTest());
 
 

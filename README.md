@@ -52,7 +52,9 @@ on how the API can be used.
 <b>lib</b> contains a datalayer and an authlayer<br/>
 <b>public</b> contains a clientside demo version as described above<br/>
 <b>routes</b> contains express routes which basicly works as controllers <br/>
-
+<b>test</b> contains a simple testsuite made with static html and js, it can 
+be run directly as it is (opening test.html) from a folder or a webhost. One need
+adjust testUrl var in the top of test.js <br/>
 
 
 ## Contribute
