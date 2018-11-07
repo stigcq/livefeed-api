@@ -20,8 +20,8 @@ class DeleteFeedTest extends Test {
         
                 logTest(true, "DeleteFeedTest: feed deleted"+ data);    
 
-            }).error(function() {
-                logTest(false, "DeleteFeedTest: Error in connection");
+            }).error(function(conn, message, error) {
+                logTest(false, "DeleteFeedTest: Error in connection <b>" + error + "</b>");
             });
 
         }

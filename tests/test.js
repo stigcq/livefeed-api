@@ -62,6 +62,6 @@ function logTest(successOrFail, message) {
     if(successOrFail == true)
         $("#testlogger").append("<b style='color: white; background-color: green;'> &nbsp; Success &nbsp;</b> " + message + "<br/>");
     else
-        $("#testlogger").append("<b style='color: red'>Failure: " + message + "</b><br/>");
+        $("#testlogger").append("<b style='color: white; background-color: red;'> &nbsp; Failure &nbsp;</b> " + message + "<br/>");
 
 }
