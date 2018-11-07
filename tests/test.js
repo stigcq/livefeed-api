@@ -7,6 +7,7 @@ var loggedInUserObject = false;
 var feedObject = false;
 var messageObject = false; 
 var messageObjectEdited = false; 
+var messageObjectDeleted = false; 
 
 
 
@@ -21,6 +22,7 @@ tests.push(new SubmitMessageTest());
 tests.push(new GetMessageTest());
 tests.push(new EditMessageTest());
 tests.push(new DeleteMessageTest());
+tests.push(new DeleteFeedTest());
 
 
 
