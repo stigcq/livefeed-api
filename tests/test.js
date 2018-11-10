@@ -26,7 +26,7 @@ tests.push(new DeleteMessageTest());
 tests.push(new DeleteFeedTest());
 tests.push(new DeleteUserTest());
 
-
+var testLengths = tests.length;
 
 /**
  * The following loop is a very simple way of handling tests dependent on other tests
@@ -45,7 +45,11 @@ function startLoop() {
 
 }
 
+
+
 function runTests() {
+
+    var noTestsRun = true;
 
     for(i = 0; i < tests.length; i++) {
 
@@ -53,8 +57,15 @@ function runTests() {
             runTest = tests[i];
             tests.splice(i, 1);
             runTest.test();
+            testLengths = tests.length;
+            noTestsRun = false;
         }
             
+    }
+
+    if(noTestsRun == true) {
+        logTest(false, "No tests ready to run, " + tests.length + " test(s) in unready state");
+
     }
 }
 
