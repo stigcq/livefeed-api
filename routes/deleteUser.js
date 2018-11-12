@@ -16,7 +16,7 @@ router.post('/', function(req, res, next) {
     const md5Pass = req.body.md5_password;
     
     if(feedId == md5Pass) {
-        const response = {'message': 'md5Pass is not set', 'error': 1};
+        const response = {'message': 'md5_password is not set', 'error': 1};
         res.send(JSON.stringify(response));
         return;
     }
