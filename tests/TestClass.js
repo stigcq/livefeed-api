@@ -16,8 +16,6 @@ class Test {
 
     isReady() {
 
-        //console.log("dependent on how many: " + this.dependentOn.length);
-
         if(this.dependentOn.length == 0)
             return true;
 
