@@ -4,6 +4,13 @@ class CreateUserTest extends Test {
         super();
       }
 
+    isFinished() {
+        
+        if(testUserObject == false)
+            return false;
+        return true;
+    }
+
     test() {
 
         jQuery.post(testUrl + "create_user/", { 

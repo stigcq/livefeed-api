@@ -17,13 +17,22 @@ var tests = new Array();
 
 tests.push(new CreateUserTest());
 tests.push(new LoginTest());
-tests.push(new CreateFeedTest());
-tests.push(new GetUserFeedsTest());
+
+//testing doing some test dependency
+createFeedTest = new CreateFeedTest();
+tests.push(createFeedTest);
+tests.push(new GetUserFeedsTest(1, createFeedTest));
+
 tests.push(new SubmitMessageTest());
 tests.push(new GetMessageTest());
 tests.push(new EditMessageTest());
 tests.push(new DeleteMessageTest());
-tests.push(new DeleteFeedTest());
+
+//testing doing some test dependency
+deleteFeedTest = new DeleteFeedTest();
+tests.push(deleteFeedTest);
+tests.push(new GetUserFeedsTest(0, deleteFeedTest));
+
 tests.push(new DeleteUserTest());
 
 var testLengths = tests.length;

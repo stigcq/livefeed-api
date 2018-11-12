@@ -1,17 +1,26 @@
 class GetUserFeedsTest extends Test {
 
-    constructor() {
+    
+    constructor(assertFeedCount, dependsOnTest) {
         super();
+        this.assertFeedCount = assertFeedCount;
+        this.dependsOnTest = dependsOnTest;
       }
 
     isReady() {
-        if(feedObject == false)
+        /*if(feedObject == false)
             return false;
-        else return true;
+        else return true;*/
+
+        return this.dependsOnTest.isFinished();
     }
+    
+
 
     test() {
 
+        var assertFeedCountVar = this.assertFeedCount;
+          
         jQuery.get(testUrl + "get_user_feeds/" + loggedInUserObject._id, {}, function(result) {
         
             var userFeeds = jQuery.parseJSON( result );
@@ -20,7 +29,8 @@ class GetUserFeedsTest extends Test {
                 logTest(false, "GetUserFeedsTest: failed get feeds" + result);
             } else {
 
-                if(userFeeds.length == 1)
+                console.log("assertfeedcount", assertFeedCountVar);
+                if(userFeeds.length == assertFeedCountVar)
                     logTest(true, "GetUserFeedsTest: fetched users feeds" + result);
                 else
                     logTest(false, "GetUserFeedsTest: fetched users feeds count dont match" + result);

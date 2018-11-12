@@ -12,6 +12,14 @@ class DeleteFeedTest extends Test {
           else return true;
         }
 
+        
+        isFinished() {
+        
+            if(feedObjectDeleted == false)
+                return false;
+            return true;
+        }
+
         test() {
 
             jQuery.post(testUrl + "delete_feed/", 

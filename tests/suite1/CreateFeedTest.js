@@ -10,6 +10,13 @@ class CreateFeedTest extends Test {
           else return true;
         }
 
+    isFinished() {
+        
+        if(feedObject == false)
+            return false;
+        return true;
+    }
+
         test() {
 
             jQuery.post(testUrl + "create_feed/", { 

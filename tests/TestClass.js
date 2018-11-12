@@ -14,6 +14,11 @@ class Test {
         return false;
     }
 
+
+    isFinished() {
+        return false;
+    }
+
     /**
      * A helper function
      */
