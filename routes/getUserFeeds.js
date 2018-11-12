@@ -18,7 +18,8 @@ router.get('/:user_id', function(req, res, next) {
     dataLayer.getUserFeeds(ObjectID(user_id), function(feeds) {
 
         if(feeds == false) {
-            response = {'error': 7, 'mesage': 'no feeds found' };
+            //response = {'error': 7, 'mesage': 'no feeds found' };
+            response = [];
             res.send(JSON.stringify(response));
         } else {
             res.send(JSON.stringify(feeds));

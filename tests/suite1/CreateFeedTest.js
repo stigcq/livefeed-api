@@ -1,14 +1,14 @@
 class CreateFeedTest extends Test {
 
-    constructor() {
+    constructor(dependsOnTest) {
         super();
+
+        this.dependsOnTest = dependsOnTest;
       }
 
-      isReady() {
-          if(loggedInUserObject == false)
-              return false;
-          else return true;
-        }
+    isReady() {
+        return this.dependsOnTest.isFinished();
+    }
 
     isFinished() {
         

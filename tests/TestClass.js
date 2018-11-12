@@ -2,16 +2,29 @@
 class Test {
 
     constructor() {
-        this.subTests = new Array();
-        this.result = false;
+        this.dependentOn = new Array();
+
       }
 
     test() {
         logTest(false, this.constructor.name  + " Test not implemented");
     }
 
+    addDependentOn(aTest) {
+        this.dependentOn.push(aTest);
+    }
+
     isReady() {
-        return false;
+        if(this.dependentOn.length == 0)
+            return true;
+
+        amIReady = true;
+
+        for(i = 0; i < this.dependentOn.length; i++)
+            if(this.dependentOn[i].isFinished() == false)
+                amIReady = false;
+
+        return amIReady;
     }
 
 

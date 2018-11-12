@@ -2,6 +2,8 @@
 //change to what url you want test the api on
 var testUrl = "http://3.121.5.61:3000/";
 
+//dont like these here, but not sure how to do it yet, f.x.
+//loginTest is dependent on createusertest, and the testuserobject
 var testUserObject = false;
 var loggedInUserObject = false;
 var feedObject = false;
@@ -15,11 +17,14 @@ var feedObjectDeleted = false;
 
 var tests = new Array();
 
-tests.push(new CreateUserTest());
-tests.push(new LoginTest());
+//testing doing some test dependency
+createUserTest = new CreateUserTest();
+loginTest = new LoginTest(createUserTest);
+tests.push(createUserTest);
+tests.push(loginTest);
 
 //testing doing some test dependency
-createFeedTest = new CreateFeedTest();
+createFeedTest = new CreateFeedTest(loginTest);
 tests.push(createFeedTest);
 tests.push(new GetUserFeedsTest(1, createFeedTest));
 
