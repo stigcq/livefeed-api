@@ -1,16 +1,19 @@
 class EditMessageTest extends Test {
 
-    constructor() {
+    constructor(dependsOn) {
         super();
+        super.addDependentOn(dependsOn);
       }
 
-      isReady() {
-          if(messageObject == false)
-              return false;
-          else return true;
-        }
+     
+    isFinished() {
+        
+        if(messageObjectEdited == false)
+            return false;
+        return true;
+    }
 
-        test() {
+    test() {
 
             jQuery.post(testUrl + "submit_message/", {
                 message_id: messageObject._id, 

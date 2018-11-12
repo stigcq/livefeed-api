@@ -2,13 +2,9 @@ class CreateFeedTest extends Test {
 
     constructor(dependsOnTest) {
         super();
-
-        this.dependsOnTest = dependsOnTest;
+        this.addDependentOn(dependsOnTest);
       }
 
-    isReady() {
-        return this.dependsOnTest.isFinished();
-    }
 
     isFinished() {
         

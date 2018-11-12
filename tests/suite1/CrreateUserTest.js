@@ -4,8 +4,7 @@ class CreateUserTest extends Test {
         super();
       }
 
-    isFinished() {
-        
+    isFinished() {        
         if(testUserObject == false)
             return false;
         return true;
@@ -22,6 +21,8 @@ class CreateUserTest extends Test {
     }
 
     onTest(data) {
+
+        console.log("create user test done");
 
         testUserObject = jQuery.parseJSON(data);
 

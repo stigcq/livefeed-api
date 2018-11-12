@@ -8,10 +8,10 @@ var testUserObject = false;
 var loggedInUserObject = false;
 var feedObject = false;
 var messageObject = false; 
+var fetchedMessageObject = false;
 var messageObjectEdited = false; 
 var messageObjectDeleted = false; 
 var feedObjectDeleted = false; 
-
 
 
 
@@ -23,24 +23,33 @@ loginTest = new LoginTest(createUserTest);
 tests.push(createUserTest);
 tests.push(loginTest);
 
-//testing doing some test dependency
 createFeedTest = new CreateFeedTest(loginTest);
 tests.push(createFeedTest);
-tests.push(new GetUserFeedsTest(1, createFeedTest));
 
-tests.push(new SubmitMessageTest());
-tests.push(new GetMessageTest());
-tests.push(new EditMessageTest());
-tests.push(new DeleteMessageTest());
+getUserFeedTest = new GetUserFeedsTest(1, createFeedTest);
+tests.push(getUserFeedTest);
 
-//testing doing some test dependency
-deleteFeedTest = new DeleteFeedTest();
+submitMessageTest = new SubmitMessageTest(createFeedTest);
+tests.push(submitMessageTest);
+
+getMessageTest = new GetMessageTest(submitMessageTest);
+tests.push(getMessageTest);
+
+editMessageTest = new EditMessageTest(getMessageTest);
+tests.push(editMessageTest);
+
+deleteMessageTest = new DeleteMessageTest(editMessageTest);
+tests.push(deleteMessageTest);
+
+deleteFeedTest = new DeleteFeedTest(deleteMessageTest);
 tests.push(deleteFeedTest);
-tests.push(new GetUserFeedsTest(0, deleteFeedTest));
 
-tests.push(new DeleteUserTest());
+//tests.push(new GetUserFeedsTest(0, deleteFeedTest));
 
-var testLengths = tests.length;
+deleteUserTest = new DeleteUserTest(deleteFeedTest);
+tests.push(deleteUserTest);
+
+
 
 /**
  * The following loop is a very simple way of handling tests dependent on other tests
@@ -65,16 +74,14 @@ function runTests() {
 
     var noTestsRun = true;
 
-    for(i = 0; i < tests.length; i++) {
+    for(var i = 0; i < tests.length; i++) {
 
         if(tests[i].isReady() == true) {
             runTest = tests[i];
             tests.splice(i, 1);
             runTest.test();
-            testLengths = tests.length;
-            noTestsRun = false;
-        }
-            
+            noTestsRun = false;  
+        }            
     }
 
     if(noTestsRun == true) {

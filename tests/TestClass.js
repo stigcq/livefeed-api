@@ -8,29 +8,32 @@ class Test {
 
     test() {
         logTest(false, this.constructor.name  + " Test not implemented");
-    }
+    };
 
     addDependentOn(aTest) {
         this.dependentOn.push(aTest);
-    }
+    };
 
     isReady() {
+
+        //console.log("dependent on how many: " + this.dependentOn.length);
+
         if(this.dependentOn.length == 0)
             return true;
 
-        amIReady = true;
+        var amIReady = true;
 
-        for(i = 0; i < this.dependentOn.length; i++)
-            if(this.dependentOn[i].isFinished() == false)
+        for(var j = 0; j < this.dependentOn.length; j++)
+            if(this.dependentOn[j].isFinished() == false)
                 amIReady = false;
 
         return amIReady;
-    }
+    };
 
 
     isFinished() {
         return false;
-    }
+    };
 
     /**
      * A helper function

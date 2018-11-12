@@ -4,16 +4,16 @@ class GetUserFeedsTest extends Test {
     constructor(assertFeedCount, dependsOnTest) {
         super();
         this.assertFeedCount = assertFeedCount;
-        this.dependsOnTest = dependsOnTest;
+        super.addDependentOn(dependsOnTest);
       }
 
-    isReady() {
+    /*isReady() {
         /*if(feedObject == false)
             return false;
         else return true;*/
 
-        return this.dependsOnTest.isFinished();
-    }
+     //   return this.dependsOnTest.isFinished();
+    //}/
     
 
 

@@ -1,18 +1,21 @@
 class SubmitMessageTest extends Test {
 
-    constructor() {
+    constructor(dependentOn) {
         super();
+        super.addDependentOn(dependentOn);
       }
 
-      isReady() {
-          if(feedObject == false)
-              return false;
-          else return true;
-        }
 
-        test() {
+    isFinished() {
+        
+        if(messageObject == false)
+            return false;
+        return true;
+    }
 
-            jQuery.post(testUrl + "submit_message/", 
+    test() {
+
+        jQuery.post(testUrl + "submit_message/", 
             { feed_id: feedObject.feed_id, 
                 content: "automated test message",
                 session_token: loggedInUserObject.session_token

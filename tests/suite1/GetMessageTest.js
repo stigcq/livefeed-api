@@ -1,26 +1,28 @@
 
 class GetMessageTest extends Test {
 
-    constructor() {
+    constructor(dependsOn) {
         super();
+        super.addDependentOn(dependsOn);
     }
 
-    isReady() {
-        if(messageObject == false)
+    isFinished() {
+        
+        if(fetchedMessageObject == false)
             return false;
-        else return true;
+        return true;
     }
 
     test() {
 
         jQuery.get(testUrl + "get_message/" + messageObject._id, {}, function(result) {
         
-            var message = jQuery.parseJSON( result );
+            fetchedMessageObject = jQuery.parseJSON( result );
         
-            if(message.error != undefined) {
+            if(fetchedMessageObject.error != undefined) {
                 logTest(false, "GetMessageTest: failed get message " + result);
             } else {
-                if(message._id == messageObject._id)
+                if(fetchedMessageObject._id == messageObject._id)
                     logTest(true, "GetMessageTest: fetched message" + result);
             }
             }).error(function() {

@@ -2,23 +2,18 @@
 
 class DeleteFeedTest extends Test {
 
-    constructor() {
+    constructor(dependsOn) {
         super();
-      }
+        super.addDependentOn(dependsOn);
+    }
 
-      isReady() {
-          if(messageObjectDeleted == false)
-              return false;
-          else return true;
-        }
-
+    
+    isFinished() {
         
-        isFinished() {
-        
-            if(feedObjectDeleted == false)
-                return false;
-            return true;
-        }
+        if(feedObjectDeleted == false)
+            return false;
+        return true;
+    }
 
         test() {
 

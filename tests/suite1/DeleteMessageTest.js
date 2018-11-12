@@ -2,19 +2,21 @@
 
 class DeleteMessageTest extends Test {
 
-    constructor() {
+    constructor(dependsOn) {
         super();
-      }
+        super.addDependentOn(dependsOn);
+    }
 
-      isReady() {
-          if(messageObjectEdited == false)
-              return false;
-          else return true;
-        }
+    isFinished() {        
+        if(messageObjectDeleted == false)
+            return false;
+        return true;
+    }
 
-        test() {
+  
+    test() {
 
-            jQuery.post(testUrl + "delete_message/", 
+        jQuery.post(testUrl + "delete_message/", 
             { message_id: messageObject._id, 
                 session_token: loggedInUserObject.session_token }, function(data) {
         

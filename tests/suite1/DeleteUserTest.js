@@ -15,7 +15,7 @@ class DeleteUserTest extends Test {
         test() {
 
             jQuery.post(testUrl + "delete_user/", 
-            { md5_password: loggedInUserObject.password, 
+            { md5_password: testUserObject.password, 
                 session_token: loggedInUserObject.session_token }, function(data) {
         
                 logTest(true, "DeleteUserTest: user deleted"+ data);    

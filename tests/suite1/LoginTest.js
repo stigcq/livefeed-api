@@ -2,15 +2,10 @@ class LoginTest extends Test {
 
     constructor(dependsOnTest) {
         super();
-        this.dependsOnTest = dependsOnTest;
+        this.addDependentOn(dependsOnTest);
       }
 
-    isReady() {
-        return this.dependsOnTest.isFinished();
-    }
-
-    isFinished() {
-        
+    isFinished() {        
         if(loggedInUserObject == false)
             return false;
         return true;
