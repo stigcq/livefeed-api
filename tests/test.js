@@ -18,7 +18,15 @@ var fetchedMediaObject = false;
 
 var tests = new Array();
 
-//testing doing some test dependency
+createUserTest = new CreateUserTest2();
+loginTest = new LoginTest2(createUserTest);
+tests.push(createUserTest);
+tests.push(loginTest);
+
+createFeedTest = new CreateFeedTest2(loginTest);
+tests.push(createFeedTest);
+
+/*
 createUserTest = new CreateUserTest();
 loginTest = new LoginTest(createUserTest);
 tests.push(createUserTest);
@@ -57,7 +65,7 @@ tests.push(deleteFeedTest);
 //tests.push(new GetUserFeedsTest(0, deleteFeedTest));
 
 deleteUserTest = new DeleteUserTest(deleteFeedTest);
-tests.push(deleteUserTest);
+tests.push(deleteUserTest);*/
 
 var stopRunning = false;
 
