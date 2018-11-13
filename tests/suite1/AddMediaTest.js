@@ -23,9 +23,9 @@ class AddMediaTest extends Test {
                     mediaObject = jQuery.parseJSON( result );
         
                     if(feedObject.error != undefined) {
-                        logTest(false, "AddMediaTest: fail create feed" + result);
+                        logTest(false, "AddMediaTest: fail add media" + result);
                     } else {
-                        logTest(true, "AddMediaTest: created a feed" + result);
+                        logTest(true, "AddMediaTest: added media" + result);
                     }
             }).error(function() {
                 logTest(false, "AddMediaTest: Error in connection");

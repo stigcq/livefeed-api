@@ -30,6 +30,9 @@ tests.push(createFeedTest);
 addMediaTest = new AddMediaTest(loginTest);
 tests.push(addMediaTest);
 
+getMediaTest = new GetMediaTest(addMediaTest);
+tests.push(getMediaTest);
+
 setAvatarTest = new SetAvatarTest(addMediaTest);
 tests.push(setAvatarTest);
 
