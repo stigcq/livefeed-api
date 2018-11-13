@@ -17,7 +17,6 @@ class SetAvatarTest extends Test {
 
             jQuery.post(testUrl + "set_avatar/", { 
                 media_id: mediaObject._id,
-                message_id: 1,
                 session_token: loggedInUserObject.session_token }, function(result) {
         
                     mediaObject = jQuery.parseJSON( result );
