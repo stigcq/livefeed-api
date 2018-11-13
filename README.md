@@ -19,7 +19,8 @@ The project is new, in progress. To test it:
 2. run npm install
 3. create an .env file (see sample.env) for your mongodb settings
 4. run npm start
-5. See curl.tests file for example curl invocations and documentation on the API. 
+5. See curl.tests file for example curl invocations and documentation on the API. Or tests
+folder for jquery examples
 6. Use public/example as demo client 
 
 ## public/example
@@ -27,11 +28,7 @@ The project is new, in progress. To test it:
 Contains a clientside implementation under work. Viewable here
 http://3.121.5.61/example/
 It is a static html/js which can be deployed on any webserver. 
-The API backend is run as a background process on my lightsail mean stack. It might crash
-if theres errors since they are thrown. 
-Create user, login and posting messages works. Commenting should also work now,
-though there might be bugs. Add media and set avatar works in the api, but
-not clientside demo yet (and use curl to invoke them).
+The API backend is run as a background process on my lightsail mean stack. 
 
 ### To setup the client on own server
 1. Upload content of example folder to a webhost, including js and css folders. 
@@ -52,9 +49,10 @@ on how the API can be used.
 <b>lib</b> contains a datalayer and an authlayer<br/>
 <b>public</b> contains a clientside demo version as described above<br/>
 <b>routes</b> contains express routes which basicly works as controllers <br/>
-<b>test</b> contains a simple testsuite made with static html and js, it can 
+<b>tests</b> contains a simple testsuite made with static html and js, it can 
 be run directly as it is (opening test.html) from a folder or a webhost. One need
-adjust testUrl var in the top of test.js <br/>
+adjust testUrl var in the top of test.js. The tests are good examples on API usage
+with JQuery <br/>
 
 
 ## Contribute
