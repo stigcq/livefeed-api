@@ -17,7 +17,7 @@ class DeleteMessageTest extends Test {
     test() {
 
         jQuery.post(testUrl + "delete_message/", 
-            { message_id: messageObject._id, 
+            { message_id: messageObject.id, 
                 session_token: loggedInUserObject.session_token }, function(data) {
         
                 messageObjectDeleted = jQuery.parseJSON( data );

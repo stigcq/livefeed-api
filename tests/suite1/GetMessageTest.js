@@ -15,7 +15,7 @@ class GetMessageTest extends Test {
 
     test() {
 
-        jQuery.get(testUrl + "get_message/" + messageObject._id, {}, function(result) {
+        jQuery.get(testUrl + "get_message/" + messageObject.id, {}, function(result) {
         
             fetchedMessageObject = jQuery.parseJSON( result );
         

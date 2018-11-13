@@ -81,7 +81,7 @@ function startLoop() {
     }
 
     if(tests.length > 0) {
-        setTimeout(startLoop, 1000);
+        setTimeout(startLoop, 6000);
         runTests();
     } else {
         logTest(true, "Finished running all tests");
