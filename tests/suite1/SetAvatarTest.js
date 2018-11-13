@@ -16,12 +16,12 @@ class SetAvatarTest extends Test {
         test() {
 
             jQuery.post(testUrl + "set_avatar/", { 
-                media_id: mediaObject._id,
+                media_id: mediaObject.id,
                 session_token: loggedInUserObject.session_token }, function(result) {
         
-                    mediaObject = jQuery.parseJSON( result );
+                    avatarObject = jQuery.parseJSON( result );
         
-                    if(feedObject.error != undefined) {
+                    if(avatarObject.error != undefined) {
                         logTest(false, "SetAvatarTest: fail set avatar" + result);
                     } else {
                         logTest(true, "SetAvatarTest: avatar set" + result);

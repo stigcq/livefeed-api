@@ -63,7 +63,9 @@ var stopRunning = false;
 
 function stopLoop() {
 
-    stopLoop = true;
+    stopRunning = true;
+    logTest(true, "Stopping running tests");
+
 }
 
 /**
@@ -75,12 +77,11 @@ function stopLoop() {
 function startLoop() {
 
     if(stopRunning) {
-        logTest(true, "Stopping running tests");
         return;
     }
 
     if(tests.length > 0) {
-        setTimeout(startLoop, 10000);
+        setTimeout(startLoop, 5000);
         runTests();
     } else {
         logTest(true, "Finished running all tests");
