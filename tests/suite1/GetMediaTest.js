@@ -15,14 +15,14 @@ class GetMediaTest extends Test {
 
     test() {
 
-        jQuery.get(testUrl + "get_media/" + mediaObject._id, {}, function(result) {
+        jQuery.get(testUrl + "get_media/" + mediaObject.id, {}, function(result) {
         
             fetchedMediaObject = jQuery.parseJSON( result );
         
             if(fetchedMediaObject.error != undefined) {
                 logTest(false, "GetMediaTest: failed get media " + result);
             } else {
-                if(fetchedMediaObject.id == mediaObject._id)
+                if(fetchedMediaObject.id == mediaObject.id)
                     logTest(true, "GetMediaTest: fetched media" + result);
                 else
                     logTest(false, "GetMediaTest: fetched media ID differs" + result);

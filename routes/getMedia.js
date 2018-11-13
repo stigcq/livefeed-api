@@ -21,8 +21,8 @@ router.get('/:media_id', function(req, res, next) {
             response = {'error': 7, 'mesage': 'media not found' };
             res.send(JSON.stringify(response));
         } else {
-            media["id"] = media._id;
-            media._id = null;
+            //media["id"] = media._id;
+            //media._id = null;
             res.send(JSON.stringify(media));
         }
     });

@@ -59,7 +59,12 @@ tests.push(deleteFeedTest);
 deleteUserTest = new DeleteUserTest(deleteFeedTest);
 tests.push(deleteUserTest);
 
+var stopRunning = false;
 
+function stopLoop() {
+
+    stopLoop = true;
+}
 
 /**
  * The following loop is a very simple way of handling tests dependent on other tests
@@ -68,6 +73,11 @@ tests.push(deleteUserTest);
  * Probably can be refined some. 
  */
 function startLoop() {
+
+    if(stopRunning) {
+        logTest(true, "Stopping running tests");
+        return;
+    }
 
     if(tests.length > 0) {
         setTimeout(startLoop, 10000);
