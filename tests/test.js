@@ -5,6 +5,7 @@ var testUrl = "http://3.121.5.61:3000/";
 //dont like these here, but not sure how to do it yet, f.x.
 //loginTest is dependent on createusertest, and the testuserobject
 var testUserObject = false;
+var mediaObject = false;
 var loggedInUserObject = false;
 var feedObject = false;
 var messageObject = false; 
@@ -12,7 +13,7 @@ var fetchedMessageObject = false;
 var messageObjectEdited = false; 
 var messageObjectDeleted = false; 
 var feedObjectDeleted = false; 
-
+var avatarObject = false;
 
 
 var tests = new Array();
@@ -25,6 +26,12 @@ tests.push(loginTest);
 
 createFeedTest = new CreateFeedTest(loginTest);
 tests.push(createFeedTest);
+
+addMediaTest = new AddMediaTest(loginTest);
+tests.push(addMediaTest);
+
+setAvatarTest = new SetAvatarTest(addMediaTest);
+tests.push(setAvatarTest);
 
 getUserFeedTest = new GetUserFeedsTest(1, createFeedTest);
 tests.push(getUserFeedTest);
@@ -60,7 +67,7 @@ tests.push(deleteUserTest);
 function startLoop() {
 
     if(tests.length > 0) {
-        setTimeout(startLoop, 1000);
+        setTimeout(startLoop, 5000);
         runTests();
     } else {
         logTest(true, "Finished running all tests");

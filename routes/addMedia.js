@@ -7,6 +7,10 @@ var dataLayer = require('./../lib/DataLayer');
 router.post('/', function(req, res, next) {
 
     const media_url = req.body.media_url;
+    var messageId = req.body.message_id;
+
+    if(messageId == undefined)
+        messageId = 0;
 
     if(req.app.get("user") == false) {
         response = {'message': 'Need to be logged in', 'error': 1 } ;
@@ -18,7 +22,7 @@ router.post('/', function(req, res, next) {
         "user_id": req.app.get("user")._id,
         "media_url": media_url,
         "media_date": new Date().getTime(),
-        "message_id": 0
+        "message_id": messageId
     };
 
     dataLayer.addMedia(item, function(feed) {
