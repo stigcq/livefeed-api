@@ -1,17 +1,17 @@
 
 class CreateFeedTest2 extends Test2 {
 
-    constructor(dependsOnTest) {
+    constructor(dependentOnLogin) {
         super();
-        this.addDependentOn(dependsOnTest);
-        this.dependsOnTest = dependsOnTest; 
+        this.addDependentOn(dependentOnLogin);
+        this.dependentOnLogin = dependentOnLogin; 
       }
 
   setupTest() {
 
       this.setPost(testUrl + "create_feed/", { 
           feed_title: "Test Feed", 
-          session_token: this.dependsOnTest.responseObject.session_token 
+          session_token: this.dependentOnLogin.responseObject.session_token 
       });
 
       super.assert("Feed title correct", "feed_title", "Test Feed");

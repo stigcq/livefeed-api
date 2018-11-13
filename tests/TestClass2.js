@@ -3,7 +3,8 @@ class Test2 {
 
     constructor() {
         this.dependentOn = new Array();
-        this.url = null;
+        this.getUrl = null;
+        this.postUrl = null;
         this.jsonBody = null;
         this.assertions = new Array();
         this.assertDefined = new Array();
@@ -21,74 +22,82 @@ class Test2 {
 
         this.setupTest();
 
-        if(this.url == null || this.jsonBody == null)
+        if(this.getUrl == null && (this.postUrl == null || this.jsonBody == null))
             logTest(false, this.constructor.name  + " Test not implemented");
         else {
 
             var that = this; 
-            
-            jQuery.post(this.url, this.jsonBody, function(data) {
 
-                var response = jQuery.parseJSON( data );
-                that.responseObject = response;
-
-                var sucessTest = true;
-
-                for(var i = 0; i < that.assertDefined.length; i++) {              
-                    if(response[that.assertDefined[i].propertyName] == undefined) {
-                            logTest(false, that.constructor.name  + " assertion: " + that.assertDefined[i].propertyName + " is undefined");
-                            sucessTest = false;
-                    } else {
-                        logTest(true, that.constructor.name  + " assertion: " + that.assertDefined[i].propertyName + " is set");
-                        
-                    }
-                }
-
-                for(var i = 0; i < that.assertNotDefined.length; i++) {              
-                    if(response[that.assertNotDefined[i].propertyName] != undefined) {
-                            logTest(false, that.constructor.name  + " assertion: " + that.assertNotDefined[i].propertyName + " is defined");
-                            sucessTest = false;
-                    } else {
-                        logTest(true, that.constructor.name  + " assertion: " + that.assertNotDefined[i].propertyName + " is not set");
-                        
-                    }
-                }
-    
-                for(var i = 0; i < that.assertions.length; i++) {
-
-                    if(response[that.assertions[i].propertyName] == 
-                        that.assertions[i].propertyValue) {
-
-                            logTest(true, that.constructor.name  + " assertion: " + that.assertions[i].assertionDesc);
-
-                    } else {
-                        sucessTest = false;
-                    }
-                }
-
-                for(var i = 0; i < that.assertNot.length; i++) {
-
-                    if(response[that.assertNot[i].propertyName] != 
-                        that.assertNot[i].propertyValue) {
-
-                            logTest(true, that.constructor.name  + " assertion: " + that.assertNot[i].propertyName + " is not " + that.assertNot[i].propertyValue);
-
-                    } else {
-                        sucessTest = false;
-                    }
-                }
-
-                
-
-                if(sucessTest)
-                    logTest(true, that.constructor.name  + " test finished " + data + "<br/>");
-                else
-                    logTest(false, that.constructor.name  + " test finished " + data);   
-            });
+            if(this.getUrl != null) {
+                jQuery.get(this.getUrl, function(data) {
+                    that.handleTestResult(data);
+                });
+            } else {
+                jQuery.post(this.postUrl, this.jsonBody, function(data) {
+                    that.handleTestResult(data);
+                });
+            }
         }
+    };
+
+    handleTestResult(data) {
+
+        var response = jQuery.parseJSON( data );
+        this.responseObject = response;
+
+        var sucessTest = true;
+
+        for(var i = 0; i < this.assertDefined.length; i++) {              
+            if(response[this.assertDefined[i].propertyName] == undefined) {
+                    logTest(false, this.constructor.name  + " assertion: " + this.assertDefined[i].propertyName + " is undefined");
+                    sucessTest = false;
+            } else {
+                logTest(true, this.constructor.name  + " assertion: " + this.assertDefined[i].propertyName + " is set");
+                
+            }
+        }
+
+        for(var i = 0; i < this.assertNotDefined.length; i++) {              
+            if(response[this.assertNotDefined[i].propertyName] != undefined) {
+                    logTest(false, this.constructor.name  + " assertion: " + this.assertNotDefined[i].propertyName + " is defined");
+                    sucessTest = false;
+            } else {
+                logTest(true, this.constructor.name  + " assertion: " + this.assertNotDefined[i].propertyName + " is not set");
+                
+            }
+        }
+
+        for(var i = 0; i < this.assertions.length; i++) {
+
+            if(response[this.assertions[i].propertyName] == 
+                this.assertions[i].propertyValue) {
+
+                    logTest(true, this.constructor.name  + " assertion: " + this.assertions[i].assertionDesc);
+
+            } else {
+                sucessTest = false;
+            }
+        }
+
+        for(var i = 0; i < this.assertNot.length; i++) {
+
+            if(response[this.assertNot[i].propertyName] != 
+                this.assertNot[i].propertyValue) {
+
+                    logTest(true, this.constructor.name  + " assertion: " + this.assertNot[i].propertyName + " is not " + this.assertNot[i].propertyValue);
+
+            } else {
+                sucessTest = false;
+            }
+        }
+
         
 
-    };
+        if(sucessTest)
+            logTest(true, this.constructor.name  + " test finished " + data + "<br/>");
+        else
+            logTest(false, this.constructor.name  + " test finished " + data);   
+    }
 
 
     addDependentOn(aTest) {
@@ -110,8 +119,12 @@ class Test2 {
     };
 
     setPost(url, jsonBody) {
-        this.url = url;
+        this.postUrl = url;
         this.jsonBody = jsonBody;
+    }
+
+    setGet(url) {
+        this.getUrl = url;
     }
 
     assert(assertionDesc, propertyName, propertyValue) {

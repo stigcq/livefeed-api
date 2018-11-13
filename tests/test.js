@@ -26,6 +26,13 @@ tests.push(loginTest);
 createFeedTest = new CreateFeedTest2(loginTest);
 tests.push(createFeedTest);
 
+addMediaTest = new AddMediaTest2(loginTest);
+tests.push(addMediaTest);
+
+//FIXME: do it need depend on login? dont need be logged in to get media
+getMediaTest = new GetMediaTest2(loginTest, addMediaTest);
+tests.push(getMediaTest);
+
 /*
 createUserTest = new CreateUserTest();
 loginTest = new LoginTest(createUserTest);
