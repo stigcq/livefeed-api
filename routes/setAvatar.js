@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var dataLayer = require('./../lib/DataLayer');
-
+var mongodb = require("mongodb");
 
 /*  */
 router.post('/', function(req, res, next) {
@@ -12,9 +12,15 @@ router.post('/', function(req, res, next) {
         return;
     }
 
-    media_id = req.body.media_id;
+    mediaId = req.body.media_id;
+    
+    if(mongodb.ObjectID.isValid(mediaId) == false) {
+        response = {'error': 6, 'mesage': 'id is not a valid id' };
+        res.send(JSON.stringify(response));
+        return;
+    }
 
-    dataLayer.getMedia(media_id, function(media) {
+    dataLayer.getMedia(mediaId, function(media) {
 
         dataLayer.setAvatar(req.app.get("user")._id, media.media_url, function(result) {
             res.send(JSON.stringify(result));

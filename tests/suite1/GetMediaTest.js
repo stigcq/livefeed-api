@@ -19,7 +19,7 @@ class GetMediaTest extends Test {
         
             fetchedMediaObject = jQuery.parseJSON( result );
         
-            if(fetchedMessageObject.error != undefined) {
+            if(fetchedMediaObject.error != undefined) {
                 logTest(false, "GetMediaTest: failed get media " + result);
             } else {
                 if(fetchedMediaObject.id == mediaObject._id)
