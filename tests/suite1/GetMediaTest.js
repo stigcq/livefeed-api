@@ -22,7 +22,7 @@ class GetMediaTest extends Test {
             if(fetchedMessageObject.error != undefined) {
                 logTest(false, "GetMediaTest: failed get media " + result);
             } else {
-                if(fetchedMediaObject._id == mediaObject._id)
+                if(fetchedMediaObject.id == mediaObject._id)
                     logTest(true, "GetMediaTest: fetched media" + result);
                 else
                     logTest(false, "GetMediaTest: fetched media ID differs" + result);
