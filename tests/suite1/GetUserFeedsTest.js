@@ -21,7 +21,7 @@ class GetUserFeedsTest extends Test {
 
         var assertFeedCountVar = this.assertFeedCount;
           
-        jQuery.get(testUrl + "get_user_feeds/" + loggedInUserObject._id, {}, function(result) {
+        jQuery.get(testUrl + "get_user_feeds/" + loggedInUserObject.id, {}, function(result) {
         
             var userFeeds = jQuery.parseJSON( result );
         
