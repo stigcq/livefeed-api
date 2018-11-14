@@ -73,7 +73,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
                 as: 'photos'
               } },
             { $project: { "content": 1, "feed_time": 1, "id": "$_id", "_id": 0,
-                "user": { "display_name": 1, "avatar_url": 1, "id": "$_id" },
+                "user": { "display_name": 1, "avatar_url": 1, "id": "$user._id" },
                 "photos": { "media_url": 1 }
             } },
             { $sort : { feed_time : -1 } },

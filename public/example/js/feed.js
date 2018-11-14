@@ -91,22 +91,14 @@ function checkForComments() {
 
     jQuery.getJSON(feedUrl + "comment_counts/" + feedId + "/", function(data) {
 
-        console.log("checking comments " + data.length);
-
-
         for(i = 0; i < data.length; i++) {
-
-            //console.log("#show_comments_button_" + data[i].message_id);
-
             
             currentCommentCount = jQuery("#show_comments_buutton_" + data[i].message_id).attr("data-comment-count");
       
             if(data[i].count > currentCommentCount) {
 
                 jQuery("#show_comments_buutton_" + data[i].message_id).attr("data-comment-count", data[i].count);
-      
                 jQuery("#show_comments_buutton_" + data[i].message_id).show();
-            
                 jQuery("#show_comments_buutton_" + data[i].message_id).html("<a href='javascript: showComments(\"" + data[i].message_id + "\")'>" + data[i].count + " kommentar(er)</a>");
             }
         }
@@ -227,7 +219,6 @@ function fetchMessagesX(goBack) {
             //mustache dont got this sort o if 
             if(data[i].user != undefined) {
 
-                console.log(data[i].user.id + "ids " + userId);
                 if(data[i].user.id == userId)
                     data[i].is_owner = 1;
             }
