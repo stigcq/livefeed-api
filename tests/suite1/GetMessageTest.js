@@ -13,7 +13,7 @@ class GetMessageTest extends Test2 {
   
         super.assertNotDefined("error");
         super.assert("", "id", this.submitMessage.responseObject.id);
-        super.assert("content matches", "content", this.submitMessage.responseObject.content);
+        super.assert("", "content", this.submitMessage.responseObject.content);
   
     }
 

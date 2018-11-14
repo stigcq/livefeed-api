@@ -1,32 +1,26 @@
 
 
-class DeleteMessageTest extends Test {
+class DeleteMessageTest extends Test2 {
 
-    constructor(dependsOn) {
+    constructor(loginTest, editTest) {
         super();
-        super.addDependentOn(dependsOn);
+        super.addDependentOn(loginTest);
+        super.addDependentOn(editTest);
+        this.loginTest = loginTest;
+        this.editTest = editTest;
     }
 
-    isFinished() {        
-        if(messageObjectDeleted == false)
-            return false;
-        return true;
-    }
+    setupTest() {
 
+        this.setPost(testUrl + "delete_message/", { 
+            message_id: this.editTest.responseObject.id,
+            session_token: this.loginTest.responseObject.session_token 
+        });
   
-    test() {
-
-        jQuery.post(testUrl + "delete_message/", 
-            { message_id: messageObject.id, 
-                session_token: loggedInUserObject.session_token }, function(data) {
+        super.assertNotDefined("error");
+        super.assert("", "n", 1);
+        super.assert("", "ok", 1);
         
-                messageObjectDeleted = jQuery.parseJSON( data );
-
-                logTest(true, "DeleteMessageTest: message deleted"+ data);    
-
-            }).error(function() {
-                logTest(false, "DeleteMessageTest: Error in connection");
-            });
-
-        }
+    }
+ 
 }

@@ -1,28 +1,27 @@
 
 
-class DeleteUserTest extends Test {
+class DeleteUserTest extends Test2 {
 
-    constructor() {
+    constructor(createUserTest, loginTest, deleteFeedTest) {
         super();
-      }
+        super.addDependentOn(loginTest);
+        super.addDependentOn(deleteFeedTest);
+        this.loginTest = loginTest;
+        this.createUserTest = createUserTest;
+    }
 
-      isReady() {
-          if(feedObjectDeleted == false)
-              return false;
-          else return true;
-        }
+    setupTest() {
 
-        test() {
-
-            jQuery.post(testUrl + "delete_user/", 
-            { md5_password: testUserObject.password, 
-                session_token: loggedInUserObject.session_token }, function(data) {
+        this.setPost(testUrl + "delete_user/", { 
+            md5_password: this.createUserTest.responseObject.password,
+            session_token: this.loginTest.responseObject.session_token 
+        });
+  
+        super.assertNotDefined("error");
+        super.assert("", "n", 1);
+        super.assert("", "ok", 1);
         
-                logTest(true, "DeleteUserTest: user deleted"+ data);    
+    }
 
-            }).error(function(conn, message, error) {
-                logTest(false, "DeleteUserTest: Error in connection <b>" + error + "</b>");
-            });
-
-        }
+      
 }

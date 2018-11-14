@@ -1,36 +1,27 @@
-class EditMessageTest extends Test {
+class EditMessageTest extends Test2 {
 
-    constructor(dependsOn) {
+    constructor(loginTest, dependsOn) {
         super();
         super.addDependentOn(dependsOn);
+        super.addDependentOn(loginTest);
+        this.getMessageTest = dependsOn;
+        this.loginTest = loginTest;
       }
 
-     
-    isFinished() {
+    setupTest() {
+
+        const editedContent = "Automated test message - Edited";
+        this.setPost(testUrl + "submit_message/", { 
+            message_id: this.getMessageTest.responseObject.id, 
+            content: editedContent,
+            session_token: this.loginTest.responseObject.session_token 
+        });
+  
+        super.assertNotDefined("error");
+        super.assert("", "id", this.getMessageTest.responseObject.id);
+        super.assert("", "content", editedContent);
+        super.assertDefined("id");
         
-        if(messageObjectEdited == false)
-            return false;
-        return true;
     }
 
-    test() {
-
-            jQuery.post(testUrl + "submit_message/", {
-                message_id: messageObject.id, 
-                content: "edited automated test message",
-                session_token: loggedInUserObject.session_token }, function(data) {
-
-                messageObjectEdited = jQuery.parseJSON( data );
-
-                if(messageObjectEdited.content != "edited automated test message")
-                    logTest(false, "EditMessageTest: message edited but content different "+ data);    
-                else if(messageObjectEdited.id != messageObject.id)
-                   logTest(false, "EditMessageTest: message  ids different "+ data);        
-                else logTest(true, "EditMessageTest: message edited"+ data);    
-
-            }).error(function() {
-                logTest(false, "EditMessageTest: Error in connection");
-            });
-
-        }
 }

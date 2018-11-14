@@ -2,19 +2,7 @@
 //change to what url you want test the api on
 var testUrl = "http://3.121.5.61:3000/";
 
-//dont like these here, but not sure how to do it yet, f.x.
-//loginTest is dependent on createusertest, and the testuserobject
-var testUserObject = false;
-var mediaObject = false;
-var loggedInUserObject = false;
-var feedObject = false;
-var messageObject = false; 
-var fetchedMessageObject = false;
-var messageObjectEdited = false; 
-var messageObjectDeleted = false; 
-var feedObjectDeleted = false; 
-var avatarObject = false;
-var fetchedMediaObject = false;
+
 
 var tests = new Array();
 
@@ -44,25 +32,19 @@ tests.push(submitMessageTest);
 getMessageTest = new GetMessageTest(submitMessageTest);
 tests.push(getMessageTest);
 
-/*
-
-
-getMessageTest = new GetMessageTest(submitMessageTest);
-tests.push(getMessageTest);
-
-editMessageTest = new EditMessageTest(getMessageTest);
+editMessageTest = new EditMessageTest(loginTest, getMessageTest);
 tests.push(editMessageTest);
 
-deleteMessageTest = new DeleteMessageTest(editMessageTest);
+deleteMessageTest = new DeleteMessageTest(loginTest, editMessageTest);
 tests.push(deleteMessageTest);
 
-deleteFeedTest = new DeleteFeedTest(deleteMessageTest);
+deleteFeedTest = new DeleteFeedTest(loginTest, deleteMessageTest, createFeedTest);
 tests.push(deleteFeedTest);
 
-//tests.push(new GetUserFeedsTest(0, deleteFeedTest));
+deleteUserTest = new DeleteUserTest(createUserTest, loginTest, deleteFeedTest);
+tests.push(deleteUserTest);
 
-deleteUserTest = new DeleteUserTest(deleteFeedTest);
-tests.push(deleteUserTest);*/
+
 
 var stopRunning = false;
 
