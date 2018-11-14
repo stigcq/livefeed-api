@@ -1,33 +1,22 @@
 
-class GetMessageTest extends Test {
+class GetMessageTest extends Test2 {
 
-    constructor(dependsOn) {
+    constructor(submitMessage) {
         super();
-        super.addDependentOn(dependsOn);
+        super.addDependentOn(submitMessage);
+        this.submitMessage = submitMessage;
     }
 
-    isFinished() {
-        
-        if(fetchedMessageObject == false)
-            return false;
-        return true;
+    setupTest() {
+
+        this.setGet(testUrl + "get_message/" + this.submitMessage.responseObject.id);
+  
+        super.assertNotDefined("error");
+        super.assert("", "id", this.submitMessage.responseObject.id);
+        super.assert("content matches", "content", this.submitMessage.responseObject.content);
+  
     }
 
-    test() {
 
-        jQuery.get(testUrl + "get_message/" + messageObject.id, {}, function(result) {
-        
-            fetchedMessageObject = jQuery.parseJSON( result );
-        
-            if(fetchedMessageObject.error != undefined) {
-                logTest(false, "GetMessageTest: failed get message " + result);
-            } else {
-                if(fetchedMessageObject._id == messageObject._id)
-                    logTest(true, "GetMessageTest: fetched message" + result);
-            }
-            }).error(function() {
-                logTest(false, "GetMessageTest: Error in connection");
-        });
-    }
 
 }

@@ -35,32 +35,17 @@ tests.push(getMediaTest);
 setAvatarTest = new SetAvatarTest(loginTest, addMediaTest);
 tests.push(setAvatarTest);
 
-getUserFeedTest = new GetUserFeedsTest(1, loginTest);
+getUserFeedTest = new GetUserFeedsTest(1, loginTest, createFeedTest);
 tests.push(getUserFeedTest);
+
+submitMessageTest = new SubmitMessageTest(loginTest, createFeedTest);
+tests.push(submitMessageTest);
+
+getMessageTest = new GetMessageTest(submitMessageTest);
+tests.push(getMessageTest);
 
 /*
-createUserTest = new CreateUserTest();
-loginTest = new LoginTest(createUserTest);
-tests.push(createUserTest);
-tests.push(loginTest);
 
-createFeedTest = new CreateFeedTest(loginTest);
-tests.push(createFeedTest);
-
-addMediaTest = new AddMediaTest(loginTest);
-tests.push(addMediaTest);
-
-getMediaTest = new GetMediaTest(addMediaTest);
-tests.push(getMediaTest);
-
-setAvatarTest = new SetAvatarTest(addMediaTest);
-tests.push(setAvatarTest);
-
-getUserFeedTest = new GetUserFeedsTest(1, createFeedTest);
-tests.push(getUserFeedTest);
-
-submitMessageTest = new SubmitMessageTest(createFeedTest);
-tests.push(submitMessageTest);
 
 getMessageTest = new GetMessageTest(submitMessageTest);
 tests.push(getMessageTest);

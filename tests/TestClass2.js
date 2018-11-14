@@ -11,6 +11,8 @@ class Test2 {
         this.assertNotDefined = new Array();
         this.assertNot = new Array();
         this.responseObject = false;
+        this.assertResultLength = false;
+
     }
 
     
@@ -49,20 +51,20 @@ class Test2 {
 
         for(var i = 0; i < this.assertDefined.length; i++) {              
             if(response[this.assertDefined[i].propertyName] == undefined) {
-                    logTest(false, this.constructor.name  + " assertion: " + this.assertDefined[i].propertyName + " is undefined");
+                    logTest(false, this.constructor.name  + " assertDefined: " + this.assertDefined[i].propertyName + " is undefined");
                     sucessTest = false;
             } else {
-                logTest(true, this.constructor.name  + " assertion: " + this.assertDefined[i].propertyName + " is set");
+                logTest(true, this.constructor.name  + " assertDefined: " + this.assertDefined[i].propertyName + " is set");
                 
             }
         }
 
         for(var i = 0; i < this.assertNotDefined.length; i++) {              
             if(response[this.assertNotDefined[i].propertyName] != undefined) {
-                    logTest(false, this.constructor.name  + " assertion: " + this.assertNotDefined[i].propertyName + " is defined");
+                    logTest(false, this.constructor.name  + " assertNotDef: " + this.assertNotDefined[i].propertyName + " is defined");
                     sucessTest = false;
             } else {
-                logTest(true, this.constructor.name  + " assertion: " + this.assertNotDefined[i].propertyName + " is not set");
+                logTest(true, this.constructor.name  + " assertNotDef: " + this.assertNotDefined[i].propertyName + " is not set");
                 
             }
         }
@@ -72,9 +74,13 @@ class Test2 {
             if(response[this.assertions[i].propertyName] == 
                 this.assertions[i].propertyValue) {
 
-                    logTest(true, this.constructor.name  + " assertion: " + this.assertions[i].assertionDesc);
+                    logTest(true, this.constructor.name  + " assertion: " + this.assertions[i].assertionDesc + 
+                        " " + this.assertions[i].propertyName + " equals " + this.assertions[i].propertyValue);
 
             } else {
+                logTest(false, this.constructor.name  + " assertion: " + this.assertions[i].assertionDesc + 
+                " " + this.assertions[i].propertyName + " dont equal " + this.assertions[i].propertyValue);
+
                 sucessTest = false;
             }
         }
@@ -84,14 +90,21 @@ class Test2 {
             if(response[this.assertNot[i].propertyName] != 
                 this.assertNot[i].propertyValue) {
 
-                    logTest(true, this.constructor.name  + " assertion: " + this.assertNot[i].propertyName + " is not " + this.assertNot[i].propertyValue);
+                    logTest(true, this.constructor.name  + " assertNot: " + this.assertNot[i].propertyName + " is not " + this.assertNot[i].propertyValue);
 
             } else {
                 sucessTest = false;
             }
         }
 
-        
+        if(this.assertResultLength != false) {
+            if(response.length != this.assertResultLength) {
+                sucessTest = false;
+                logTest(false, this.constructor.name  + " assertion resultlength: " +  response.length + " is not " + this.assertResultLength);
+            } else {
+                logTest(true, this.constructor.name  + " assertion resultlength: " +  response.length + " equals " + this.assertResultLength);
+            }
+        }
 
         if(sucessTest)
             logTest(true, this.constructor.name  + " test finished " + data + "<br/>");
@@ -125,6 +138,10 @@ class Test2 {
 
     setGet(url) {
         this.getUrl = url;
+    }
+
+    assertResultLength(n) {
+        this.assertResultLength = n;
     }
 
     assert(assertionDesc, propertyName, propertyValue) {
