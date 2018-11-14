@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
     const media_url = req.body.media_url;
     var messageId = req.body.message_id;
 
-    if(messageId == undefined)
+    if(messageId == undefined || messageId == null)
         messageId = 0;
 
     if(req.app.get("user") == false) {
