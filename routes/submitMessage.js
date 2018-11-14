@@ -73,7 +73,7 @@ router.post('/', function(req, res, next) {
         console.log("bingo add message");
 
         var message = {
-            "feed_id": feed._id, 
+            "feed_id": feed.id, 
             "user_id": req.app.get("user")._id,
             "content": content, 
             "reply_to": 0,
@@ -82,7 +82,9 @@ router.post('/', function(req, res, next) {
         };
 
         dataLayer.addMessage(message, function(message) {
-            res.send(JSON.stringify(message));
+            dataLayer.attachMedia(req.app.get("user")._id, message.id, function(result) {
+                res.send(JSON.stringify(message));
+            });
         });
     
     });
