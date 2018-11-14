@@ -523,10 +523,10 @@ function login() {
 
         data = jQuery.parseJSON( data );
 
-        console.log(data.session_token + " " + data._id);
+        console.log(data.session_token + " " + data.id);
 
         if(data.session_token != 1) {
-            setUserSession(data._id, data.session_token);
+            setUserSession(data.id, data.session_token);
             showPostMessage();
 
             jQuery("#content").html = "";
@@ -553,7 +553,7 @@ function createUser() {
             } else if(data.session_token != 1) {
                 console.log(data.session_token);
 
-                setUserSession(data._id, data.session_token);
+                setUserSession(data.id, data.session_token);
 
                 showCreateFeed();
                 
