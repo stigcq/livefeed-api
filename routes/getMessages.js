@@ -41,8 +41,8 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
             { "$unwind": "$user" },
             { $lookup: {
                 from: 'media',
-                localField: '_id',
-                foreignField: 'message_id',
+                localField: 'message_id',
+                foreignField: '_id',
                 as: 'photos'
               } },
             { $project: { "content": 1, "feed_time": 1, "feed_id": 1, "feed_title": 1,
