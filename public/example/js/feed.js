@@ -521,6 +521,7 @@ function login() {
         { email: jQuery("#login_email").val(), 
             md5password: md5(jQuery("#login_pass").val())}, function(data) {
 
+                console.log(data);
         data = jQuery.parseJSON( data );
 
         console.log(data.session_token + " " + data.id);
