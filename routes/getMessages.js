@@ -72,8 +72,8 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
                 foreignField: 'message_id',
                 as: 'photos'
               } },
-            { $project: { "content": 1, "feed_time": 1,
-                "user": { "display_name": 1, "avatar_url": 1, '_id': 1 },
+            { $project: { "content": 1, "feed_time": 1, "id": "$_id", "_id": 0,
+                "user": { "display_name": 1, "avatar_url": 1, "id": "$_id" },
                 "photos": { "media_url": 1 }
             } },
             { $sort : { feed_time : -1 } },

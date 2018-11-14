@@ -227,11 +227,11 @@ function fetchMessagesX(goBack) {
 
             //mustache dont got this sort o if 
             if(data[i].user != undefined)
-                if(data[i].user._id == userId)
+                if(data[i].user.id == userId)
                     data[i].is_owner = 1;
 
             data[i].view_feed_id = feedId;
-            data[i].message_id = data[i]._id;
+            data[i].message_id = data[i].id;
 
             if(data[i].content != null && data[i].content != undefined)
                 data[i].content = data[i].content.replace(/(?:\r\n|\r|\n)/g, '<br>');
@@ -255,7 +255,7 @@ function fetchMessagesX(goBack) {
             timeago(null, "en").render($('.feed_time'));
 
             //console.log(data[i].id);
-            messages[data[i]._id] = data[i];
+            messages[data[i].id] = data[i];
 
             if(parseInt(data[i].feed_time) > highestMessageTime)
                 highestMessageTime = parseInt(data[i].feed_time);

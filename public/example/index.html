@@ -196,7 +196,7 @@ to post
 </script>
 
 <script id="message_view_template" type="text/html">
-    <div id='feed_item_{{ _id }}' class='feed_item'>
+    <div id='feed_item_{{ id }}' class='feed_item'>
     <div class='feed_item_header'>
         {{#user.avatar_url}}
         <div style="display: inline-block;">
@@ -216,7 +216,7 @@ to post
         {{/view_feed_id}}
         </div>
         </div>
-        <div style="display: inline;" id="message_content_{{ _id }}">{{{ content }}}</div>
+        <div style="display: inline;" id="message_content_{{ id }}">{{{ content }}}</div>
         {{#photos}}
         {{#more_photos }}
         <div class="cutted_div">
@@ -234,19 +234,19 @@ to post
         {{/photos}}
         <br/>
         {{#comment_count}}
-        <div data-comment-count='{{ comment_count }}' id='show_comments_buutton_{{ _id }}' class='show_comments_button'>
-            <a href='javascript: showComments("{{ _id }}")'> {{ comment_count }}  connents</a></div>
+        <div data-comment-count='{{ comment_count }}' id='show_comments_buutton_{{ id }}' class='show_comments_button'>
+            <a href='javascript: showComments("{{ id }}")'> {{ comment_count }}  connents</a></div>
         {{/comment_count}}
         {{^comment_count}}
-        <div data-comment-count='0' id='show_comments_buutton_{{ _id }}' class='show_comments_button' style='display: none;'></div>
+        <div data-comment-count='0' id='show_comments_buutton_{{ id }}' class='show_comments_button' style='display: none;'></div>
         {{/comment_count}}
-        <div class='comments_section' id='comments_section_{{ _id }}' style='display: none'></div>
+        <div class='comments_section' id='comments_section_{{ id }}' style='display: none'></div>
         <br/>
-        <a href='javascript: commentPost("{{ _id }}")'>Comment</a>
+        <a href='javascript: commentPost("{{ id }}")'>Comment</a>
         <!-- a href='javascript: copyShareLink("{{ _id }}")'>Share</a-->
         {{#is_owner}}
-        <a href='javascript: editPost("{{ _id }}")'>Edit</a>
-        <a href='javascript: deletePost("{{ _id }}")'>Delete</a>
+        <a href='javascript: editPost("{{ id }}")'>Edit</a>
+        <a href='javascript: deletePost("{{ id }}")'>Delete</a>
         {{/is_owner}}  
         </div>    
 </script>
@@ -332,7 +332,7 @@ to post
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js?1017"></script>
-<script src="js/feed.js?1084"></script>
+<script src="js/feed.js?1085"></script>
 <script src="js/jquery.fine-uploader.js"></script>
 <script src="js/timeago.min.js" type="text/javascript"></script>        
 <script src="js/timeago.locales.min.js" type="text/javascript"></script>        
