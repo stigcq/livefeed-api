@@ -7,12 +7,6 @@ var mongodb = require("mongodb");
 router.get('/:media_id', function(req, res, next) {
 
     const mediaId = req.params.media_id;
-
-    /*if(mongodb.ObjectID.isValid(mediaId) == false) {
-        response = {'error': 6, 'mesage': 'id is not a valid id' };
-        res.send(JSON.stringify(response));
-        return;
-    }*/
     
     console.log("get_media " + mediaId);
 

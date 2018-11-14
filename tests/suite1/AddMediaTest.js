@@ -13,10 +13,12 @@ class AddMediaTest extends Test2 {
 
         this.setPost(testUrl + "add_media/", { 
             media_url: mediaUrl, 
+            message_id: 1,
             session_token: this.dependentOnLogin.responseObject.session_token 
         });
   
         super.assert("Media url match", "media_url", mediaUrl);
+        super.assert("", "message_id", 1);
         super.assertDefined("id");
         super.assertNotDefined("error");
   

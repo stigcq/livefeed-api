@@ -16,7 +16,26 @@ class LoginTest extends Test2 {
         super.assertDefined("session_token");
         super.assertNotEqual("session_token", 1);
         super.assertNotEqual("session_token", this.dependsOnTest.responseObject.session_token);
-    }
+    }    
+}
 
-    
+
+class LoginTestNoUser extends Test2 {
+
+    constructor() {
+        super();
+      }
+
+    setupTest() {
+
+        this.setPost(testUrl + "login/", { 
+            email: this.randomEmail(), 
+            md5password: "somepass" 
+        });
+
+        super.assertDefined("session_token");
+        super.assert("", "session_token", 1);
+        //super.assertDefined("error");
+
+    }    
 }

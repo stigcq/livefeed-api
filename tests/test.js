@@ -44,7 +44,8 @@ tests.push(deleteFeedTest);
 deleteUserTest = new DeleteUserTest(createUserTest, loginTest, deleteFeedTest);
 tests.push(deleteUserTest);
 
-
+loginTestNoUser = new LoginTestNoUser();
+tests.push(loginTestNoUser);
 
 var stopRunning = false;
 
