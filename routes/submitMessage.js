@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
             if(message_id == undefined)    
                 dataLayer.addMessage(message, function(message) {
 
-                    dataLayer.attachMedia(req.app.get("user")._id, message._id, function(result) {
+                    dataLayer.attachMedia(req.app.get("user")._id, message.id, function(result) {
                         res.send(JSON.stringify(message));
                     });
 
