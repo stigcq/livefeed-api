@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
 
     if(result == false) {
 
-      const response = {message: "No such user", sesson_token: 1};
+      const response = { 'message': "No such user", 'sesson_token': 1 };
       res.send(JSON.stringify(response));
 
     } else {
