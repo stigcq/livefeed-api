@@ -221,14 +221,16 @@ function fetchMessagesX(goBack) {
 
     jQuery.getJSON(feedUrl + "messages/" + feedId + "/" + myId + "/" + goBack, function(data) {
 
-        //console.log("fetched " + data.length);
-
+        
         for(i = 0; i < data.length; i++) {
 
             //mustache dont got this sort o if 
-            if(data[i].user != undefined)
+            if(data[i].user != undefined) {
+
+                console.log(data[i].user.id + "ids " + userId);
                 if(data[i].user.id == userId)
                     data[i].is_owner = 1;
+            }
 
             data[i].view_feed_id = feedId;
             data[i].message_id = data[i].id;
