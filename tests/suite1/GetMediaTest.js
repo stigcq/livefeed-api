@@ -1,35 +1,23 @@
 
-class GetMediaTest extends Test {
+class GetMediaTest extends Test2 {
 
-    constructor(dependsOn) {
+    constructor(addMediaTest) {
         super();
-        super.addDependentOn(dependsOn);
+        super.addDependentOn(addMediaTest);
+        this.dependentOnAddmedia = addMediaTest; 
+
     }
 
-    isFinished() {
-        
-        if(fetchedMediaObject == false)
-            return false;
-        return true;
+    setupTest() {
+
+        this.setGet(testUrl + "get_media/" + this.dependentOnAddmedia.responseObject.id);
+  
+        super.assert("Media id match", "id", this.dependentOnAddmedia.responseObject.id);
+        super.assertDefined("id");
+        super.assertNotDefined("error");
+  
     }
 
-    test() {
 
-        jQuery.get(testUrl + "get_media/" + mediaObject.id, {}, function(result) {
-        
-            fetchedMediaObject = jQuery.parseJSON( result );
-        
-            if(fetchedMediaObject.error != undefined) {
-                logTest(false, "GetMediaTest: failed get media " + result);
-            } else {
-                if(fetchedMediaObject.id == mediaObject.id)
-                    logTest(true, "GetMediaTest: fetched media" + result);
-                else
-                    logTest(false, "GetMediaTest: fetched media ID differs" + result);
-            }
-            }).error(function() {
-                logTest(false, "GetMediaTest: Error in connection");
-        });
-    }
 
 }

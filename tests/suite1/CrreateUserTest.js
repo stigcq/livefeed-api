@@ -1,40 +1,28 @@
-class CreateUserTest extends Test {
+class CreateUserTest extends Test2 {
 
     constructor() {
         super();
       }
 
-    isFinished() {        
-        if(testUserObject == false)
-            return false;
-        return true;
+    
+
+    setupTest() {
+
+        const displayName = Math.floor(Math.random()*1000000);
+        const email = this.randomEmail();
+
+        this.setPost(testUrl + "create_user/", { 
+            email: email,
+            display_name: displayName, 
+            password: Math.floor(Math.random()*1000000) });
+
+        super.assert("Displayname correct", "display_name", displayName);
+        super.assert("Email correct", "email", email);
+        super.assertDefined("id");
+        super.assertDefined("session_token");
     }
 
-    test() {
-
-        jQuery.post(testUrl + "create_user/", { 
-            email: this.randomEmail(),
-            display_name: Math.floor(Math.random()*1000000), 
-            password: Math.floor(Math.random()*1000000) }, this.onTest).error(function() {
-            logTest(false, "Error in connection");
-        });
-    }
-
-    onTest(data) {
-
-        console.log("create user test done");
-
-        testUserObject = jQuery.parseJSON(data);
-
-        if(testUserObject.error != undefined) {
-            logTest(false, testUserObject.message);
-            testUserObject = false;
-        } else if(testUserObject.session_token != 1) {
-            logTest(true, "CreateUserTest: user created " + data);
-        }
-
-    }
-
+    
 
     isReady() {
         return true;

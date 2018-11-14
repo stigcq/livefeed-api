@@ -1,36 +1,22 @@
-class LoginTest extends Test {
+class LoginTest extends Test2 {
 
     constructor(dependsOnTest) {
         super();
         this.addDependentOn(dependsOnTest);
+        this.dependsOnTest = dependsOnTest;
       }
 
-    isFinished() {        
-        if(loggedInUserObject == false)
-            return false;
-        return true;
-    }
+    setupTest() {
 
-    test() {
-
-        var currentSessionToken = testUserObject.session_token;
-
-        jQuery.post(testUrl + "login/", 
-        { email: testUserObject.email, 
-            md5password: testUserObject.password}, function(data) {
-
-            console.log(testUserObject.email + " " + testUserObject.password);
-            //data = jQuery.parseJSON( data );
-
-            if(data.session_token != 1 && currentSessionToken != data.session_token) {
-                logTest(true, "LoginTest: successfully logged in" + data);
-                loggedInUserObject = jQuery.parseJSON(data);
-            } else {
-                logTest(false, "LoginTest: fail logged in" + data);
-                
-            }
-        }).error(function() {
-            logTest(false, "LoginTest: Error in connection");
+        this.setPost(testUrl + "login/", { 
+            email: this.dependsOnTest.responseObject.email, 
+            md5password: this.dependsOnTest.responseObject.password 
         });
+
+        super.assertDefined("session_token");
+        super.assertNotEqual("session_token", 1);
+        super.assertNotEqual("session_token", this.dependsOnTest.responseObject.session_token);
     }
+
+    
 }

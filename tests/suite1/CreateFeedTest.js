@@ -1,33 +1,23 @@
-class CreateFeedTest extends Test {
 
-    constructor(dependsOnTest) {
+class CreateFeedTest extends Test2 {
+
+    constructor(dependentOnLogin) {
         super();
-        this.addDependentOn(dependsOnTest);
+        this.addDependentOn(dependentOnLogin);
+        this.dependentOnLogin = dependentOnLogin; 
       }
 
+  setupTest() {
 
-    isFinished() {
-        
-        if(feedObject == false)
-            return false;
-        return true;
-    }
+      this.setPost(testUrl + "create_feed/", { 
+          feed_title: "Test Feed", 
+          session_token: this.dependentOnLogin.responseObject.session_token 
+      });
 
-        test() {
+      super.assert("Feed title correct", "feed_title", "Test Feed");
+      super.assertDefined("id");
+      super.assertNotDefined("error");
 
-            jQuery.post(testUrl + "create_feed/", { 
-                feed_title: "Test Feed",
-                session_token: loggedInUserObject.session_token }, function(result) {
-        
-                    feedObject = jQuery.parseJSON( result );
-        
-                    if(feedObject.error == 1) {
-                        logTest(false, "CreateFeedTest: fail create feed" + result);
-                    } else {
-                        logTest(true, "CreateFeedTest: created a feed" + result);
-                    }
-            }).error(function() {
-                logTest(false, "LoginTest: Error in connection");
-            });
-        }
+  }
+
 }

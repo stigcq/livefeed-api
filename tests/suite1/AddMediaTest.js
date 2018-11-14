@@ -1,34 +1,26 @@
-class AddMediaTest extends Test {
 
-    constructor(dependsOnTest) {
+class AddMediaTest extends Test2 {
+
+    constructor(dependentOnLogin) {
         super();
-        this.addDependentOn(dependsOnTest);
+        this.addDependentOn(dependentOnLogin);
+        this.dependentOnLogin = dependentOnLogin; 
       }
 
+      setupTest() {
 
-    isFinished() {
-        
-        if(mediaObject == false)
-            return false;
-        return true;
+        const mediaUrl = "http://itselskabet.nu/files/9237ccb4-59cc-4ed6-b4c2-b9857db57db0/1_21FF74FA-8FBD-0D53-1E3C-DDE6777224F920150806.jpg";
+
+        this.setPost(testUrl + "add_media/", { 
+            media_url: mediaUrl, 
+            session_token: this.dependentOnLogin.responseObject.session_token 
+        });
+  
+        super.assert("Media url match", "media_url", mediaUrl);
+        super.assertDefined("id");
+        super.assertNotDefined("error");
+  
     }
 
-        test() {
 
-            jQuery.post(testUrl + "add_media/", { 
-                media_url: "http://itselskabet.nu/files/9237ccb4-59cc-4ed6-b4c2-b9857db57db0/1_21FF74FA-8FBD-0D53-1E3C-DDE6777224F920150806.jpg",
-                message_id: 1,
-                session_token: loggedInUserObject.session_token }, function(result) {
-        
-                    mediaObject = jQuery.parseJSON( result );
-        
-                    if(feedObject.error != undefined) {
-                        logTest(false, "AddMediaTest: fail add media" + result);
-                    } else {
-                        logTest(true, "AddMediaTest: added media" + result);
-                    }
-            }).error(function() {
-                logTest(false, "AddMediaTest: Error in connection");
-            });
-        }
 }

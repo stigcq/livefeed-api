@@ -1,33 +1,25 @@
-class SetAvatarTest extends Test {
+class SetAvatarTest extends Test2 {
 
-    constructor(dependsOnTest) {
+    constructor(loginTest, addMediaTest) {
         super();
-        this.addDependentOn(dependsOnTest);
+        this.addDependentOn(loginTest);
+        this.addDependentOn(addMediaTest);
+        this.loginTest = loginTest;
+        this.addMediaTest = addMediaTest;
       }
 
 
-    isFinished() {
-        
-        if(avatarObject == false)
-            return false;
-        return true;
+      setupTest() {
+
+        this.setPost(testUrl + "set_avatar/", { 
+            media_id: this.addMediaTest.responseObject.id, 
+            session_token: this.loginTest.responseObject.session_token 
+        });
+  
+        super.assert("", "n", 1);
+        super.assert("", "ok", 1);
+  
     }
 
-        test() {
 
-            jQuery.post(testUrl + "set_avatar/", { 
-                media_id: mediaObject.id,
-                session_token: loggedInUserObject.session_token }, function(result) {
-        
-                    avatarObject = jQuery.parseJSON( result );
-        
-                    if(avatarObject.error != undefined) {
-                        logTest(false, "SetAvatarTest: fail set avatar" + result);
-                    } else {
-                        logTest(true, "SetAvatarTest: avatar set" + result);
-                    }
-            }).error(function() {
-                logTest(false, "SetAvatarTest: Error in connection");
-            });
-        }
 }

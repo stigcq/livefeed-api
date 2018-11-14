@@ -18,20 +18,25 @@ var fetchedMediaObject = false;
 
 var tests = new Array();
 
-createUserTest = new CreateUserTest2();
-loginTest = new LoginTest2(createUserTest);
+createUserTest = new CreateUserTest();
+loginTest = new LoginTest(createUserTest);
 tests.push(createUserTest);
 tests.push(loginTest);
 
-createFeedTest = new CreateFeedTest2(loginTest);
+createFeedTest = new CreateFeedTest(loginTest);
 tests.push(createFeedTest);
 
-addMediaTest = new AddMediaTest2(loginTest);
+addMediaTest = new AddMediaTest(loginTest);
 tests.push(addMediaTest);
 
-//FIXME: do it need depend on login? dont need be logged in to get media
-getMediaTest = new GetMediaTest2(loginTest, addMediaTest);
+getMediaTest = new GetMediaTest(addMediaTest);
 tests.push(getMediaTest);
+
+setAvatarTest = new SetAvatarTest(loginTest, addMediaTest);
+tests.push(setAvatarTest);
+
+getUserFeedTest = new GetUserFeedsTest(1, loginTest);
+tests.push(getUserFeedTest);
 
 /*
 createUserTest = new CreateUserTest();

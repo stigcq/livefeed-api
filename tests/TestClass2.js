@@ -96,7 +96,7 @@ class Test2 {
         if(sucessTest)
             logTest(true, this.constructor.name  + " test finished " + data + "<br/>");
         else
-            logTest(false, this.constructor.name  + " test finished " + data);   
+            logTest(false, this.constructor.name  + " test finished " + data + "<br/>");   
     }
 
 
