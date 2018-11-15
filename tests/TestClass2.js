@@ -42,6 +42,87 @@ class Test2 {
         }
     };
 
+    testAssertDefined(assertDefined, response) {
+
+        var successTest = true;
+
+        for(var i = 0; i < assertDefined.length; i++) {              
+            if(response[assertDefined[i].propertyName] == undefined) {
+                    logTest(false, this.constructor.name  + " assertDefined: " + assertDefined[i].propertyName + " is undefined");
+                    successTest = false;
+            } else {
+                logTest(true, this.constructor.name  + " assertDefined: " + assertDefined[i].propertyName + " is set");
+                
+            }
+        }
+
+        return successTest;
+    }
+
+    testAssertNotDefined(assertNotDefined, response) {
+
+        var successTest = true;
+
+        for(var i = 0; i < this.assertNotDefined.length; i++) {              
+            if(response[assertNotDefined[i].propertyName] != undefined) {
+                    logTest(false, this.constructor.name  + " assertNotDef: " + assertNotDefined[i].propertyName + " is defined");
+                    successTest = false;
+            } else {
+                logTest(true, this.constructor.name  + " assertNotDef: " + assertNotDefined[i].propertyName + " is not set");
+                
+            }
+        }
+
+        return successTest;
+    }
+
+
+    testAssertions(assertions, response) {
+
+        var successTest = true;
+
+        for(var i = 0; i < assertions.length; i++) {
+
+            if(response[assertions[i].propertyName] == 
+                assertions[i].propertyValue) {
+
+                    logTest(true, this.constructor.name  + " assertion: " + assertions[i].assertionDesc + 
+                        " " + assertions[i].propertyName + " equals " + assertions[i].propertyValue);
+
+            } else {
+                logTest(false, this.constructor.name  + " assertion: " + this.assertions[i].assertionDesc + 
+                " " + assertions[i].propertyName + " dont equal " + assertions[i].propertyValue);
+
+                successTest = false;
+            }
+        }
+
+        return successTest;
+    }
+
+    
+    testAssertNot(assertNot, response) {
+
+        var successTest = true;
+
+        for(var i = 0; i < assertNot.length; i++) {
+
+            if(response[assertNot[i].propertyName] != 
+                assertNot[i].propertyValue) {
+
+                    logTest(true, this.constructor.name  + " assertNot: " + assertNot[i].propertyName + " is not " + this.assertNot[i].propertyValue);
+
+            } else {
+                sucessTest = false;
+            }
+        }
+        return successTest;
+    }
+
+    testAssertResultLength() {
+        
+    }
+
     handleTestResult(data) {
 
         var response = jQuery.parseJSON( data );
@@ -49,53 +130,11 @@ class Test2 {
 
         var sucessTest = true;
 
-        for(var i = 0; i < this.assertDefined.length; i++) {              
-            if(response[this.assertDefined[i].propertyName] == undefined) {
-                    logTest(false, this.constructor.name  + " assertDefined: " + this.assertDefined[i].propertyName + " is undefined");
-                    sucessTest = false;
-            } else {
-                logTest(true, this.constructor.name  + " assertDefined: " + this.assertDefined[i].propertyName + " is set");
-                
-            }
-        }
+        sucessTest = this.testAssertDefined(this.assertDefined, response);
+        sucessTest = this.testAssertNotDefined(this.assertNotDefined, response);
+        sucessTest = this.testAssertions(this.assertions, response);
+        sucessTest = this.testAssertNot(this.assertNot, response);
 
-        for(var i = 0; i < this.assertNotDefined.length; i++) {              
-            if(response[this.assertNotDefined[i].propertyName] != undefined) {
-                    logTest(false, this.constructor.name  + " assertNotDef: " + this.assertNotDefined[i].propertyName + " is defined");
-                    sucessTest = false;
-            } else {
-                logTest(true, this.constructor.name  + " assertNotDef: " + this.assertNotDefined[i].propertyName + " is not set");
-                
-            }
-        }
-
-        for(var i = 0; i < this.assertions.length; i++) {
-
-            if(response[this.assertions[i].propertyName] == 
-                this.assertions[i].propertyValue) {
-
-                    logTest(true, this.constructor.name  + " assertion: " + this.assertions[i].assertionDesc + 
-                        " " + this.assertions[i].propertyName + " equals " + this.assertions[i].propertyValue);
-
-            } else {
-                logTest(false, this.constructor.name  + " assertion: " + this.assertions[i].assertionDesc + 
-                " " + this.assertions[i].propertyName + " dont equal " + this.assertions[i].propertyValue);
-
-                sucessTest = false;
-            }
-        }
-
-        for(var i = 0; i < this.assertNot.length; i++) {
-
-            if(response[this.assertNot[i].propertyName] != 
-                this.assertNot[i].propertyValue) {
-
-                    logTest(true, this.constructor.name  + " assertNot: " + this.assertNot[i].propertyName + " is not " + this.assertNot[i].propertyValue);
-
-            } else {
-                sucessTest = false;
-            }
-        }
 
         if(this.assertResultLength != false) {
             if(response.length != this.assertResultLength) {

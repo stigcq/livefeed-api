@@ -34,6 +34,7 @@ class LoginTestNoUser extends Test2 {
         });
 
         super.assertDefined("session_token");
+        super.assertDefined("message");
         super.assert("", "session_token", 1);
         //super.assertDefined("error");
 
