@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
     const feed_title = req.body.feed_title;
 
     if(req.app.get("user") == false) {
-        response = {'message': 'Need to be logged in to create feed', 'error': 4 } ;
+        response = {'message': 'Need to be logged in to create feed', 'error': 1 } ;
         res.send(JSON.stringify(response));
         return;
     }
