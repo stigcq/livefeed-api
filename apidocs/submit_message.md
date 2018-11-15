@@ -29,7 +29,9 @@ None
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"feed_id":"5bd76455d7cc2f0ffc8cf5b5","user_id":"5bd7644cd7cc2f0ffc8cf5b4","content":"Test message","reply_to":0,"feed_time":1541452480097,"feed_title":"NewTestFeed","_id":"5be0b2c093054419d428fa38"}`
+    **Content:** `{"feed_id":"5bd76455d7cc2f0ffc8cf5b5","user_id":"5bd7644cd7cc2f0ffc8cf5b4","content":"Test message","reply_to":0,"feed_time":1541452480097,"feed_title":"NewTestFeed","id":"5be0b2c093054419d428fa38"}`
+
+    feed_time is msecs since 1970.
  
 * **Error Response:**
 
