@@ -26,7 +26,7 @@ folder for jquery examples
 ## public/example
 
 Contains a clientside implementation under work. Viewable here
-http://3.121.5.61/example/
+<a href="http://3.121.5.61/example/">Live feed example API usage</a>
 It is a static html/js which can be deployed on any webserver. 
 The API backend is run as a background process on my lightsail mean stack. 
 
