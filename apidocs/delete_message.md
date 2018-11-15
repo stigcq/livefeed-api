@@ -1,12 +1,10 @@
-**Set avatar for a user**
+**Deletes a message**
 ----
-    sets avatar (profilephoto) for a user. It takes
-    existing media id as argument. After setting avatar the media_url
-    is accessible on the user object as avatar_url.
+    Deletes a message. Only owner of the message can delete it. 
 
 * **URL**
 
-  /set_avatar/
+  /delete_message/
 
 * **Method:**
 
@@ -20,15 +18,21 @@ None
 
      **Required:**
  
-   `media_id=[String]`<br />
+   `message_id=[String]`<br />
    `session_token=[String]` the session_token related to the user session<br />
 
-     **Not Required:**
  
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"n":1,"nModified":1,"ok":1}`
+    **Content:** `{"n":1,"ok":1}`
+
+* **Success Response :**
+
+  * **Code:** 200 <br />
+    **Content:** `{"n":0,"ok":1}`
+
+No message was deleted (probably dont exists)
  
 * **Error Response:**
 
@@ -36,14 +40,14 @@ None
     **Content:** `{ error : 1, message: "Need to be logged in" }`
 
   * **Code:** 200  <br />
-    **Content:** `{ error : 14, message: "No media with ID exists" }`
+    **Content:** `{ error : 6, message: "ID is not a valid ID" }`
 
 
 * **Sample Call:**
 
   ```javascript
-    jQuery.post("/set_avatar/", { 
-        media_id: 121212121,
+    jQuery.post("/delete_message/", { 
+        message_id: 121212121,
         session_token: 12718211}, function(data) {
             //do somethng
     });
