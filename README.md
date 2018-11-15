@@ -57,7 +57,7 @@ with JQuery <br/>
 
 ## Contribute
 
-If you find this project interesting and want help, either on API or frontend, drop
-me a message at stigcq at yahoo dot com. 
+If you find this project interesting, and want to help, or you got some question,
+ drop me a message at stigcq at yahoo dot com. 
 
 
