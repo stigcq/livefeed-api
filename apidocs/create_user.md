@@ -25,7 +25,7 @@ None
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"email":"test@test.com","password":"662f707d5491e9bce8238a6c0be92190","display_name":"tester","session_token":8685659,"_id":"5bd1d501cc91c3745021d816"}`
+    **Content:** `{"email":"test@test.com","password":"662f707d5491e9bce8238a6c0be92190","display_name":"tester","session_token":8685659,"id":"5bd1d501cc91c3745021d816"}`
  
 * **Error Response:**
 

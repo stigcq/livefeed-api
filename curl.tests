@@ -163,3 +163,4 @@ Define error codes
 
 12 /submit_comment/ : no message with messageid exists
 
+13 /login/ no such user or password dont match
