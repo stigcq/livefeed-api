@@ -22,9 +22,15 @@ router.post('/', function(req, res, next) {
 
     dataLayer.getMedia(mediaId, function(media) {
 
-        dataLayer.setAvatar(req.app.get("user")._id, media.media_url, function(result) {
-            res.send(JSON.stringify(result));
-        });
+        if(media != false)
+            dataLayer.setAvatar(req.app.get("user")._id, media.media_url, function(result) {
+                res.send(JSON.stringify(result));
+            });
+        else {
+            response = {'message': 'No media with ID exists', 'error': 14 } ;
+            res.send(JSON.stringify(response));   
+
+        }
     
     });
 

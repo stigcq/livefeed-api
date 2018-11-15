@@ -160,6 +160,7 @@ Define error codes
 10 /add_media/ : need to be logged in -1
 
 11 /set_avatar/ : need to be logged in -1
+14 /set_avatar/ : need to be logged in -1
 
 12 /submit_comment/ : no message with messageid exists
 

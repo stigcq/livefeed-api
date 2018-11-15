@@ -36,7 +36,7 @@ None
     **Content:** `{ error : 1, message: "Need to be logged in" }`
 
   * **Code:** 200  <br />
-    **Content:** `{ error : 12, message: "no message with messageid exists" }`
+    **Content:** `{ error : 14, message: "No media with ID exists" }`
 
 
 * **Sample Call:**
