@@ -33,10 +33,14 @@ class Test2 {
             if(this.getUrl != null) {
                 jQuery.get(this.getUrl, function(data) {
                     that.handleTestResult(data);
+                }).error(function() {
+                    logTest(false, this.constructor.name  + " connection failed, either demo aint running or test url is wrong");
                 });
             } else {
                 jQuery.post(this.postUrl, this.jsonBody, function(data) {
                     that.handleTestResult(data);
+                }).error(function() {
+                    logTest(false, this.constructor.name  + " connection failed, either demo aint running or test url is wrong");
                 });
             }
         }
