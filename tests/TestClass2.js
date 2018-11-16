@@ -15,10 +15,16 @@ class Test2 {
 
     }
 
-    
+    /**
+     * This function is called before a test is run, after the test isReady.
+     * This is for the simple reason mosts or many tests are dependent on
+     * the result from previous tests, so they cannot be set up until those
+     * test successfully ran.
+     */
     setupTest() {
 
     };
+
 
     test() {
 
@@ -123,6 +129,10 @@ class Test2 {
         return successTest;
     }
 
+    /**
+     * Not done yet. I want add it so this assertresultlength can take parameters besides
+     * a number, equals, greater than, small than. 
+     */
     testAssertResultLength() {
         
     }
@@ -160,6 +170,10 @@ class Test2 {
         this.dependentOn.push(aTest);
     };
 
+    /**
+     * Default simple implementation basicly just tests if th dependent tests are run.
+     * Function can be overridden. 
+     */
     isReady() {
 
         if(this.dependentOn.length == 0)
@@ -203,6 +217,9 @@ class Test2 {
         this.assertNot.push({propertyName: propertyName, propertyValue: propertyValue});
     }
 
+    /**
+     * IF the test is finished. This doesnt indicate if the test was successfull or not. 
+     */
     isFinished() {        
         if(this.responseObject == false)
             return false;
