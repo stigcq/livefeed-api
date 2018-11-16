@@ -6,3 +6,5 @@ Entry point is the test.html which basicly just loads the js needed. The test.js
 just need to set the url and parameters for the call, and define some assertions. And then add the test in the test.js class. 
 
 As such the tests also works as good documentation/examples on using the API. 
+
+The testsuite can be seen here: <a href="http://3.121.5.61/tests/test.html">Testsuite1</a>
