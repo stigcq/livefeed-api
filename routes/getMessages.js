@@ -61,7 +61,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
                 "user": { "display_name": 1, "id": "$user._id", 'avatar_url': 1 },
                 "photos": { "media_url": 1 }
             } },
-            { $sort : { feed_time : -1 } },
+            { $sort : { feed_time : sortOrder } },
             { $limit : 30 }
         ];
         else
