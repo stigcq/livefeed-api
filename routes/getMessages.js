@@ -10,11 +10,15 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
     const feed_id = req.params.feed_id;
     var feed_time = 0;
     var sortOrder = -1;
+    var goBack = 0;
 
     if(req.params.feed_time != undefined)
         feed_time = req.params.feed_time;
     
     if(req.params.goback != undefined)
+        goBack = req.params.goback;
+
+    if(goBack == 1)
         sortOrder = 1;
     //console.log(req.params.feed_time);
     //console.log(req.params.goback);
@@ -31,7 +35,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         //FIXME: cant figure out how to manipulate this object 
         
         var hmmtest = {$gt: Number(feed_time) };
-        if(req.params.goback != undefined)
+        if(goBack == 1)
             hmmtest = {$lt: Number(feed_time) };
 
         if(feed_id == 0)
