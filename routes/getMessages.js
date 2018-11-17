@@ -9,10 +9,13 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
 
     const feed_id = req.params.feed_id;
     var feed_time = 0;
+    var sortOrder = -1;
 
     if(req.params.feed_time != undefined)
         feed_time = req.params.feed_time;
     
+    if(req.params.goback != undefined)
+        sortOrder = 1;
     //console.log(req.params.feed_time);
     //console.log(req.params.goback);
 
@@ -27,11 +30,13 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         
         //FIXME: cant figure out how to manipulate this object 
         
+        const hmmtest = {$gt: Number(feed_time) };
+
         if(feed_id == 0)
          aggregate = [
             {$match:
                 {'reply_to': 0,
-                "feed_time": {$gt: Number(feed_time) } } },
+                "feed_time":  hmmtest} },
             { $lookup: {
               from: 'user',
               localField: 'user_id',

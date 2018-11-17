@@ -158,6 +158,7 @@ Define error codes
 7 /get_message/ : no message found
 
 10 /add_media/ : need to be logged in -1
+14 /add_media/ You dont have perms for the supplied message_id
 
 11 /set_avatar/ : need to be logged in -1
 14 /set_avatar/ : need to be logged in -1

@@ -37,10 +37,10 @@ The API backend is run as a background process on my lightsail mean stack.
 you run the API implementation, uploadUrl point to where the uploaded files via
 fineuploader is being put. 
 4. You need set up the fineuploader endpoint: endpoint.php and handler.php. They can
-be put anywhere but you need adjust urls to them in the fineuploader initialization in the
+be put anywhere but you need adjust urls accordingly in the fineuploader initialization in the
 feed.js file. 
 
-The usage of fineuploader end endpoint.php is not part of the API and just an example
+The usage of fineuploader and endpoint.php is not part of the API but just an example
 on how the API can be used. 
 
 ### Git structure
