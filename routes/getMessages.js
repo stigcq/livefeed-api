@@ -30,7 +30,9 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
         
         //FIXME: cant figure out how to manipulate this object 
         
-        const hmmtest = {$gt: Number(feed_time) };
+        var hmmtest = {$gt: Number(feed_time) };
+        if(req.params.goback != undefined)
+            hmmtest = {$lt: Number(feed_time) };
 
         if(feed_id == 0)
          aggregate = [
