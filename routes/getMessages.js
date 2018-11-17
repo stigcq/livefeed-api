@@ -67,7 +67,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
             {$match:
                 {'feed_id': ObjectID(feed_id),
                 'reply_to': 0,
-                "feed_time": {$gt: Number(feed_time) } } },
+                "feed_time": hmmtest } },
             { $lookup: {
               from: 'user',
               localField: 'user_id',

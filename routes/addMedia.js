@@ -25,18 +25,18 @@ router.post('/', function(req, res, next) {
         "message_id": messageId
     };
 
-    dataLayer.getMessage(messageId, function(message) {
+    /*dataLayer.getMessage(messageId, function(message) {
 
         if(message.user_id != req.app.get("user")._id) {
             response = {'message': 'You dont have perms for the supplied message_id', 'error': 14 } ;
             res.send(JSON.stringify(response));
             return;
-        }
+        }*/
 
         dataLayer.addMedia(item, function(feed) {
             res.send(JSON.stringify(item));
         });
-    });
+    //});
     
 
 });
