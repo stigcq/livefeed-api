@@ -18,11 +18,9 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
     if(req.params.goback != undefined)
         goBack = req.params.goback;
 
-    if(goBack == 1)
-        sortOrder = 1;
-    //console.log(req.params.feed_time);
-    //console.log(req.params.goback);
-
+    //if(goBack == 1)
+    //    sortOrder = 1;
+   
     MongoClient.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + 
         '@' + process.env.DB_HOST + ':' + process.env.DB_PORT, function (err, client) {
         if (err) throw err
@@ -98,7 +96,7 @@ router.get('/:feed_id/:feed_time?/:goback?', function(req, res, next) {
 
             client.close();
 
-            result.reverse();
+            if(goBack == 1) {} else result.reverse();
 
             result.forEach(function(item, index) {
                 //item.user = item.user[0];
