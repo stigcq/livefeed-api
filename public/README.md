@@ -1,4 +1,4 @@
-# livefeed-api
+# Public
 
 Example folder contains a client side demo. 
 

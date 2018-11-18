@@ -1,4 +1,4 @@
-#public/example
+# public/example
 
 This folder contains the clientside demo which can be seen here: <a href="http://3.121.5.61/example/">Client demo</a>
 
