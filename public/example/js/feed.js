@@ -574,6 +574,9 @@ function showSettings() {
     jQuery("#feed_top").html(Mustache.render(template, {}));        
 }
 
+function saveMySettings() {
+    
+}
 
 function setUserSession(userId, mySessionToken) {
 
