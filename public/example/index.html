@@ -190,7 +190,8 @@ to post
         {{/user.avatar_url}}
     </div>
     <div class="col-sm-10" style="padding: 0 0 0 0;">
-        {{{ content }}} <b>by {{ user.display_name }}</b>
+        {{{ content }}}  <span class='feed_time' datetime='{{feed_time}}'></span>
+        <!---->b>by {{ user.display_name }}</b-->
     </div>
     </div>
 </script>
@@ -332,7 +333,7 @@ to post
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js?1017"></script>
-<script src="js/feed.js?1087"></script>
+<script src="js/feed.js?1088"></script>
 <script src="js/jquery.fine-uploader.js"></script>
 <script src="js/timeago.min.js" type="text/javascript"></script>        
 <script src="js/timeago.locales.min.js" type="text/javascript"></script>        

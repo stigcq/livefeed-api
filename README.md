@@ -40,7 +40,7 @@ fineuploader is being put.
 be put anywhere but you need adjust urls accordingly in the fineuploader initialization in the
 feed.js file. 
 
-The usage of fineuploader and endpoint.php is not part of the API but just an example
+The usage of fineuploader and endpoint.php is not part of the API but an example
 on how the API can be used. 
 
 ### Git structure

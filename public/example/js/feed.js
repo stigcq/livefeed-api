@@ -295,6 +295,8 @@ function showComments(messageId) {
        
         }
 
+        timeago(null, "da").render($('.feed_time'));
+
         jQuery("#show_comments_buutton_" + messageId).attr("data-comment-count", data.length);
       
     });
