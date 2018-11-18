@@ -51,6 +51,7 @@ jQuery( document ).ready(function() {
         userId = Cookies.get('user_id');
         sessionToken = Cookies.get('session_token');
         showPostMessage();
+        showMyMenu();
     }
 
     //if viewing 1 message or other circumstances where not showing a feed 
@@ -529,6 +530,8 @@ function login() {
             jQuery("#content").html = "";
             messages = new Array();
             fetchMessagesX(0);
+
+            showMyMenu();
         }
     });
 }
@@ -554,9 +557,16 @@ function createUser() {
 
                 showCreateFeed();
                 
+                showMyMenu();
             }
     });
 }
+
+function showMyMenu() {
+    var template = $('#feed_menu_template').html();
+    jQuery("#feed_menu").html(Mustache.render(template, {}));        
+}
+
 
 function setUserSession(userId, mySessionToken) {
 
