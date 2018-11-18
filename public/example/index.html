@@ -188,10 +188,12 @@ to post
         {{#user.avatar_url}}
         <img src="{{user.avatar_url}}" style="max-width: 60px; "/>
         {{/user.avatar_url}}
+        {{^user.avatar_url}}
+            by {{user.display_name}}
+        {{/user.avatar_url}}   
     </div>
     <div class="col-sm-10" style="padding: 0 0 0 0;">
-        {{{ content }}}  <span class='feed_time' datetime='{{feed_time}}'></span>
-        <!---->b>by {{ user.display_name }}</b-->
+        {{{ content }}}  &nbsp; <span class='feed_time' datetime='{{feed_time}}'></span>
     </div>
     </div>
 </script>
@@ -333,7 +335,7 @@ to post
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js?1017"></script>
-<script src="js/feed.js?1088"></script>
+<script src="js/feed.js?1089"></script>
 <script src="js/jquery.fine-uploader.js"></script>
 <script src="js/timeago.min.js" type="text/javascript"></script>        
 <script src="js/timeago.locales.min.js" type="text/javascript"></script>        

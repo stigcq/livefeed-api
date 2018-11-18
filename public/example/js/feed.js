@@ -61,7 +61,7 @@ jQuery( document ).ready(function() {
         setTimeout(startCommentsLoop, 4000);
     }
 
-    timeago(null, "da").render($('.feed_time'));
+    timeago(null, "en").render($('.feed_time'));
 
 
 });
@@ -295,7 +295,7 @@ function showComments(messageId) {
        
         }
 
-        timeago(null, "da").render($('.feed_time'));
+        timeago(null, "en").render($('.feed_time'));
 
         jQuery("#show_comments_buutton_" + messageId).attr("data-comment-count", data.length);
       
@@ -379,7 +379,7 @@ function saveEditPost(messageId) {
                 var template = $('#message_view_template').html();
                 $('#feed_item_' + messageId).replaceWith(Mustache.render(template, jObj));
 
-                timeago(null, "da").render($('.feed_time'));
+                timeago(null, "en").render($('.feed_time'));
 
                 console.log(data);
         });
