@@ -101,7 +101,8 @@
 
 
  <script id="feed_menu_template" type="text/html">
-       <a href="javascript: showMyPhotos();">Photos</a> | <a href="javascript: showSettings()">Settings</a>
+       <a class="menu_item" href="javascript: showMyPhotos();">Photos</a> | 
+       <a class="menu_item" href="javascript: showSettings()">Settings</a>
    </script>
 
  <script id="top_logged_out" type="text/html">
@@ -138,13 +139,10 @@ to post
 
 
 <script id="your_settings_template" type="text/html">
-    <h2>Dine indstillingers</h2>
-    <label>Display navn</label>
+    <h2>Settings</h2>
+    <label>Display name</label>
     <input name="settings_display_name" id="settings_display_name" type="text" class="form-control" placeholder="Dit viste navn"/>
-    <button class="btn btn-primary" onclick="saveMySettings()">GEM</button>
-    <h4>Profil billede</h4>
-    Vælg et af dine uploadede billeer som profil billede:<br/>
-    
+    <button class="btn btn-primary" onclick="saveMySettings()">SAVE</button>
         
 </script>
 
@@ -178,7 +176,7 @@ to post
      <div id="comment_box_{{message_id}}">
         <textarea id="comment_area_{{message_id}}" class="form-control" placeholder="skriv en kommentar"></textarea>
         <button onclick="sendComment('{{message_id}}')" class="btn btn-default">SEND</button>
-        <button onclick="cancelComment('{{message_id}}')" class="btn btn-default">AFBRYD</button>
+        <button onclick="cancelComment('{{message_id}}')" class="btn btn-default">CANCEL</button>
      </div>
 </script>
 
@@ -186,7 +184,7 @@ to post
     <div class="edit_view">
         <textarea id="edit_textarea_{{message_id}}" class="form-control" rows="10"></textarea>
         <button onclick="saveEditPost('{{message_id}}')" class="btn btn-primary">GEM</button>
-        <button onclick="cancelEdit('{{message_id}}')" class="btn btn-default">AFBRYD</button>
+        <button onclick="cancelEdit('{{message_id}}')" class="btn btn-default">CANCEL</button>
     </div>
 </script>
 

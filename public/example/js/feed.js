@@ -568,6 +568,13 @@ function showMyMenu() {
 }
 
 
+function showSettings() {
+    
+    var template = $('#your_settings_template').html();
+    jQuery("#feed_top").html(Mustache.render(template, {}));        
+}
+
+
 function setUserSession(userId, mySessionToken) {
 
     sessionToken = mySessionToken;
