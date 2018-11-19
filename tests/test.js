@@ -11,6 +11,10 @@ loginTest = new LoginTest(createUserTest);
 tests.push(createUserTest);
 tests.push(loginTest);
 
+setDisplayNameTest = new SetDisplayNameTest(loginTest);
+tests.push(setDisplayNameTest);
+
+
 createFeedTest = new CreateFeedTest(loginTest);
 tests.push(createFeedTest);
 
