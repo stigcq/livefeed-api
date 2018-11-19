@@ -197,7 +197,7 @@ to post
     <div class="row" style="margin-top: 10px;">
     <div class="col-sm-2" style="text-align: right; padding: 0 10px 0 10px;">
         {{#user.avatar_url}}
-        <img src="{{user.avatar_url}}" style="max-width: 60px; "/>
+        <img src="{{user.avatar_url}}" style="max-width: 60px; " alt="{{user.display_name}}" title="{{user.display_name}}"/>
         {{/user.avatar_url}}
         {{^user.avatar_url}}
             by {{user.display_name}}
@@ -214,7 +214,7 @@ to post
     <div class='feed_item_header'>
         {{#user.avatar_url}}
         <div style="display: inline-block;">
-                <img src="{{user.avatar_url}}" style="max-width: 60px"/>
+                <img src="{{user.avatar_url}}" style="max-width: 60px" alt="{{user.display_name}}" title="{{user.display_name}}"/>
         </div>
         {{/user.avatar_url}}
         {{^user.avatar_url}}
