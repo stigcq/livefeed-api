@@ -575,7 +575,22 @@ function showSettings() {
 }
 
 function saveMySettings() {
-    
+
+    jQuery.post(feedUrl + "set_display_name/", { 
+        display_name: jQuery("#settings_display_name").val(),
+        session_token: sessionToken }, function(data) {
+
+            console.log(data);
+
+            data = jQuery.parseJSON( data );
+
+            if(data.error == 1) {
+                alert(data.message);
+            } else {
+                //showCreateFeed();
+                jQuery("#settings_message").val("Settings saved");
+            }
+    });
 }
 
 function setUserSession(userId, mySessionToken) {
