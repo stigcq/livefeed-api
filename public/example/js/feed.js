@@ -576,21 +576,48 @@ function showSettings() {
 
 function saveMySettings() {
 
-    jQuery.post(feedUrl + "set_display_name/", { 
-        display_name: jQuery("#settings_display_name").val(),
-        session_token: sessionToken }, function(data) {
+    if(jQuery("#settings_display_name").val().length > 1) {
+        jQuery.post(feedUrl + "set_display_name/", { 
+            display_name: jQuery("#settings_display_name").val(),
+            session_token: sessionToken }, function(data) {
+    
+                console.log(data);
+    
+                data = jQuery.parseJSON( data );
+    
+                if(data.error == 1) {
+                    alert(data.message);
+                } else {
+                    //showCreateFeed();
+                    jQuery("#settings_message").val("Displayname saved");
+                }
+        });
+    } 
 
-            console.log(data);
+    if(jQuery("#settings_avatar_url").val().length > 1) {
+        jQuery.post(feedUrl + "add_media/", { 
+            media_url: jQuery("#settings_avatar_url").val(),
+            session_token: sessionToken }, function(data) {
+    
+                console.log(data);
+    
+                data = jQuery.parseJSON( data );
+    
+                if(data.error == 1) {
+                    alert(data.message);
+                } else {
+                    jQuery.post(feedUrl + "set_avatar/", { 
+                        media_id: data.id,
+                        session_token: sessionToken }, function(data) {
+    
+                            jQuery("#settings_message").val("Avatar saved saved");
+                            
+                        });
+                    //showCreateFeed();
+                }
+        });
+    } 
 
-            data = jQuery.parseJSON( data );
-
-            if(data.error == 1) {
-                alert(data.message);
-            } else {
-                //showCreateFeed();
-                jQuery("#settings_message").val("Settings saved");
-            }
-    });
 }
 
 function setUserSession(userId, mySessionToken) {
