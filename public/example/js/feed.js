@@ -567,6 +567,17 @@ function showMyMenu() {
     jQuery("#feed_menu").html(Mustache.render(template, {}));        
 }
 
+function showMyPhotos() {
+
+    jQuery.get(feedUrl + "get_user_media/" + userId + "/9",  function(data) {
+
+        var template = $('#my_photos_template').html();
+        jQuery("#feed_top").html(Mustache.render(template, data));        
+    
+    });
+
+}
+
 
 function showSettings() {
     
