@@ -571,8 +571,11 @@ function showMyPhotos() {
 
     jQuery.get(feedUrl + "get_user_media/" + userId + "/9",  function(data) {
 
+        var my = new Object();
+        my.photos = data;
+
         var template = $('#my_photos_template').html();
-        jQuery("#feed_top").html(Mustache.render(template, data));        
+        jQuery("#feed_top").html(Mustache.render(template, my));        
     
     });
 
