@@ -575,7 +575,7 @@ function showMyPhotos() {
         my.photos = data;
 
         var template = $('#my_photos_template').html();
-        jQuery("#feed_top").html(Mustache.render(template, my));        
+        jQuery("#feed_top").html(Mustache.render(template, {"photos": data}));        
     
     });
 
