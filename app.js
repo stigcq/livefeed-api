@@ -26,6 +26,7 @@ var addMediaRouter = require('./routes/addMedia');
 var setAvatarRouter = require('./routes/setAvatar');
 var getMediaRouter = require('./routes/getMedia');
 var setDisplayNameRouter = require('./routes/setDisplayName');
+var getUserMediaRouter = require('./routes/getUserMedia');
 
 
 
@@ -51,6 +52,7 @@ app.use('/submit_message', submitMessageRouter);
 app.use('/submit_comment', submitCommentRouter);
 app.use('/get_message', getMessageRouter);
 app.use('/get_media', getMediaRouter);
+app.use('/get_user_media', getUserMediaRouter);
 app.use('/delete_message', deleteMessageRouter);
 app.use('/delete_feed', deleteFeedRouter);
 app.use('/delete_user', deleteUserRouter);
