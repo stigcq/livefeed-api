@@ -571,6 +571,7 @@ function showMyPhotos() {
 
     jQuery.get(feedUrl + "get_user_media/" + userId + "/9",  function(data) {
 
+        console.log(data);
         var my = new Object();
         my.photos = data;
 
