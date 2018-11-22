@@ -7,7 +7,7 @@ var dataLayer = require('./../lib/DataLayer');
 router.get('/:user_id/:limit', function(req, res, next) {
 
     const userId = req.params.user_id;
-    const limit = req.params.limit;
+    const limit = parseInt(req.params.limit);
     
     dataLayer.getUserMedia(userId, limit, function(medias) {
 
