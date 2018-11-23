@@ -580,11 +580,15 @@ function showMyPhotos() {
         var template = $('#my_photos_template').html();
         jQuery("#feed_top").html(Mustache.render(template, my));   
         
-        my.photos = data.splice(3, 3);
+        my.photos = data.splice(0, 3);
         jQuery("#feed_top").append(Mustache.render(template, my));   
 
-        my.photos = data.splice(6, 3);
+        my.photos = data.splice(0, 3);
         jQuery("#feed_top").append(Mustache.render(template, my));   
+
+        jQuery("#feed_top").append('<button class="btn btn-default" onclick="showPostMessage()">BACK</button>');
+
+
     
     });
 
