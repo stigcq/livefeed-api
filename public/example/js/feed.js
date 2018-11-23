@@ -575,10 +575,16 @@ function showMyPhotos() {
 
         console.log(data);
         var my = new Object();
-        my.photos = data;
+        my.photos = data.splice(0, 3);
 
         var template = $('#my_photos_template').html();
-        jQuery("#feed_top").html(Mustache.render(template, my));        
+        jQuery("#feed_top").html(Mustache.render(template, my));   
+        
+        my.photos = data.splice(3, 3);
+        jQuery("#feed_top").append(Mustache.render(template, my));   
+
+        my.photos = data.splice(6, 3);
+        jQuery("#feed_top").append(Mustache.render(template, my));   
     
     });
 

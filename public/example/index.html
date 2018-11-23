@@ -193,10 +193,14 @@ to post
 </script>
 
 <script id="my_photos_template" type="text/html">
+    <div class="row" style="margin-top: 10px;">    
     {{#photos}}
-    <img src="{{ media_url }}" style="max-width: 200px"/>
-    <br/><br/>
+    <div class="col-sm-4">
+    <img src="{{ media_url }}" style="max-width: 200px"/><br/>
+    <a href="">Set avatar</a>  <a href="">Del</a>
+    </div>
     {{/photos}}
+</div>
     <button class="btn btn-default" onclick="showPostMessage()">BACK</button>    
 </script>
 
@@ -353,7 +357,7 @@ to post
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js?1017"></script>
-<script src="js/feed.js?1097"></script>
+<script src="js/feed.js?1098"></script>
 <script src="js/jquery.fine-uploader.js"></script>
 <script src="js/timeago.min.js" type="text/javascript"></script>        
 <script src="js/timeago.locales.min.js" type="text/javascript"></script>        
