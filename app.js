@@ -32,6 +32,7 @@ var setAvatarRouter = require('./routes/setAvatar');
 var getMediaRouter = require('./routes/getMedia');
 var setDisplayNameRouter = require('./routes/setDisplayName');
 var getUserMediaRouter = require('./routes/getUserMedia');
+var sessionCheckRouter = require('./routes/isSessionValid');
 
 
 
@@ -73,6 +74,7 @@ app.use('/comment_counts', getCommentCountRouter);
 app.use('/add_media', addMediaRouter);
 app.use('/set_avatar', setAvatarRouter);
 app.use('/set_display_name', setDisplayNameRouter);
+app.use('/is_session_valid', sessionCheckRouter);
 
 
 

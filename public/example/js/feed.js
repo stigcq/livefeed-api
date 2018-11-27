@@ -98,7 +98,7 @@ function startSessionLoop() {
 
 function checkSession() {
 
-    jQuery.post(feedUrl +  "is_session_value", {"session_token": sessionToken}, function(data) {
+    jQuery.post(feedUrl +  "is_session_valid", {"session_token": sessionToken}, function(data) {
 
         jObj = JSON.parse(data);
         if(jObj.ok == 0) {
