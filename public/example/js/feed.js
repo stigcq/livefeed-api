@@ -676,6 +676,26 @@ function createFeed() {
 }
 
 
+function createNewFeed() {
+    jQuery.post(feedUrl + "create_feed/", { 
+        feed_title: jQuery("#settings_create_feed").val(),
+        session_token: sessionToken }, function(data) {
+
+            console.log(data);
+
+            data = jQuery.parseJSON( data );
+
+            if(data.error == 1) {
+                alert(data.message);
+            } else {
+                //showCreateFeed();
+                changeFeed(data.id, data.feed_title);
+                showPostMessage();
+            }
+    });
+}
+
+
 function showSignup() {
     jQuery("#feed_top").html(jQuery("#create_user_template").html());
     
