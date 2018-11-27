@@ -405,6 +405,18 @@ function deletePost(messageId) {
 }
 
 
+function deleteMedia(mediaId) {
+
+    jQuery.post(feedUrl + "delete_media/", 
+            { media_id: mediaId, session_token: sessionToken }, function(data) {
+        
+        //jQuery("#feed_item_" + messageId).hide();
+
+        console.log(data);
+    });
+}
+
+
 /*function createFeed() {
 
     feedTitle = jQuery("#feed_title").val();

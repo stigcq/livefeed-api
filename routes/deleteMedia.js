@@ -4,7 +4,7 @@ var router = express.Router();
 var dataLayer = require('./../lib/DataLayer');
 
 
-/* delete message */
+/* delete media */
 router.post('/', function(req, res, next) {
 
     if(!req.app.get("user")) {
