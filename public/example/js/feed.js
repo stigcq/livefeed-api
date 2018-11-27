@@ -60,7 +60,7 @@ jQuery( document ).ready(function() {
         startLoop();
         //wait start comments until messages fetched
         setTimeout(startCommentsLoop, 4000);
-        
+
         startSessionLoop();
     }
 
@@ -167,8 +167,8 @@ function changeFeed(id, title) {
     jQuery("#content").html("");
     jQuery("#feed_header").html("<a href='javascript: changeFeed(0, \"ALL FEEDS\");'><h1>" + title + "</h1></a>");
 
-    startLoop();
-    startCommentsLoop();
+    //startLoop();
+    //startCommentsLoop();
     
 
 }
