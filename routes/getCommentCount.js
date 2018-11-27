@@ -30,18 +30,25 @@ router.get('/:feed_id', function(req, res, next) {
              }
           }       
         ];
-        else
-        aggregate = [
-            { $match:
-                {'feed_id': feed_id } },
-            {"$group" : { _id: '$reply_to', count: { $sum:1 } } },
-            { $project: {  
-                _id: 0,
-                message_id: "$_id",
-                count: 1
-             }
-          }       
-        ];
+        else {
+            if(mongodb.ObjectID.isValid(feed_id) == false) {
+                callback( {'error': 6, 'message': 'id is not a valid id' } );
+                return;
+            } else {
+                aggregate = [
+                    { $match:
+                        {'feed_id': ObjectID(feed_id) } },
+                    {"$group" : { _id: '$reply_to', count: { $sum:1 } } },
+                    { $project: {  
+                        _id: 0,
+                        message_id: "$_id",
+                        count: 1
+                     }
+                  }       
+                ];
+            }
+        }
+        
         
         db.collection("message").aggregate(aggregate).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
