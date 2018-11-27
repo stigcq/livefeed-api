@@ -3,6 +3,7 @@ var router = express.Router();
 
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
+var mongodb = require("mongodb");
 
 /*  */
 router.get('/:feed_id', function(req, res, next) {
