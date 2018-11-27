@@ -9,9 +9,14 @@ console.log(process.env.DOTENV_HELLO);
 
 var submitMessageRouter = require('./routes/submitMessage');
 var submitCommentRouter = require('./routes/submitComment');
+
+//maybe consider do a delete object function instead, which
+//handles all types of deletion.
 var deleteMessageRouter = require('./routes/deleteMessage');
+var deleteMediaRouter = require('./routes/deleteMedia');
 var deleteFeedRouter = require('./routes/deleteFeed');
 var deleteUserRouter = require('./routes/deleteUser');
+
 var getMessageRouter = require('./routes/getMessage');
 var getCommentsRouter = require('./routes/getComments');
 var getCommentCountRouter = require('./routes/getCommentCount');
@@ -54,6 +59,7 @@ app.use('/get_message', getMessageRouter);
 app.use('/get_media', getMediaRouter);
 app.use('/get_user_media', getUserMediaRouter);
 app.use('/delete_message', deleteMessageRouter);
+app.use('/delete_media', deleteMediaRouter);
 app.use('/delete_feed', deleteFeedRouter);
 app.use('/delete_user', deleteUserRouter);
 app.use('/messages', getMessagesRouter);
