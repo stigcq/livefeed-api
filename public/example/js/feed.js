@@ -493,11 +493,13 @@ function clearUserLogin() {
 
 function setAvatar(photoId) {
 
-    jQuery.post(feedUrl + "set_avatar/", {photo_id: photoId}, function(data) {
+    jQuery.post(feedUrl + "set_avatar/", { 
+        media_id: photoId,
+        session_token: sessionToken }, function(data) {
 
         console.log("set avatar " + data);
 
-        alert("avatar ændret");
+        alert("avatar changed");
         //fineupload.reset();
     });
 }
