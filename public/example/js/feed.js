@@ -60,6 +60,8 @@ jQuery( document ).ready(function() {
         startLoop();
         //wait start comments until messages fetched
         setTimeout(startCommentsLoop, 4000);
+        
+        startSessionLoop();
     }
 
     timeago(null, "en").render($('.feed_time'));
