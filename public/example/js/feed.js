@@ -88,6 +88,26 @@ function startCommentsLoop() {
 }
 
 
+function startSessionLoop() {
+
+    setTimeout(startSessionLoop, 60000);
+    checkSession();
+}
+
+function checkSession() {
+
+    jQuery.post(feedUrl +  "is_session_value", {"session_token": sessionToken}, function(data) {
+
+        jObj = JSON.parse(data);
+        if(jObj.ok == 0) {
+            var template = $('#top_logged_out').html();
+            jQuery("#feed_top").html(Mustache.render(template, {}));    
+        
+        }
+    });
+}
+
+
 function checkForComments() {
 
     jQuery.getJSON(feedUrl + "comment_counts/" + feedId + "/", function(data) {
