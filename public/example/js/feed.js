@@ -365,6 +365,15 @@ function cancelComment(messageId) {
 
 }
 
+function cancelEdit(messageId) {
+
+    //messageContent = $('#edit_textarea_' + messageId).val();
+    //messageContent = messageContent.replaceAll("\n", "<br>");
+
+    var template = $('#message_view_template').html();
+    $('#feed_item_' + messageId).replaceWith(Mustache.render(template, messages[messageId]));
+
+}
 
 function editPost(messageId) {
 
@@ -379,7 +388,6 @@ function editPost(messageId) {
     $('#edit_textarea_' + messageId).html(messageContent);
 
     console.log(messageContent);
-   
 
 }
 
